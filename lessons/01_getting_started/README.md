@@ -14,6 +14,8 @@
 
 [Instalē un pārbaudi Python](../../setup/README.md). Git nav obligāts: var lejupielādēt repozitoriju ZIP formātā.
 
+**Ja izvēlies VS Code:** seko [VS Code uzstādīšanas un pirmās programmas palaišanas ceļvedim](vscode_setup.md) (Windows, macOS un Linux; Python paplašinājums, interpretatora izvēle, `hello.py` palaišana un problēmu novēršana). IDLE paliek derīga alternatīva.
+
 ## Nodarbības darba gaita
 
 1. Python un programmēšanas jēdzieni; interaktīvā konsole.

@@ -10,6 +10,8 @@
 
 **Ko uzstādīt vispirms?** Python komplektā parasti ir **IDLE**. Tas ir pietiekami pirmajai reizei. **VS Code** (ar Python paplašinājumu) ir labs nākamais solis, bet nav obligāts. Git/GitHub konts, Jupyter, pandas, Flask un citas pakotnes sākumā nav vajadzīgas.
 
+**VS Code izvēles variants:** [soli pa solim instrukcija latviski 1. nodarbībai](../lessons/01_getting_started/vscode_setup.md), ieskaitot VS Code instalēšanu, Microsoft Python paplašinājumu, interpretatora izvēli un `hello.py` palaišanu.
+
 **Terminoloģija:** Python ir interpretators/valoda; `.py` ir avota fails; IDLE un VS Code ir rediģēšanas vide; terminālis ir komandu vide. Šie jēdzieni nav viens un tas pats.
 
 [Google Colab](colab.md) tiks izmantots vēlāk kā otrā, attālināta izpildes vide — nevis kā lokālā Python aizstājējs.
