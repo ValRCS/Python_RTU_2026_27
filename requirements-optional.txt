@@ -1,0 +1,7 @@
+# TIKAI turpmākajām nodarbībām (7.–11.), nevis 1. nodarbībai.
+# Instalēt izvēlētā virtuālajā vidē, kad pasniedzējs konkrēto bibliotēku izmanto.
+requests
+beautifulsoup4
+pandas
+matplotlib
+flask
