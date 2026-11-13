@@ -6,6 +6,8 @@ Praktisks **12 nodarbību Python kurss iesācējiem**. Priekšzināšanas progra
 
 > Šis repozitorijs ir **studentiem paredzētā 2026/27 kursa darba vide**. 12 lekciju plāns ir pamats; uzdevumi un papildu materiāli tiks papildināti kursa gaitā. Nākamā gada kursam laika grafiks būs atsevišķs, neatkarīgi no kopīgajiem mācību materiāliem.
 
+**Interaktīvā mācību vietne (GitHub Pages):** https://valrcs.github.io/Python_RTU_2026_27/ — 1. nodarbības skaidrojumi, demonstrācijas un pašpārbaude; pārējām nodarbībām pagaidām pieejama navigācija un materiālu saites. Publicēšanai jāieslēdz GitHub Pages no `main` / `docs`.
+
 ## Sāc šeit
 
 1. Izlasi [uzstādīšanas un darba vides ceļvedi](setup/README.md), izvēlies savu operētājsistēmu un pārbaudi Python versiju.
