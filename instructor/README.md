@@ -2,6 +2,10 @@
 
 Šajā repozitorijā tiek uzturēta atkārtoti izmantojama 12 nodarbību secība. Aktuālās rudens grupas datumi ir [cohorts/2026_fall.md](../cohorts/2026_fall.md), bet nākamam kursam jāizveido jauns grafika fails.
 
+## 2026. gada 19. novembra nodarbība
+
+[3. nodarbības pasniedzēja plāns, demonstrāciju scenārijs un pārbaudes](2026-11-19_lesson03_instructor_plan.md).
+
 ## Satura izstrādes principi
 
 - **Pirmie 6 temati:** lokālā Python vide, izpildāmi īsi `.py` piemēri un standarta bibliotēka.
