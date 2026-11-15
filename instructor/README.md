@@ -6,6 +6,10 @@
 
 [3. nodarbības pasniedzēja plāns, demonstrāciju scenārijs un pārbaudes](2026-11-19_lesson03_instructor_plan.md).
 
+## 2026. gada 24. novembra nodarbība
+
+[4. nodarbības kolekciju plāns, demonstrācijas, kļūdas un pārbaudes](2026-11-24_lesson04_instructor_plan.md).
+
 ## Satura izstrādes principi
 
 - **Pirmie 6 temati:** lokālā Python vide, izpildāmi īsi `.py` piemēri un standarta bibliotēka.
@@ -22,7 +26,7 @@
 
 ## Vēl izdarāmais (nepabeigtās lietas)
 
-1. Detalizēti sagatavot 2.–6. nodarbības piemērus un uzdevumus.
+1. Detalizēti sagatavot 5.–6. nodarbības piemērus un uzdevumus.
 2. Nošķirt droši demonstrējamu HTML paraugu no dzīvu vietņu skrāpēšanas.
 3. Sagatavot mazu, atkārtojamu JSON/API notebook, pārbaudīt ārējās API pieejamību un nodrošināt lokālu JSON rezerves piemēru.
 4. Paplašināt SQLite uzdevumu ar parametrizētu SQL, vienkāršiem datu integritātes principiem un kļūdām.

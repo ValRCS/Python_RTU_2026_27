@@ -1,1 +1,183 @@
-<!doctype html><html lang="lv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RTU Python programmēšanas pamatu interaktīvie materiāli latviešu valodā"><title>4. nodarbība — Kolekcijas: saraksti un vārdnīcas | Python pamati · RTU</title><link rel="stylesheet" href="../../assets/css/style.css"></head><body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a></nav></div></header><main id="main"><div class="shell section"><span class="eyebrow">4. nodarbība · 2026-11-24</span><h1>Kolekcijas: saraksti un vārdnīcas</h1><p class="notice">Šīs nodarbības interaktīvais saturs vēl tiek gatavots. Zemāk pieejami kursa sākotnējie materiāli un nodarbību navigācija.</p><article class="panel"><h2>Sagatavošanās un materiāli</h2><p>Atver <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/lessons/04_collections/README.md">nodarbības plānu GitHub repozitorijā</a>. Tas ir galvenais avots par sasniedzamajiem rezultātiem un uzdevumiem.</p><p>Atgriezies šeit, kad būs publicēti interaktīvie piemēri un pašpārbaudes jautājumi.</p></article><nav class="lesson-nav"><a href="../03-loops-strings/index.html">← Iepriekšējā nodarbība</a><a href="../05-functions-modules/index.html">Nākamā nodarbība →</a></nav></div></main><footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer><script src="../../assets/js/main.js" defer></script></body></html>
+<!doctype html>
+<html lang="lv">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="4. nodarbība: Python saraksti, vārdnīcas, korteži un kopas — interaktīvi piemēri un uzdevumi">
+<title>4. nodarbība — Kolekcijas | RTU Python pamati</title>
+<link rel="stylesheet" href="../../assets/css/style.css"></head>
+<body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a></nav></div></header>
+<main id="main"><div class="shell lesson-layout"><aside class="toc" aria-label="Nodarbības saturs"><strong>4. nodarbība</strong><p class="muted" id="progress-count">0 / 8 sadaļas atzīmētas</p>
+<a href="#atkartojums">1. Atkārtojums</a><a href="#saraksti">2. Saraksti</a><a href="#modificesana">3. Modificēšana</a><a href="#teksts">4. split un join</a><a href="#vardnicas">5. Vārdnīcas</a><a href="#biezumi">6. Biežumu skaitītājs</a><a href="#kortezi-kopas">7. Korteži un kopas</a><a href="#prakse">8. Patstāvīgā prakse</a></aside>
+<article class="lesson-content lesson4"><span class="eyebrow">2026. gada 24. novembris · 17:45–21:40</span>
+<h1>Kolekcijas: saraksti, vārdnīcas, korteži un kopas</h1>
+<p class="lead">Vienu vērtību glabā mainīgajā. Daudzu elementu apstrādei lieto kolekcijas: secību <code>list</code>, atslēgu–vērtību saites <code>dict</code>, fiksētu secību <code>tuple</code> un unikālas vērtības <code>set</code>.</p>
+<p class="notice"><strong>Galvenais šodien:</strong> <code>list</code> un <code>dict</code>. Korteži — īss obligātais ievads; kopas — papildu materiāls. Interaktīvās demonstrācijas modelē noteiktas Python darbības JavaScript; īsto Python kodu izmēģini savā datorā.</p>
+<section id="atkartojums"><h2>1. Atkārtojums: virknes un cikli</h2>
+<p>Iepriekš mēs apguvām, kā <code>for</code> apstrādā virkni un kā iegūt atsevišķu simbolu pēc indeksa. Tagad šo pašu ideju izmantosim sarakstiem.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-review">Kopēt</button></div><pre><code id="l4-review">text = &quot;Rīga&quot;
+print(text[0])     # R
+print(text[-1])    # a
+for letter in text:
+    print(letter)</code></pre></div>
+<p><strong>Jautājums pirms turpinājuma:</strong> kā glabāt desmit, simt vai tūkstoš produktu nosaukumus, nerakstot katram savu mainīgo?</p><div class="exercise" data-quiz="l4q1" data-answer="0" data-explanation="Indeksi sākas ar 0; pirmais simbols ir R."><strong>Ko iegūst no <code>"Rīga"[0]</code>?</strong><label class="checkline"><input type="radio" name="l4q1" value="0"> R</label><label class="checkline"><input type="radio" name="l4q1" value="1"> ī</label><label class="checkline"><input type="radio" name="l4q1" value="2"> a</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q2" data-answer="2" data-explanation="Indekss -1 norāda uz pēdējo elementu."><strong>Ko iegūst no <code>"Rīga"[-1]</code>?</strong><label class="checkline"><input type="radio" name="l4q2" value="0"> R</label><label class="checkline"><input type="radio" name="l4q2" value="1"> g</label><label class="checkline"><input type="radio" name="l4q2" value="2"> a</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q3" data-answer="1" data-explanation="Šajā virknē ir četri Unicode koda punkti."><strong>Ko izvada <code>len("Rīga")</code>?</strong><label class="checkline"><input type="radio" name="l4q3" value="0"> 3</label><label class="checkline"><input type="radio" name="l4q3" value="1"> 4</label><label class="checkline"><input type="radio" name="l4q3" value="2"> 5</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q4" data-answer="0" data-explanation="for secīgi ņem elementus no virknes."><strong>Ko dara <code>for char in "ab":</code>?</strong><label class="checkline"><input type="radio" name="l4q4" value="0"> Izpilda ciklu divreiz</label><label class="checkline"><input type="radio" name="l4q4" value="1"> Izpilda ciklu vienreiz</label><label class="checkline"><input type="radio" name="l4q4" value="2"> Nekad neizpilda</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-atkartojums"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="saraksti"><h2>2. Saraksti: izveide, indeksi un šķēlumi</h2>
+<p><code>list</code> jeb <strong>saraksts</strong> glabā secīgu elementu kolekciju. Saraksts atšķirībā no <code>str</code> ir maināms. Tāpat kā virknē, pirmajam elementam indekss ir 0.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-list">Kopēt</button></div><pre><code id="l4-list">fruits = [&quot;ābols&quot;, &quot;banāns&quot;, &quot;bumbieris&quot;]
+print(fruits[0])     # ābols
+print(fruits[-1])    # bumbieris
+print(fruits[1:3])   # ['banāns', 'bumbieris']
+print(len(fruits))   # 3
+
+empty = []
+print(len(empty))    # 0</code></pre></div>
+<p>Indeksa piekļuve ārpus robežām izraisa <code>IndexError</code>, bet šķēlums var būt īsāks par pieprasīto diapazonu. Ar <code>for fruit in fruits</code> var apstrādāt katru elementu.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-iteration">Kopēt</button></div><pre><code id="l4-iteration">for fruit in fruits:
+    print(&quot;Auglis:&quot;, fruit)
+
+if &quot;ābols&quot; in fruits:
+    print(&quot;Ābols ir sarakstā&quot;)</code></pre></div>
+<div class="exercise" data-quiz="l4q5" data-answer="1" data-explanation="Kvadrātiekavas [] veido tukšu sarakstu."><strong>Kā izveidot tukšu sarakstu?</strong><label class="checkline"><input type="radio" name="l4q5" value="0"> {}</label><label class="checkline"><input type="radio" name="l4q5" value="1"> []</label><label class="checkline"><input type="radio" name="l4q5" value="2"> ()</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q6" data-answer="2" data-explanation="Negatīvais indekss -1 nozīmē pēdējo elementu."><strong>Kāds ir <code>[10, 20, 30][-1]</code>?</strong><label class="checkline"><input type="radio" name="l4q6" value="0"> 10</label><label class="checkline"><input type="radio" name="l4q6" value="1"> 20</label><label class="checkline"><input type="radio" name="l4q6" value="2"> 30</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q7" data-answer="0" data-explanation="Šķēluma beigu robeža nav iekļauta."><strong>Kāds ir <code>[1, 2, 3][0:2]</code>?</strong><label class="checkline"><input type="radio" name="l4q7" value="0"> [1, 2]</label><label class="checkline"><input type="radio" name="l4q7" value="1"> [1, 2, 3]</label><label class="checkline"><input type="radio" name="l4q7" value="2"> [2, 3]</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q8" data-answer="1" data-explanation="Sarakstā ir trīs elementi; atkārtojumi ir atļauti."><strong>Ko dod <code>len(["a", "a", "b"])</code>?</strong><label class="checkline"><input type="radio" name="l4q8" value="0"> 2</label><label class="checkline"><input type="radio" name="l4q8" value="1"> 3</label><label class="checkline"><input type="radio" name="l4q8" value="2"> 1</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-saraksti"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="modificesana"><h2>3. Sarakstu modificēšana</h2>
+<p>Sarakstu var papildināt ar <code>append()</code>, aizstāt elementu pēc indeksa, izņemt pirmo atbilstošo vērtību ar <code>remove()</code> un izņemt pēdējo elementu ar <code>pop()</code>.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-mutate">Kopēt</button></div><pre><code id="l4-mutate">fruits = [&quot;ābols&quot;, &quot;banāns&quot;]
+fruits.append(&quot;plūme&quot;)
+fruits[1] = &quot;ķirsis&quot;
+print(fruits)  # ['ābols', 'ķirsis', 'plūme']
+fruits.remove(&quot;ābols&quot;)
+last = fruits.pop()
+print(last)    # plūme
+print(fruits)  # ['ķirsis']</code></pre></div>
+<p class="notice"><strong>Svarīgi:</strong> <code>append()</code> maina sarakstu un atgriež <code>None</code>. Neraksti <code>fruits = fruits.append("plūme")</code>.</p>
+<div class="exercise"><h3>Interaktīva sarakstu laboratorija</h3><p>Veic vienu operāciju un skaties, kā mainās saraksts un indeksi. Šī ir Python uzvedības demonstrācija JavaScript, nevis Python interpretators.</p>
+<div class="lab-controls">
+<label for="list-action">Darbība<select id="list-action"><option value="append">append(value)</option><option value="replace">list[index] = value</option><option value="pop">pop()</option><option value="remove">remove(value)</option></select></label>
+<label id="list-value-wrap" for="list-value">Vērtība<input id="list-value" type="text" value="plūme" maxlength="35"></label>
+<label id="list-index-wrap" for="list-index">Indekss<input id="list-index" type="number" value="1" step="1"></label></div>
+<button type="button" id="list-apply">Izpildīt darbību</button><button type="button" id="list-reset">Atjaunot</button>
+<div id="list-visual" class="lab-chars" aria-label="Saraksta elementi un indeksi"></div>
+<p class="output" id="list-state" role="status" aria-live="polite"></p>
+<p class="output" id="list-python" role="status" aria-live="polite"></p></div>
+<p>Ar skaitļu sarakstiem darbojas <code>sum(numbers)</code>, <code>min(numbers)</code> un <code>max(numbers)</code>, ja saraksts nav tukšs un vērtības ir piemērotas attiecīgajai darbībai.</p>
+<div class="exercise" data-quiz="l4q9" data-answer="1" data-explanation="append modificē esošo sarakstu un atgriež None."><strong>Ko atgriež <code>fruits.append("x")</code>?</strong><label class="checkline"><input type="radio" name="l4q9" value="0"> Jaunu sarakstu</label><label class="checkline"><input type="radio" name="l4q9" value="1"> None</label><label class="checkline"><input type="radio" name="l4q9" value="2"> Jauno indeksu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q10" data-answer="0" data-explanation="Saraksta elementus drīkst aizstāt."><strong>Ko iegūst pēc <code>a=[1,2]; a[0]=9</code>?</strong><label class="checkline"><input type="radio" name="l4q10" value="0"> [9, 2]</label><label class="checkline"><input type="radio" name="l4q10" value="1"> [1, 2]</label><label class="checkline"><input type="radio" name="l4q10" value="2"> TypeError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q11" data-answer="0" data-explanation="pop() pēc noklusējuma izņem pēdējo elementu."><strong>Ko dara <code>pop()</code> bez argumentiem?</strong><label class="checkline"><input type="radio" name="l4q11" value="0"> Noņem un atgriež pēdējo elementu</label><label class="checkline"><input type="radio" name="l4q11" value="1"> Izdzēš visu sarakstu</label><label class="checkline"><input type="radio" name="l4q11" value="2"> Tikai izdrukā pēdējo elementu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q12" data-answer="1" data-explanation="remove izsauc ValueError, ja vērtība nav sarakstā."><strong>Kas notiek ar <code>[1, 2].remove(3)</code>?</strong><label class="checkline"><input type="radio" name="l4q12" value="0"> Nekas</label><label class="checkline"><input type="radio" name="l4q12" value="1"> ValueError</label><label class="checkline"><input type="radio" name="l4q12" value="2"> IndexError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-modificesana"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="teksts"><h2>4. No teksta uz sarakstu un atpakaļ</h2>
+<p><code>split()</code> ir <code>str</code> metode, kas <strong>atgriež sarakstu</strong>; <code>join()</code> ir <code>str</code> metode, kas savieno virkņu elementus vienā jaunā virknē.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-split">Kopēt</button></div><pre><code id="l4-split">text = &quot;Python ir interesanta valoda&quot;
+words = text.split()
+words[2] = &quot;populāra&quot;
+result = &quot; &quot;.join(words)
+print(result)  # Python ir populāra valoda
+
+colors = &quot;sarkans,zaļš,zils&quot;.split(&quot;,&quot;)
+print(colors)  # ['sarkans', 'zaļš', 'zils']</code></pre></div>
+<div class="exercise"><h3>Teksta pārveidošanas laboratorija</h3><div class="lab-controls">
+<label for="text-source">Sākotnējais teksts<input id="text-source" type="text" value="Python ir interesanta valoda" maxlength="160"></label>
+<label for="split-mode">Atdalītājs<select id="split-mode"><option value="whitespace">split()</option><option value="comma">split(",")</option></select></label>
+<label for="replace-index">Aizstājamais indekss<input id="replace-index" type="number" value="2" step="1"></label>
+<label for="replace-word">Jaunais vārds<input id="replace-word" type="text" value="populāra" maxlength="60"></label></div>
+<p class="output" id="text-result" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l4q13" data-answer="1" data-explanation="split atgriež sarakstu ar virkņu elementiem."><strong>Kāds tips ir <code>"a b".split()</code> rezultātam?</strong><label class="checkline"><input type="radio" name="l4q13" value="0"> str</label><label class="checkline"><input type="radio" name="l4q13" value="1"> list</label><label class="checkline"><input type="radio" name="l4q13" value="2"> dict</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q14" data-answer="1" data-explanation="join ir atdalītāja virknes metode."><strong>Kāds ir pareizais pieraksts vārdu savienošanai?</strong><label class="checkline"><input type="radio" name="l4q14" value="0"> words.join(" ")</label><label class="checkline"><input type="radio" name="l4q14" value="1"> " ".join(words)</label><label class="checkline"><input type="radio" name="l4q14" value="2"> join(words, " ")</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-teksts"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="vardnicas"><h2>5. Vārdnīcas: atslēgas un vērtības</h2>
+<p><code>dict</code> jeb <strong>vārdnīca</strong> glabā atbilstību starp <em>atslēgu</em> un <em>vērtību</em>. Sarakstā izmantojam indeksa pozīciju, bet vārdnīcā — mums zināmu atslēgu.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-dict">Kopēt</button></div><pre><code id="l4-dict">student = {&quot;vārds&quot;: &quot;Anna&quot;, &quot;vecums&quot;: 28}
+print(student[&quot;vārds&quot;])   # Anna
+student[&quot;vecums&quot;] = 29
+student[&quot;kurss&quot;] = &quot;Python&quot;
+
+print(&quot;vārds&quot; in student)  # True
+print(student.get(&quot;e-pasts&quot;, &quot;nav norādīts&quot;))
+
+for key, value in student.items():
+    print(key, value)</code></pre></div>
+<p><code>student["neesoša"]</code> izraisītu <code>KeyError</code>. Metode <code>get</code> ļauj noteikt noklusējuma rezultātu. <code>in</code> vārdnīcā pārbauda <strong>atslēgu</strong>. Python vārdnīca saglabā ievietošanas secību.</p>
+<div class="exercise"><h3>Interaktīva vārdnīcas laboratorija</h3>
+<div class="lab-controls"><label for="dict-key">Atslēga<input id="dict-key" type="text" value="vārds" maxlength="40"></label><label for="dict-value">Jaunā vērtība<input id="dict-value" type="text" value="Marta" maxlength="80"></label></div>
+<button type="button" id="dict-lookup">Meklēt atslēgu</button><button type="button" id="dict-update">Pievienot / mainīt</button><button type="button" id="dict-reset">Atjaunot</button>
+<div id="dict-rows" class="dict-rows" aria-label="Atslēgu un vērtību pāri"></div>
+<p class="output" id="dict-state" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q15" data-answer="1" data-explanation="Pie atslēgas x piesaistīta vērtība 5."><strong>Kāda ir <code>{"x": 5}["x"]</code> vērtība?</strong><label class="checkline"><input type="radio" name="l4q15" value="0"> x</label><label class="checkline"><input type="radio" name="l4q15" value="1"> 5</label><label class="checkline"><input type="radio" name="l4q15" value="2"> 0</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q16" data-answer="0" data-explanation="Vārdnīcās in pārbauda atslēgu esamību."><strong>Ko meklē <code>"x" in data</code>, ja data ir dict?</strong><label class="checkline"><input type="radio" name="l4q16" value="0"> Atslēgu</label><label class="checkline"><input type="radio" name="l4q16" value="1"> Vērtību</label><label class="checkline"><input type="radio" name="l4q16" value="2"> Pirmo indeksu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q17" data-answer="1" data-explanation="Tiešā piekļuve neesošai atslēgai izraisa KeyError."><strong>Kas notiek, lietojot <code>data["missing"]</code> neesošai atslēgai?</strong><label class="checkline"><input type="radio" name="l4q17" value="0"> Atgriež None</label><label class="checkline"><input type="radio" name="l4q17" value="1"> KeyError</label><label class="checkline"><input type="radio" name="l4q17" value="2"> Atgriež tukšu sarakstu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q18" data-answer="2" data-explanation="Tukšas figūriekavas ir dict, nevis set."><strong>Kā izveido tukšu vārdnīcu?</strong><label class="checkline"><input type="radio" name="l4q18" value="0"> []</label><label class="checkline"><input type="radio" name="l4q18" value="1"> set()</label><label class="checkline"><input type="radio" name="l4q18" value="2"> {}</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-vardnicas"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="biezumi"><h2>6. Vārdnīcu praktiska lietošana: vārdu biežums</h2>
+<p>Katrs vārds būs vārdnīcas <strong>atslēga</strong>, un reižu skaits būs tā <strong>vērtība</strong>. Šī ir reāla teksta analīzes pamatoperācija.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-freq">Kopēt</button></div><pre><code id="l4-freq">text = &quot;Rīga Python Rīga dators Python Rīga&quot;
+counts = {}
+for word in text.lower().split():
+    if word in counts:
+        counts[word] += 1
+    else:
+        counts[word] = 1
+
+print(counts)
+# {'rīga': 3, 'python': 2, 'dators': 1}</code></pre></div>
+<p>Īsāks ekvivalents cikla iekšienē: <code>counts[word] = counts.get(word, 0) + 1</code>. Vispirms izproti garo variantu, pēc tam īso.</p>
+<div class="exercise"><h3>Biežuma skaitītājs pa soļiem</h3><label for="freq-text">Ievades teksts<input id="freq-text" type="text" value="Rīga Python Rīga dators Python Rīga" maxlength="250"></label>
+<button type="button" id="freq-start">Sākt no jauna</button><button type="button" id="freq-next">Nākamais vārds</button>
+<div id="freq-words" class="lab-track" aria-label="Apstrādājamie vārdi"></div>
+<p id="freq-state" class="output" role="status" aria-live="polite"></p></div>
+<p>Šeit <code>split()</code> vēl neatdala komatus un punktus no vārdiem. Pieturzīmju normalizāciju var pievienot vēlāk.</p>
+<div class="exercise" data-quiz="l4q19" data-answer="0" data-explanation="Atslēga a sastopama divreiz, b vienreiz."><strong>Kas sanāk, saskaitot <code>"a b a"</code> vārdus?</strong><label class="checkline"><input type="radio" name="l4q19" value="0"> {'a': 2, 'b': 1}</label><label class="checkline"><input type="radio" name="l4q19" value="1"> {'a': 1, 'b': 1}</label><label class="checkline"><input type="radio" name="l4q19" value="2"> ['a', 'b']</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q20" data-answer="2" data-explanation="get atgriež norādīto noklusējuma vērtību."><strong>Ko atgriež <code>{}.get("x", 0)</code>?</strong><label class="checkline"><input type="radio" name="l4q20" value="0"> KeyError</label><label class="checkline"><input type="radio" name="l4q20" value="1"> None</label><label class="checkline"><input type="radio" name="l4q20" value="2"> 0</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q21" data-answer="1" data-explanation="items() ļauj iterēt pāros: atslēga un vērtība."><strong>Ko dod <code>for k, v in data.items()</code>?</strong><label class="checkline"><input type="radio" name="l4q21" value="0"> Tikai atslēgas</label><label class="checkline"><input type="radio" name="l4q21" value="1"> Atslēgu un vērtību pārus</label><label class="checkline"><input type="radio" name="l4q21" value="2"> Tikai vērtības</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-biezumi"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="kortezi-kopas"><h2>7. Korteži un kopas</h2>
+<h3>Korteži (tuple) — īsa obligātā daļa</h3><p><code>tuple</code> ir indeksējama, sakārtota, <strong>nemaināma</strong> secība. Salīdzini ar <code>list</code>, kas ir maināms. Viena elementa kortežam nepieciešams komats.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-tuples">Kopēt</button></div><pre><code id="l4-tuples">coordinates = (56.95, 24.10)
+print(coordinates[0])  # 56.95
+print(coordinates[-1]) # 24.1
+single = (5,)          # tuple
+not_tuple = (5)        # int
+# coordinates[0] = 57.0  # TypeError</code></pre></div>
+<h3>Kopas (set) — papildu tēma</h3><p>Kopā ir tikai unikāli elementi, tā nav indeksējama, un elementu iterācijas secība nav garantēta. Tukša kopa ir <code>set()</code>, bet <code>{}</code> ir tukša vārdnīca.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-sets">Kopēt</button></div><pre><code id="l4-sets">names = [&quot;Anna&quot;, &quot;Jānis&quot;, &quot;Anna&quot;, &quot;Ilze&quot;]
+unique_names = set(names)
+print(len(unique_names))  # 3
+print(&quot;Anna&quot; in unique_names)  # True
+print(sorted(unique_names))   # stabilai izvadei
+
+a = {&quot;Anna&quot;, &quot;Jānis&quot;}
+b = {&quot;Jānis&quot;, &quot;Ilze&quot;}
+print(a &amp; b)  # kopīgais: Jānis</code></pre></div>
+<div class="exercise"><h3>Kopu demonstrācija: unikālie elementi</h3>
+<label for="set-source">Vārdi, atdalīti ar komatu<input id="set-source" type="text" value="Anna, Jānis, Anna, Ilze" maxlength="180"></label>
+<p class="output" id="set-result" role="status" aria-live="polite"></p></div>
+<table><thead><tr><th>Tips</th><th>Piekļuve</th><th>Maināms?</th><th>Ideja</th></tr></thead><tbody>
+<tr><td><code>list</code></td><td>indekss</td><td>Jā</td><td>Secīgi dati</td></tr>
+<tr><td><code>tuple</code></td><td>indekss</td><td>Nē*</td><td>Fiksēta secība</td></tr>
+<tr><td><code>dict</code></td><td>atslēga</td><td>Jā</td><td>Atslēga → vērtība</td></tr>
+<tr><td><code>set</code></td><td><code>in</code></td><td>Jā</td><td>Unikāli elementi</td></tr></tbody></table>
+<p class="muted">* Korteža elementu piesaistes nav maināmas. Detalizētākus gadījumus ar kortežā esošiem maināmiem objektiem šajā nodarbībā neapskatām.</p>
+<div class="exercise" data-quiz="l4q22" data-answer="1" data-explanation="Korteža elementus nevar aizstāt."><strong>Kas notiek ar <code>(1, 2)[0] = 9</code>?</strong><label class="checkline"><input type="radio" name="l4q22" value="0"> Kļūst (9, 2)</label><label class="checkline"><input type="radio" name="l4q22" value="1"> TypeError</label><label class="checkline"><input type="radio" name="l4q22" value="2"> Pievieno 9 beigās</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q23" data-answer="2" data-explanation="Vienīgais komats veido viena elementa kortežu."><strong>Kāds tips ir <code>(5,)</code>?</strong><label class="checkline"><input type="radio" name="l4q23" value="0"> int</label><label class="checkline"><input type="radio" name="l4q23" value="1"> list</label><label class="checkline"><input type="radio" name="l4q23" value="2"> tuple</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q24" data-answer="0" data-explanation="Kopā vienādas vērtības nedublējas."><strong>Kāds ir <code>len(set([1,1,2]))</code>?</strong><label class="checkline"><input type="radio" name="l4q24" value="0"> 2</label><label class="checkline"><input type="radio" name="l4q24" value="1"> 3</label><label class="checkline"><input type="radio" name="l4q24" value="2"> 1</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><div class="exercise" data-quiz="l4q25" data-answer="2" data-explanation="{} veido tukšu dict; set() — tukšu kopu."><strong>Kā veido tukšu kopu?</strong><label class="checkline"><input type="radio" name="l4q25" value="0"> {}</label><label class="checkline"><input type="radio" name="l4q25" value="1"> []</label><label class="checkline"><input type="radio" name="l4q25" value="2"> set()</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson4-kortezi-kopas"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="prakse"><h2>8. Patstāvīgā prakse (20:25–21:05)</h2>
+<p><strong>Pirmie trīs uzdevumi ir obligātie mēģinājumam.</strong> Raksti un palaid atsevišķus <code>.py</code> failus. Pārbaudi arī tukšu ievadi un atkārtojumus. Risinājumu atver tikai pēc paša mēģinājuma.</p>
+<div class="exercise"><h3>1. Iepirkumu saraksts (pamata)</h3><p>Ievadi produktus līdz komandai <code>beigt</code> un saglabā tos sarakstā. Beigās izdrukā sarakstu un garumu. Testi: uzreiz <code>beigt</code> → 0; <code>ābols, piens, BEIGT</code> → 2; atkārtots produkts paliek sarakstā.</p><details><summary>Padoms</summary><p>Sāc ar <code>items = []</code>; lieto <code>while True</code>, <code>append()</code> un <code>break</code>.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-sol-1">Kopēt</button></div><pre><code id="l4-sol-1">items = []
+while True:
+    product = input(&quot;Produkts (beigt — iziet): &quot;)
+    if product.strip().lower() == &quot;beigt&quot;:
+        break
+    items.append(product)
+print(items)
+print(&quot;Skaits:&quot;, len(items))</code></pre></div></details></div>
+<div class="exercise"><h3>2. Vārdu biežuma skaitītājs (pamata)</h3><p>Izveido vārdnīcu, kas skaita vārdus ievadītā teikumā. Ignorē lielos burtus. Testi: <code>Rīga Python Rīga</code> → <code>{'rīga': 2, 'python': 1}</code>; tukšs teksts → <code>{}</code>.</p><details><summary>Padoms</summary><p>Pirms cikla <code>counts = {}</code>; ciklā <code>counts[word] = counts.get(word, 0) + 1</code>.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-sol-2">Kopēt</button></div><pre><code id="l4-sol-2">text = input(&quot;Teikums: &quot;)
+counts = {}
+for word in text.lower().split():
+    counts[word] = counts.get(word, 0) + 1
+print(counts)</code></pre></div></details></div>
+<div class="exercise"><h3>3. Pirkumu kopējā cena (pamata)</h3><p>Doti produkti un cenu vārdnīca; izrēķini kopējo cenu, ieskaitot atkārtotus produktus. <code>['maize','ābols','ābols','piens']</code> → <strong>3.90 EUR</strong>. Testi arī tukšam grozam un nezināmam produktam.</p><details><summary>Padoms</summary><p>Ar <code>for product in basket</code> atrod cenu vārdnīcā. Pirms piekļuves pārbaudi <code>if product in prices</code>.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-sol-3">Kopēt</button></div><pre><code id="l4-sol-3">prices = {&quot;maize&quot;: 1.50, &quot;piens&quot;: 1.20, &quot;ābols&quot;: 0.60}
+basket = [&quot;maize&quot;, &quot;ābols&quot;, &quot;ābols&quot;, &quot;piens&quot;]
+total = 0.0
+for product in basket:
+    if product in prices:
+        total += prices[product]
+    else:
+        print(&quot;Cena nav atrasta:&quot;, product)
+print(f&quot;{total:.2f} EUR&quot;)</code></pre></div></details></div>
+<div class="exercise"><h3>4. Koordinātas (izaicinājums)</h3><p>Saglabā Rīgas aptuvenās koordinātas kortežā, izdrukā koordinātas un garumu. Paskaidro, kāpēc elementu aizstāšana nav atļauta.</p><details><summary>Padoms</summary><p>Indeksi strādā kā sarakstiem; mutācija — ne.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-sol-4">Kopēt</button></div><pre><code id="l4-sol-4">coordinates = (56.95, 24.10)
+print(coordinates[0], coordinates[1])
+print(len(coordinates))
+# coordinates[0] = 57.0  # TypeError</code></pre></div></details></div>
+<div class="exercise"><h3>5. Unikālie vārdi (izaicinājums)</h3><p>No <code>['Anna','Jānis','Anna','Ilze']</code> iegūsti kopu un unikālo vārdu skaitu (3). Papildus: atrod kopīgos vārdus divās kopās.</p><details><summary>Padoms</summary><p><code>set(names)</code>, <code>len()</code> un krustojums <code>&amp;</code>.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l4-sol-5">Kopēt</button></div><pre><code id="l4-sol-5">names = [&quot;Anna&quot;, &quot;Jānis&quot;, &quot;Anna&quot;, &quot;Ilze&quot;]
+unique = set(names)
+print(len(unique))      # 3
+print(sorted(unique))   # stabilai izvadei
+other = {&quot;Jānis&quot;, &quot;Marta&quot;}
+print(unique &amp; other)   # kopīgais: Jānis</code></pre></div></details></div>
+<p><a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/exercises/04_collections/README.md">Pilns uzdevumu un testu apraksts</a> · <a href="https://github.com/ValRCS/Python_RTU_2026_27/tree/main/lessons/04_collections">Python skripti lejupielādei</a></p>
+<p><strong>Nākamreiz:</strong> funkcijas un moduļi (26. novembrī). Pazīstamo vārdu biežuma algoritmu pārvērtīsim funkcijā.</p>
+<label class="checkline"><input type="checkbox" data-progress="lesson4-prakse"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<nav class="lesson-nav" aria-label="Nodarbību navigācija"><a href="../03-loops-strings/index.html">← 3. nodarbība</a><a href="../05-functions-modules/index.html">5. nodarbība →</a></nav></article></div></main>
+<footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer>
+<script src="../../assets/js/main.js" defer></script><script src="../../assets/js/exercises.js" defer></script><script src="../../assets/js/lesson04.js" defer></script>
+</body></html>

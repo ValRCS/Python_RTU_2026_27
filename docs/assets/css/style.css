@@ -13,3 +13,23 @@
 .lesson3 .exercise input[type=radio]{width:auto;flex:none}
 .lesson3 .exercise .checkline{font-weight:400}
 @media(max-width:600px){.lesson3 .lab-controls{grid-template-columns:1fr}.lesson3 table{font-size:.84rem}}
+
+
+/* 4. nodarbība — kolekciju interaktīvās laboratorijas */
+.lesson4 .lab-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin:.75rem 0}
+.lesson4 .lab-controls label{font-size:.9rem}
+.lesson4 .lab-controls input,.lesson4 .exercise input[type=text],.lesson4 .exercise select{display:block;width:100%;max-width:100%;padding:.42rem;border:1px solid #8d9bad;border-radius:7px;background:#fff;color:#17263a}
+.lesson4 .lab-controls select{width:100%}
+.lesson4 .lab-track,.lesson4 .lab-chars{display:flex;gap:.4rem;flex-wrap:wrap;margin:1rem 0}
+.lesson4 .lab-token,.lesson4 .lab-char{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:2.5rem;max-width:100%;overflow-wrap:anywhere;padding:.35rem .45rem;border:1px solid #bcc8d5;border-radius:8px;background:white}
+.lesson4 .lab-token.is-done{background:#daf2e5;border-color:#1b7449}
+.lesson4 .lab-char small{color:#526176}
+.lesson4 .dict-rows{display:grid;gap:.35rem;margin:.85rem 0}
+.lesson4 .dict-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;padding:.35rem .65rem;border:1px solid #dce3eb;border-radius:7px;background:#fff;overflow-wrap:anywhere}
+.lesson4 table{border-collapse:collapse;width:100%;font-size:.92rem}
+.lesson4 th,.lesson4 td{text-align:left;border:1px solid #dce3eb;padding:.4rem .5rem}
+.lesson4 .exercise input[type=radio]{width:auto;flex:none}
+.lesson4 .exercise .checkline{display:flex;font-weight:400}
+.lesson4 .exercise label[for]{font-weight:700}
+.lesson4 [hidden]{display:none!important}
+@media(max-width:600px){.lesson4 .lab-controls{grid-template-columns:1fr}.lesson4 table{font-size:.84rem}}

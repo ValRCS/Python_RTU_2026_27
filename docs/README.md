@@ -5,3 +5,5 @@ Statiskā mācību vietne latviešu valodā. GitHub Settings → Pages → Deplo
 Atveriet `docs/index.html` lokāli vai izmantojiet `python -m http.server 8000 --directory docs` un http://localhost:8000. Nav vajadzīgs Node.js vai būvēšanas solis.
 
 `docs/lessons/` satur tīmekļa lapas, savukārt repozitorija `lessons/` un `exercises/` paliek kanoniskie Python materiāli. Demonstrācijas ar JavaScript tikai modelē Python uzvedību; tās neizpilda Python kodu. Jaunu nodarbību veidojiet pēc esošo lapu struktūras, saglabājot relatīvos ceļus un saites uz oriģinālajiem materiāliem. Pārbaudiet mobilās ierīces, klaviatūras navigāciju, viktorīnas un kopēšanas pogas.
+
+**4. nodarbība:** `lessons/04-collections/index.html` izmanto jau esošo `assets/js/exercises.js` viktorīnu pārbaudei un `assets/js/main.js` progresam, kopēšanai un navigācijai. Tikai kolekciju interaktīvie modeļi atrodas `assets/js/lesson04.js`; Python 3 demonstrāciju pirmkods ir `../lessons/04_collections/`.
