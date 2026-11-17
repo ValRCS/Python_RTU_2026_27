@@ -33,3 +33,16 @@
 .lesson4 .exercise label[for]{font-weight:700}
 .lesson4 [hidden]{display:none!important}
 @media(max-width:600px){.lesson4 .lab-controls{grid-template-columns:1fr}.lesson4 table{font-size:.84rem}}
+
+
+/* 5. nodarbība — funkciju, moduļu un testēšanas interaktīvās laboratorijas */
+.lesson5 .lab-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:.8rem 0}
+.lesson5 .lab-controls label,.lesson5 .exercise label[for]{font-size:.9rem;font-weight:700}
+.lesson5 .lab-controls input,.lesson5 .lab-controls select,.lesson5 .exercise>label>input[type=text]{display:block;width:100%;max-width:100%;padding:.45rem;border:1px solid #8d9bad;border-radius:7px;background:#fff;color:#17263a}
+.lesson5 .exercise .checkline{display:flex;align-items:flex-start;font-weight:400}
+.lesson5 .exercise input[type=radio]{width:auto;flex:none;margin-top:.4rem}
+.lesson5 .output{overflow-wrap:anywhere}
+.lesson5 .output.good{border-left-color:#17603b;background:#e9f7ef}
+.lesson5 .output.bad{border-left-color:#aa3434;background:#fff0ef}
+.lesson5 [hidden]{display:none!important}
+@media(max-width:600px){.lesson5 .lab-controls{grid-template-columns:1fr}}

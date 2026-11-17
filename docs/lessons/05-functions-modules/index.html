@@ -1,1 +1,208 @@
-<!doctype html><html lang="lv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RTU Python programmēšanas pamatu interaktīvie materiāli latviešu valodā"><title>5. nodarbība — Funkcijas, moduļi un testi | Python pamati · RTU</title><link rel="stylesheet" href="../../assets/css/style.css"></head><body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a></nav></div></header><main id="main"><div class="shell section"><span class="eyebrow">5. nodarbība · 2026-11-26</span><h1>Funkcijas, moduļi un testi</h1><p class="notice">Šīs nodarbības interaktīvais saturs vēl tiek gatavots. Zemāk pieejami kursa sākotnējie materiāli un nodarbību navigācija.</p><article class="panel"><h2>Sagatavošanās un materiāli</h2><p>Atver <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/lessons/05_functions_modules/README.md">nodarbības plānu GitHub repozitorijā</a>. Tas ir galvenais avots par sasniedzamajiem rezultātiem un uzdevumiem.</p><p>Atgriezies šeit, kad būs publicēti interaktīvie piemēri un pašpārbaudes jautājumi.</p></article><nav class="lesson-nav"><a href="../04-collections/index.html">← Iepriekšējā nodarbība</a><a href="../06-files-csv/index.html">Nākamā nodarbība →</a></nav></div></main><footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer><script src="../../assets/js/main.js" defer></script></body></html>
+<!doctype html>
+<html lang="lv">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="5. nodarbība: Python funkcijas, parametri, return, moduļi un pirmie testi — piemēri un uzdevumi latviešu valodā">
+<title>5. nodarbība — Funkcijas, moduļi un testi | RTU Python pamati</title>
+<link rel="stylesheet" href="../../assets/css/style.css"></head>
+<body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a></nav></div></header>
+<main id="main"><div class="shell lesson-layout"><aside class="toc" aria-label="Nodarbības saturs">
+<strong>5. nodarbība</strong><p class="muted" id="progress-count">0 / 8 sadaļas atzīmētas</p>
+<a href="#atkartojums">1. Atkārtojums</a>
+<a href="#def">2. def un izsaukšana</a>
+<a href="#parametri">3. Parametri</a>
+<a href="#return">4. return un print</a>
+<a href="#apvienosana">5. Pārveide un tvērums</a>
+<a href="#moduli">6. Moduļi un imports</a>
+<a href="#testi">7. Testi</a>
+<a href="#prakse">8. Patstāvīgā prakse</a></aside>
+<article class="lesson-content lesson5"><span class="eyebrow">2026. gada 26. novembris · 17:45–21:40</span>
+<h1>Funkcijas, moduļi un pirmie testi</h1>
+<p class="lead">No atsevišķa algoritma līdz atkārtoti izmantojamai programmas daļai. Apgūsti <code>def</code>, parametrus, <code>return</code>, lokālos mainīgos un <code>import</code>; pārbaudi savu kodu ar <code>assert</code>.</p>
+<p class="notice"><strong>Šodien svarīgākais:</strong> iemācīties pašam uzrakstīt funkciju, kas <em>atgriež</em> rezultātu. Moduļi un testi palīdzēs šīs funkcijas turpmāk izmantot failu, JSON un API piemēros. Pārlūka laboratorijas modelē izvēlētu Python piemēru uzvedību JavaScript — tās nav Python interpretators.</p>
+<section id="atkartojums"><h2>1. Kāpēc vajadzīgas funkcijas?</h2><p>4. nodarbībā iemācījāmies lietot <code>split()</code>, <code>for</code> un <code>dict.get()</code> vārdu biežuma skaitīšanai. Ja vēlamies to pašu algoritmu palaist desmit dažādiem tekstiem, kodu nevajag kopēt desmit reizes.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-review">Kopēt</button></div><pre><code id="l5-review">text = &quot;Rīga Python Rīga&quot;
+counts = {}
+for word in text.lower().split():
+    counts[word] = counts.get(word, 0) + 1
+print(counts)  # {'rīga': 2, 'python': 1}</code></pre></div>
+<p><strong>Jaunā ideja:</strong> atsevišķu aprēķinu nosaucam, piešķiram tam parametrus, un pēc vajadzības izsaucam to vēlreiz ar citiem datiem.</p>
+<div class="exercise" data-quiz="l5q1" data-answer="0" data-explanation="get ar otro argumentu atgriež noklusēto vērtību, ja atslēgas nav."><strong>Ko atgriež <code>{}.get('x', 0)</code>?</strong><label class="checkline"><input type="radio" name="l5q1" value="0"> 0</label><label class="checkline"><input type="radio" name="l5q1" value="1"> None</label><label class="checkline"><input type="radio" name="l5q1" value="2"> KeyError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q2" data-answer="1" data-explanation="Funkcija ļauj vienu algoritmu izmantot vairākkārt, to nedublējot."><strong>Kāpēc veido funkciju no jau strādājoša cikla?</strong><label class="checkline"><input type="radio" name="l5q2" value="0"> Lai izpildītu tikai vienu reizi</label><label class="checkline"><input type="radio" name="l5q2" value="1"> Lai izsauktu algoritmu ar dažādiem datiem</label><label class="checkline"><input type="radio" name="l5q2" value="2"> Lai Python būtu jāinstalē no jauna</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q3" data-answer="2" data-explanation="split() sadala tekstu un atgriež list; šo algoritmu pārnesam uz funkciju."><strong>Ko dod <code>'Rīga Python'.split()</code>?</strong><label class="checkline"><input type="radio" name="l5q3" value="0"> Vārdnīcu</label><label class="checkline"><input type="radio" name="l5q3" value="1"> Skaitli 2</label><label class="checkline"><input type="radio" name="l5q3" value="2"> Sarakstu ar divām virknēm</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-atkartojums"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="def"><h2>2. Funkcijas definēšana un izsaukšana</h2><p><code>def</code> izveido funkcijas definīciju. Funkcijas ķermenis atrodas atkāpē. Definēšana pati par sevi nesāk ķermeņa darbību — izsaukšanai vajadzīgas iekavas.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-def">Kopēt</button></div><pre><code id="l5-def">def greet():
+    print(&quot;Sveiki, Python!&quot;)
+
+def greet_person(name):
+    print(f&quot;Sveiki, {name}!&quot;)
+
+greet()
+greet_person(&quot;Anna&quot;)
+greet_person(&quot;Jānis&quot;)</code></pre></div>
+<p class="notice"><strong>Atceries:</strong> resnā zarna <code>:</code>, atkāpes un iekavas pie izsaukuma. Kods atrodas Python failā, nevis pārlūka laboratorijā.</p>
+<div class="exercise" data-quiz="l5q4" data-answer="0" data-explanation="Python lieto def, iekavas un kolu."><strong>Kura ir pareiza funkcijas definīcijas pirmā rinda?</strong><label class="checkline"><input type="radio" name="l5q4" value="0"> def greet(name):</label><label class="checkline"><input type="radio" name="l5q4" value="1"> function greet(name)</label><label class="checkline"><input type="radio" name="l5q4" value="2"> def greet(name)</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q5" data-answer="1" data-explanation="Definīcija izveido funkciju; tās ķermenis parasti sāk izpildīties izsaukumā."><strong>Vai <code>def greet(): ...</code> pati izsauc funkciju?</strong><label class="checkline"><input type="radio" name="l5q5" value="0"> Jā, vienmēr</label><label class="checkline"><input type="radio" name="l5q5" value="1"> Nē, izsaukumam vajag greet()</label><label class="checkline"><input type="radio" name="l5q5" value="2"> Tikai macOS</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q6" data-answer="2" data-explanation="Python atkāpes nosaka, kuras rindas pieder funkcijas ķermenim."><strong>Kas jāievēro pēc <code>def greet():</code>?</strong><label class="checkline"><input type="radio" name="l5q6" value="0"> Visām rindām jābūt bez atstarpēm</label><label class="checkline"><input type="radio" name="l5q6" value="1"> Jālieto semikols</label><label class="checkline"><input type="radio" name="l5q6" value="2"> Funkcijas ķermenis jāatkāpina</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q7" data-answer="1" data-explanation="Iekavas izsauc funkciju; tikai nosaukums atsaucas uz funkcijas objektu."><strong>Kurš pieraksts izsauc bezparametru funkciju <code>greet</code>?</strong><label class="checkline"><input type="radio" name="l5q7" value="0"> greet</label><label class="checkline"><input type="radio" name="l5q7" value="1"> greet()</label><label class="checkline"><input type="radio" name="l5q7" value="2"> def greet()</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-def"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="parametri"><h2>3. Parametri un argumenti</h2><p><strong>Parametrs</strong> ir nosaukums funkcijas definīcijā; <strong>arguments</strong> ir konkrētā vērtība izsaukumā. Vienai funkcijai var būt vairāki parametri.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-add">Kopēt</button></div><pre><code id="l5-add">def add(a, b):
+    return a + b
+
+result = add(12, 8)
+print(result)  # 20</code></pre></div>
+<div class="exercise"><h3>Interaktīvi: izsauc funkciju</h3><p>Maini argumentus un aplūko, kādas vērtības saņem parametri. Šeit modelējam tieši <code>add(a, b)</code>, neizpildot ievadītu Python kodu.</p>
+<div class="lab-controls"><label for="fn-a">Arguments a<input id="fn-a" type="number" step="any" value="12"></label><label for="fn-b">Arguments b<input id="fn-b" type="number" step="any" value="8"></label></div>
+<button type="button" id="fn-run">Izsaukt add(a, b)</button><p class="output" id="fn-result" role="status" aria-live="polite"></p></div>
+<p><strong>Papildus:</strong> noklusēts parametrs <code>def add(a, b=0):</code> ļauj rakstīt <code>add(3)</code>. Atslēgvārdu argumenti, piemēram, <code>add(b=8, a=12)</code>, var mainīt nodošanas secību.</p>
+<div class="exercise" data-quiz="l5q8" data-answer="0" data-explanation="Parametrs ir nosaukums funkcijas definīcijā."><strong>Kas ir <code>name</code> rindā <code>def greet(name):</code>?</strong><label class="checkline"><input type="radio" name="l5q8" value="0"> Parametrs</label><label class="checkline"><input type="radio" name="l5q8" value="1"> Arguments izsaukumā</label><label class="checkline"><input type="radio" name="l5q8" value="2"> Modulis</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q9" data-answer="1" data-explanation="Arguments ir konkrētā vērtība, ko nodod funkcijai."><strong>Kas ir <code>'Anna'</code> izsaukumā <code>greet('Anna')</code>?</strong><label class="checkline"><input type="radio" name="l5q9" value="0"> Lokāls modulis</label><label class="checkline"><input type="radio" name="l5q9" value="1"> Arguments</label><label class="checkline"><input type="radio" name="l5q9" value="2"> Funkcijas definīcija</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q10" data-answer="2" data-explanation="Trūkst prasīta argumenta, tāpēc izsaukums nav derīgs."><strong>Kas notiks, ja <code>add(a, b)</code> izsauc ar <code>add(2)</code> un <code>b</code> nav noklusējuma?</strong><label class="checkline"><input type="radio" name="l5q10" value="0"> Automātiski b=0</label><label class="checkline"><input type="radio" name="l5q10" value="1"> Funkcija atgriež 2</label><label class="checkline"><input type="radio" name="l5q10" value="2"> TypeError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q11" data-answer="0" data-explanation="b pēc noklusējuma ir 0; tiek atgriezts 3+0."><strong>Kāds ir <code>add(3)</code> rezultāts, ja <code>def add(a, b=0): return a+b</code>?</strong><label class="checkline"><input type="radio" name="l5q11" value="0"> 3</label><label class="checkline"><input type="radio" name="l5q11" value="1"> 0</label><label class="checkline"><input type="radio" name="l5q11" value="2"> TypeError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-parametri"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="return"><h2>4. Vērtības atgriešana: return un print</h2><p><code>print()</code> parāda informāciju ekrānā, bet <code>return</code> nodod funkcijas izsaucējam vērtību un beidz funkcijas izpildi. Ja funkcija nenonāk līdz <code>return</code>, tās atgrieztā vērtība ir <code>None</code>.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-return">Kopēt</button></div><pre><code id="l5-return">def double_a(number):
+    print(number * 2)
+
+def double_b(number):
+    return number * 2
+
+a = double_a(5)     # Izdrukā 10, bet atgriež None
+b = double_b(5)     # Atgriež 10, nedrukā
+print(a)            # None
+print(b + 3)        # 13</code></pre></div>
+<div class="exercise"><h3>Interaktīvi: drukāšana pret atgriešanu</h3>
+<div class="lab-controls"><label for="return-variant">Funkcija<select id="return-variant"><option value="print">double_a — print</option><option value="return">double_b — return</option></select></label>
+<label for="return-number">Arguments number<input type="number" step="any" id="return-number" value="5"></label></div>
+<button type="button" id="return-run">Salīdzināt rezultātu</button><p class="output" id="return-output" role="status" aria-live="polite"></p></div>
+<p class="notice"><strong>Bieža kļūda:</strong> <code>return counts</code> ievietots <code>for</code> cikla iekšpusē pabeigs funkciju jau pirmajā iterācijā.</p>
+<div class="exercise" data-quiz="l5q12" data-answer="1" data-explanation="print attēlo tekstu, bet tās atgrieztā vērtība ir None."><strong>Ko atgriež <code>print('Sveiki')</code>?</strong><label class="checkline"><input type="radio" name="l5q12" value="0"> 'Sveiki'</label><label class="checkline"><input type="radio" name="l5q12" value="1"> None</label><label class="checkline"><input type="radio" name="l5q12" value="2"> True</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q13" data-answer="0" data-explanation="return nodod skaitli 10 funkcijas izsaucējam."><strong>Ko dod <code>result = double_b(5)</code>, ja funkcija dara <code>return number*2</code>?</strong><label class="checkline"><input type="radio" name="l5q13" value="0"> 10</label><label class="checkline"><input type="radio" name="l5q13" value="1"> None</label><label class="checkline"><input type="radio" name="l5q13" value="2"> Funkcija izdrukā 10, bet atgriež 0</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q14" data-answer="2" data-explanation="return pabeidz konkrētās funkcijas izpildi un nodod vērtību."><strong>Kas notiek, sasniedzot <code>return</code>?</strong><label class="checkline"><input type="radio" name="l5q14" value="0"> Funkcija turpina visas nākamās rindas</label><label class="checkline"><input type="radio" name="l5q14" value="1"> Python izbeidz visu programmu</label><label class="checkline"><input type="radio" name="l5q14" value="2"> Funkcijas izpilde beidzas</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q15" data-answer="1" data-explanation="Bez izpildīta return funkcija atgriež None pat tad, ja izdrukā skaitli."><strong>Kas ir <code>x</code> pēc <code>x = double_a(5)</code>, ja <code>double_a</code> tikai izdrukā 10?</strong><label class="checkline"><input type="radio" name="l5q15" value="0"> 10</label><label class="checkline"><input type="radio" name="l5q15" value="1"> None</label><label class="checkline"><input type="radio" name="l5q15" value="2"> 5</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-return"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="apvienosana"><h2>5. Algoritms kļūst par funkciju; lokālie mainīgie</h2><p>Funkcija var gan pieņemt virkni, gan atgriezt vārdnīcu. Izmantosim pazīstamo 4. nodarbības algoritmu.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-count">Kopēt</button></div><pre><code id="l5-count">def count_words(text):
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts
+
+print(count_words(&quot;Rīga Python Rīga&quot;))
+print(count_words(&quot;&quot;))  # {}</code></pre></div>
+<p>Funkcijas iekšienē izveidotais <code>counts</code> ir **lokāls mainīgais**. Tāpat funkcija var izsaukt citu funkciju: <code>len(count_words(text))</code> atgriež dažādo vārdu skaitu.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-scope">Kopēt</button></div><pre><code id="l5-scope">city = &quot;Rīga&quot;
+
+def show_city():
+    city = &quot;Liepāja&quot;
+    return city
+
+print(show_city())  # Liepāja
+print(city)         # Rīga</code></pre></div>
+<div class="exercise"><h3>Interaktīvi: lokālais un ārējais mainīgais</h3><div class="lab-controls"><label for="scope-outer">Ārējais city<input type="text" id="scope-outer" value="Rīga" maxlength="45"></label><label for="scope-local">Funkcijas city<input type="text" id="scope-local" value="Liepāja" maxlength="45"></label></div><button type="button" id="scope-run">Izsaukt show_city()</button><p class="output" id="scope-output" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q16" data-answer="0" data-explanation="Tukšs teksts dod tukšu vārdu sarakstu un tukšu vārdnīcu."><strong>Ko atgriež <code>count_words('')</code>, ja tā sadala tekstu ar <code>split()</code> un skaita vārdus?</strong><label class="checkline"><input type="radio" name="l5q16" value="0"> {}</label><label class="checkline"><input type="radio" name="l5q16" value="1"> {'': 1}</label><label class="checkline"><input type="radio" name="l5q16" value="2"> None</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q17" data-answer="1" data-explanation="Pirmais return nekavējoties pabeigtu funkciju."><strong>Kāpēc <code>return counts</code> nedrīkst ievietot vārdu skaitītāja <code>for</code> cikla iekšpusē?</strong><label class="checkline"><input type="radio" name="l5q17" value="0"> Tas izdzēš vārdnīcu</label><label class="checkline"><input type="radio" name="l5q17" value="1"> Tas pārtrauc funkciju pēc pirmās iterācijas</label><label class="checkline"><input type="radio" name="l5q17" value="2"> Tas pārveido dict par list</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q18" data-answer="2" data-explanation="Lokālais city ir atsevišķa piesaiste; tas nemaina ārējo city."><strong>Kas paliek ārējā <code>city</code>, ja funkcijā lokāli raksta <code>city = 'Liepāja'</code>?</strong><label class="checkline"><input type="radio" name="l5q18" value="0"> 'Liepāja'</label><label class="checkline"><input type="radio" name="l5q18" value="1"> None</label><label class="checkline"><input type="radio" name="l5q18" value="2"> Sākotnējā ārējā vērtība</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q19" data-answer="0" data-explanation="Vārdnīcā ir divas atšķirīgas atslēgas; len tās saskaita."><strong>Ko atgriež <code>len(count_words('a b a'))</code>?</strong><label class="checkline"><input type="radio" name="l5q19" value="0"> 2</label><label class="checkline"><input type="radio" name="l5q19" value="1"> 3</label><label class="checkline"><input type="radio" name="l5q19" value="2"> {'a': 2, 'b': 1}</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-apvienosana"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="moduli"><h2>6. Standarta bibliotēka un paša modulis</h2><p><strong>Modulis</strong> var būt Python fails ar izmantojamām funkcijām. <code>math</code> ir standarta bibliotēkas modulis, bet <code>word_tools.py</code> izveidosim paši. Šoreiz neinstalējam ārējās pakotnes.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-math">Kopēt</button></div><pre><code id="l5-math">import math
+
+print(math.sqrt(81))  # 9.0</code></pre></div>
+<p><strong>word_tools.py</strong> glabā funkciju, <strong>main.py</strong> to izsauc; abi atrodas vienā mapē.</p>
+<p><strong>word_tools.py — pirmais fails</strong></p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-module-word-tools">Kopēt</button></div><pre><code id="l5-module-word-tools"># word_tools.py
+def count_words(text):
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts</code></pre></div>
+<p><strong>main.py — otrais fails</strong></p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-module-main">Kopēt</button></div><pre><code id="l5-module-main"># main.py (blakus word_tools.py)
+import word_tools
+
+print(word_tools.count_words(&quot;Rīga rīga&quot;))</code></pre></div>
+<p>Augšējais kods ir divu failu ilustrācija, ne viens kopīgi palaižams fails. Pilni, atsevišķi faili pieejami repozitorijā: <a href="https://github.com/ValRCS/Python_RTU_2026_27/tree/main/lessons/05_functions_modules/05_modules">moduļa piemērs</a>.</p>
+<div class="exercise"><h3>Interaktīvi: modulī definētās funkcijas rezultāts</h3><label for="module-text">Teksts<input type="text" id="module-text" value="Rīga Python Rīga" maxlength="180"></label><button type="button" id="module-run">Palaist modeļa izsaukumu</button><p class="output" id="module-output" role="status" aria-live="polite"></p></div>
+<p><strong>Papildus:</strong> <code>if __name__ == "__main__":</code> palīdz nepalaist demonstrācijas kodu, kad failu importē. Importēšana var izpildīt moduļa augšējā līmeņa izteiksmes; šī nav pilna importu mehānisma lekcija.</p>
+<div class="exercise" data-quiz="l5q20" data-answer="1" data-explanation="math ietilpst Python standarta bibliotēkā."><strong>Kas vajadzīgs, lai lietotu <code>math.sqrt(9)</code>?</strong><label class="checkline"><input type="radio" name="l5q20" value="0"> import random</label><label class="checkline"><input type="radio" name="l5q20" value="1"> import math</label><label class="checkline"><input type="radio" name="l5q20" value="2"> pip install math</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q21" data-answer="0" data-explanation="Šajā ievadpiemērā abi .py faili atrodas vienā mapē."><strong>Kur vienkāršāk novietot paša <code>word_tools.py</code>, lai <code>main.py</code> to importētu?</strong><label class="checkline"><input type="radio" name="l5q21" value="0"> Blakus main.py tajā pašā mapē</label><label class="checkline"><input type="radio" name="l5q21" value="1"> Jebkur internetā</label><label class="checkline"><input type="radio" name="l5q21" value="2"> Obligāti sistēmas Python mapē</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q22" data-answer="2" data-explanation="Importēšana parasti izpilda moduļa augšējā līmeņa izteiksmes pirmajā importēšanas reizē."><strong>Kāpēc importējamā modulī izvairīties no nevajadzīga augšējā līmeņa koda?</strong><label class="checkline"><input type="radio" name="l5q22" value="0"> Jo moduli nevar testēt</label><label class="checkline"><input type="radio" name="l5q22" value="1"> Jo moduļos nedrīkst definēt funkcijas</label><label class="checkline"><input type="radio" name="l5q22" value="2"> Jo importēšana var izpildīt šo kodu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-moduli"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="testi"><h2>7. Pirmās automatizētās pārbaudes</h2><p>Ar <code>assert</code> salīdzinām <strong>sagaidāmo</strong> un <strong>faktisko</strong> rezultātu. Sekmīgs apgalvojums parasti neko nedrukā; neveiksmīgs izraisa <code>AssertionError</code> (parastajā izpildes režīmā).</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-tests">Kopēt</button></div><pre><code id="l5-tests">assert count_words(&quot;&quot;) == {}
+assert count_words(&quot;Python&quot;) == {&quot;python&quot;: 1}
+assert count_words(&quot;Rīga rīga&quot;) == {&quot;rīga&quot;: 2}</code></pre></div>
+<p>Šīs trīs rindas pieņem, ka <code>count_words</code> ir jau definēta vai importēta. Pilns izpildāmais piemērs ir <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/lessons/05_functions_modules/06_testing.py">06_testing.py</a>.</p>
+<div class="exercise"><h3>Interaktīvs tests: cik reizes parādās vārds “rīga”?</h3><p>Nomaini sagaidāmo skaitu tā, lai tests neizietu, un paskaidro atšķirību.</p>
+<div class="lab-controls"><label for="test-text">Pārbaudāmais teksts<input id="test-text" type="text" value="Rīga Python Rīga" maxlength="180"></label><label for="test-expected">Sagaidāmais “rīga” skaits<input id="test-expected" type="number" min="0" step="1" value="2"></label></div><button id="test-run" type="button">Pārbaudīt assert</button><p class="output" id="test-result" role="status" aria-live="polite"></p></div>
+<p><strong>Papildus:</strong> <code>unittest</code> palīdz apvienot vairākus testus. Izmēģini <code>python -m unittest discover -s lessons/05_functions_modules/05_modules -p "test_*.py" -v</code>. <code>assert</code> nav lietotāja ievades validācija; optimizētā Python režīmā tā var netikt izpildīta.</p>
+<div class="exercise" data-quiz="l5q23" data-answer="1" data-explanation="Sekmīga assert pārbaude parasti ir klusa."><strong>Kas notiek ar veiksmīgu <code>assert True</code>?</strong><label class="checkline"><input type="radio" name="l5q23" value="0"> Izdrukā True</label><label class="checkline"><input type="radio" name="l5q23" value="1"> Nekas netiek izdrukāts</label><label class="checkline"><input type="radio" name="l5q23" value="2"> Izraisa AssertionError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q24" data-answer="0" data-explanation="Neizpildīts assert nosacījums izraisa AssertionError."><strong>Kura kļūda rodas, ja <code>assert 2 == 3</code> tiek izpildīts parastajā Python režīmā?</strong><label class="checkline"><input type="radio" name="l5q24" value="0"> AssertionError</label><label class="checkline"><input type="radio" name="l5q24" value="1"> NameError</label><label class="checkline"><input type="radio" name="l5q24" value="2"> ModuleNotFoundError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l5q25" data-answer="2" data-explanation="unittest ir iebūvētais testēšanas ietvars; ārēja instalēšana nav vajadzīga."><strong>Vai <code>unittest</code> jāinstalē ar <code>pip</code>?</strong><label class="checkline"><input type="radio" name="l5q25" value="0"> Jā, vienmēr</label><label class="checkline"><input type="radio" name="l5q25" value="1"> Tikai Windows</label><label class="checkline"><input type="radio" name="l5q25" value="2"> Nē, tas ir standarta bibliotēkā</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<label class="checkline"><input type="checkbox" data-progress="lesson5-testi"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="prakse"><h2>8. Patstāvīgie uzdevumi</h2><p><strong>20:25–21:05</strong> — 40 minūtes patstāvīgam darbam. Mēģini 1.–3. uzdevumu. 4.–5. ir papildu izaicinājumi. Atver paraugu tikai pēc paša mēģinājuma un pārbaudi risinājumu ar citu ievadi.</p><div class="exercise"><h3>1. Vārda noformēšana — <code>format_name(name)</code></h3>
+<p>Saņem vārdu, noņem atstarpes un izveido sākumburtu lielu. Testi: <code>"  ANNA  "</code> → <code>"Anna"</code>; <code>"jĀnis bĒrziņš"</code> → <code>"Jānis Bērziņš"</code>; <code>""</code> → <code>""</code>.</p>
+<p class="hint">Padoms: noder virkņu metodes <code>strip()</code> un <code>title()</code>.</p>
+<details><summary>Viens iespējamais risinājums (atver pēc mēģinājuma)</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-sol1">Kopēt</button></div><pre><code id="l5-sol1">def format_name(name):
+    return name.strip().title()
+
+assert format_name(&quot;  ANNA  &quot;) == &quot;Anna&quot;
+assert format_name(&quot;jĀnis bĒrziņš&quot;) == &quot;Jānis Bērziņš&quot;
+assert format_name(&quot;&quot;) == &quot;&quot;</code></pre></div><p><code>title()</code> ir vienkārša formatēšana, ne universāla personvārdu normalizācija.</p></details></div>
+<div class="exercise"><h3>2. Vārdu biežums — <code>count_words(text)</code></h3><p>Iepriekšējo ciklu izveido kā funkciju. Atgrieztās vērtības: <code>"Rīga Python Rīga"</code> → <code>{"rīga": 2, "python": 1}</code>; tukšs teksts → <code>{}</code>.</p><p class="hint">Padoms: <code>counts = {}</code>, <code>for</code>, <code>get</code> un <code>return</code> ārpus cikla.</p>
+<details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-sol2">Kopēt</button></div><pre><code id="l5-sol2">def count_words(text):
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts
+
+assert count_words(&quot;&quot;) == {}
+assert count_words(&quot;Rīga Python Rīga&quot;) == {&quot;rīga&quot;: 2, &quot;python&quot;: 1}
+assert count_words(&quot;ābols ābols&quot;) == {&quot;ābols&quot;: 2}</code></pre></div></details></div>
+<div class="exercise"><h3>3. Groza cena — <code>basket_total(basket, prices)</code></h3><p>Funkcija saņem produktu sarakstu un cenu vārdnīcu. Tukšs grozs → <code>0.0</code>; divi āboli → <code>1.20</code>; iepriekšējais grozs → <code>3.90</code>.</p><p class="hint">Padoms: iet cauri katram groza elementam; pieņem, ka visiem ir cenas.</p>
+<details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-sol3">Kopēt</button></div><pre><code id="l5-sol3">def basket_total(basket, prices):
+    total = 0.0
+    for product in basket:
+        total += prices[product]
+    return total
+
+prices = {&quot;maize&quot;: 1.50, &quot;piens&quot;: 1.20, &quot;ābols&quot;: 0.60}
+basket = [&quot;maize&quot;, &quot;ābols&quot;, &quot;ābols&quot;, &quot;piens&quot;]
+assert basket_total([], prices) == 0.0
+assert abs(basket_total([&quot;ābols&quot;, &quot;ābols&quot;], prices) - 1.20) &lt; 1e-9
+assert abs(basket_total(basket, prices) - 3.90) &lt; 1e-9</code></pre></div></details></div>
+<div class="exercise"><h3>4. Paša modulis — papildu izaicinājums</h3><p>Izveido blakus esošus <code>word_tools.py</code> un <code>main.py</code>; importē un izsauc <code>count_words</code>.</p>
+<details><summary>Paraugs: divi faili</summary><p><strong>word_tools.py</strong></p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-sol4a">Kopēt</button></div><pre><code id="l5-sol4a">def count_words(text):
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts</code></pre></div><p><strong>main.py</strong></p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-sol4b">Kopēt</button></div><pre><code id="l5-sol4b">import word_tools
+
+print(word_tools.count_words(&quot;Rīga rīga&quot;))</code></pre></div></details></div>
+<div class="exercise"><h3>5. <code>unittest</code> — papildu izaicinājums</h3><p>Pārbaudi tukšu tekstu, atkārtojumu un dažādu reģistru. Pēc tam apzināti nomaini sagaidāmo rezultātu un aplūko neveiksmīgo testu.</p>
+<details><summary>Testu paraugs</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l5-sol5">Kopēt</button></div><pre><code id="l5-sol5"># Failam jāatrodas blakus word_tools.py
+import unittest
+from word_tools import count_words
+
+class WordTests(unittest.TestCase):
+    def test_empty(self):
+        self.assertEqual(count_words(&quot;&quot;), {})
+
+    def test_repeated(self):
+        self.assertEqual(count_words(&quot;Rīga rīga&quot;), {&quot;rīga&quot;: 2})
+
+    def test_single(self):
+        self.assertEqual(count_words(&quot;Python&quot;), {&quot;python&quot;: 1})
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</code></pre></div><p>Palaid no mapes, kur atrodas <code>word_tools.py</code> un testa fails, ar <code>python -m unittest -v</code>, vai izmanto repozitorija gatavo testu atklāšanas komandu.</p></details></div>
+<p><a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/exercises/05_functions_modules/README.md">Pilns uzdevumu apraksts un testi</a> · <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/exercises/05_functions_modules/starter.py">Lejupielādējams sākuma kods</a> · <a href="https://github.com/ValRCS/Python_RTU_2026_27/tree/main/lessons/05_functions_modules">Python piemēri</a></p>
+<p><strong>Nākamajā nodarbībā (1. decembrī):</strong> failu lasīšana, rakstīšana un CSV. Izmantosim <code>read_text(path)</code> → <code>count_words(text)</code>, nemainot pašu skaitīšanas algoritmu.</p>
+
+<label class="checkline"><input type="checkbox" data-progress="lesson5-prakse"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<nav class="lesson-nav" aria-label="Nodarbību navigācija"><a href="../04-collections/index.html">← 4. nodarbība</a><a href="../06-files-csv/index.html">6. nodarbība →</a></nav></article></div></main>
+<footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer>
+<script src="../../assets/js/main.js" defer></script><script src="../../assets/js/exercises.js" defer></script><script src="../../assets/js/lesson05.js" defer></script>
+</body></html>
