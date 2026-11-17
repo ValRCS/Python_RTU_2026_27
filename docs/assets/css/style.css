@@ -47,7 +47,7 @@
 .lesson5 [hidden]{display:none!important}
 @media(max-width:600px){.lesson5 .lab-controls{grid-template-columns:1fr}}
 
-/* Lesson 2: centered 560px reading column and matching, uncropped hero. */
+/* Lesson 2: centered 560px reading column; all lesson heroes match their content width. */
 @media(min-width:1101px){
   .lesson2-layout{grid-template-columns:minmax(0,1fr) minmax(0,560px) minmax(0,1fr)}
   .lesson2-layout .toc{grid-column:1;grid-row:1}
@@ -58,6 +58,6 @@
   .lesson2-layout .toc,.lesson2-layout .lesson-content{width:100%;max-width:560px;margin-inline:auto}
   .lesson2-layout .toc{position:static}
 }
-.lesson2-layout .lesson-hero{width:100%;margin:0 auto 1.5rem}
-.lesson2-layout .lesson-hero a{display:block}
-.lesson2-layout .lesson-hero img{max-height:none;object-fit:contain;border-radius:16px;box-shadow:0 12px 30px rgba(16,39,64,.18)}
+.lesson-content .lesson-hero{width:100%;margin:0 auto 1.5rem}
+.lesson-content .lesson-hero a{display:block}
+.lesson-content .lesson-hero img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;border-radius:16px;box-shadow:0 12px 30px rgba(16,39,64,.18)}
