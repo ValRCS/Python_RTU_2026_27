@@ -4,7 +4,7 @@
 
 ## 2026. gada 17. novembra nodarbība
 
-[2. nodarbības pasniedzēja plāns, demonstrācijas, robežvērtības un pārbaudes](2026-11-17_lesson02_instructor_plan.md).
+[2. nodarbības pasniedzēja plāns, demonstrācijas, robežvērtības un pārbaudes](2026-11-17_lesson02_instructor_plan.md). Papildu noslēguma segments: [`match/case` pasniedzēja scenārijs, piemēri un kļūdu diagnostika](2026-11-17_lesson02_match_case_bonus.md).
 
 ## 2026. gada 19. novembra nodarbība
 

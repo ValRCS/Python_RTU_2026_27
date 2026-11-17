@@ -4,6 +4,7 @@
 **Laiks:** 17:45–21:40, MS Teams, 12 nodarbību Python kurss pieaugušajiem  
 **Interaktīvā vietne:** [docs/lessons/02-types-conditions/index.html](../docs/lessons/02-types-conditions/index.html)  
 **Izpildāmie piemēri:** [lessons/02_types_conditions](../lessons/02_types_conditions/README.md)  
+**Neobligātais noslēguma bloks:** [match/case pasniedzēja ceļvedis un demonstrācija (10 min; ar paplašinājumu)](2026-11-17_lesson02_match_case_bonus.md)  
 **Patstāvīgā prakse:** [exercises/02_types_conditions](../exercises/02_types_conditions/README.md)  
 **Priekšzināšanas:** `print`, `input`, mainīgie, skaitļi, virknes, pamata aritmētika.
 
@@ -87,7 +88,7 @@ Pēc īsa tipu un `input()` atkārtojuma pāriet uz **programmas vadības plūsm
 ### 21:30–21:40 — noslēgums (10 min)
 
 - Studenti paskaidro, kā `if` atšķiras no atkārtotas izpildes.
-- Īss bonusa priekšskatījums: De Morgana likumi un `match/case`, bez obligātiem papildu uzdevumiem.
+- Īss bonusa priekšskatījums: De Morgana likumi un `match/case`, bez obligātiem papildu uzdevumiem. Ja pamata mērķi sasniegti, izmanto [atsevišķo 10 minūšu `match/case` scenāriju](2026-11-17_lesson02_match_case_bonus.md); nesamazināt obligātās prakses vai kopsavilkuma laiku.
 - Pāreja uz 3. nodarbību 19.11.2026: `if` nosaka **vai**, `for/while` — **cik reižu**.
 
 ## Tipiskie jautājumi un kļūdu skaidrojumi

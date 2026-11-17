@@ -87,6 +87,7 @@ macOS/Linux sistēmās izmanto `python3`, ja `python` nav pieejams; dažās Wind
 | [05_compound_conditions.py](05_compound_conditions.py) | Salikti un ligzdoti nosacījumi |
 | [06_temperature_advisor.py](06_temperature_advisor.py) | Pilna programma ar lietotāja ievadi |
 | [07_bonus_logic.py](07_bonus_logic.py) | Neobligāti: De Morgana likumi, īssavienojuma izpilde, `match/case` (Python 3.10+) |
+| [08_match_case_bonus.py](08_match_case_bonus.py) | Neobligāta `match/case` demonstrācija: ekvivalents `if/elif/else`, teksta komandas, `str` pret `int` (Python 3.10+) |
 
 ## Patstāvīgā prakse un pašpārbaude
 
@@ -110,7 +111,7 @@ Pirms pabeidz programmu, pārbaudi skaitļus tieši uz robežām (piemēram, `17
 
 **Obligāti:** salīdzinājumi, `bool`, `and/or/not`, `if/elif/else`, atkāpes, zaru secība, skaitļu robežas, vienkārša ievades konvertēšana.  
 **Pēc iespējas:** ligzdots `if`, salīdzinājumu ķēdes un lasāmas izteiksmes ar iekavām.  
-**Papildu izaicinājumi:** De Morgana likumi, īssavienojuma izpilde (`short-circuit`), `match/case` (Python 3.10+) — skatīt [papildu failu](07_bonus_logic.py) un [HTML 7. sadaļu](../../docs/lessons/02-types-conditions/index.html#papildus).  
+**Papildu izaicinājumi:** De Morgana likumi, īssavienojuma izpilde (`short-circuit`), `match/case` (Python 3.10+) — skatīt [papildu failu](07_bonus_logic.py), [atsevišķu `match/case` demonstrāciju](08_match_case_bonus.py) un [HTML 7. sadaļu](../../docs/lessons/02-types-conditions/index.html#papildus).  
 **Nākamreiz:** `for`, `while`, virknes un to metodes; atkārtotu lēmumu izpilde ciklā.
 
 ## Atsauces un iepriekšējā kursa piemēri
