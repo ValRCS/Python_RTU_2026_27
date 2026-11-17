@@ -1,10 +1,14 @@
 # Praktiskie uzdevumi
 
-Sāc ar [1. nodarbības uzdevumiem](01_getting_started/README.md), pēc tam turpini ar [3. nodarbības uzdevumiem](03_loops_strings/README.md). 6.–12. nodarbības uzdevumi tiks papildināti kursa gaitā.
+Sāc ar [1. nodarbības uzdevumiem](01_getting_started/README.md), tad turpini ar [2. nodarbības uzdevumiem](02_types_conditions/README.md) un [3. nodarbības uzdevumiem](03_loops_strings/README.md). 6.–12. nodarbības uzdevumi tiks papildināti kursa gaitā.
 
 **Darba princips:** katru uzdevumu vispirms izpildi pats, tad izmēģini vēl vismaz vienu ievadi, kas atšķiras no piemēra. Saglabā savu risinājumu `.py` failā.
 
 **Risinājumu publiskošana:** interaktīvajās nodarbību lapās var būt paslēpti paraugrisinājumi pašpārbaudei. Individuālie studentu dati un vērtējumi netiek glabāti šeit.
+
+## 2. nodarbība
+
+[Nosacījumi un Būla loģika: trīs pamata un divi papildu uzdevumi](02_types_conditions/README.md) — 2026. gada 17. novembris.
 
 ## 3. nodarbība
 
