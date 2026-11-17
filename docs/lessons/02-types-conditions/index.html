@@ -70,9 +70,118 @@ elif op == '/':
     else:
         print(a / b)
 else:
-    print('Nezināma operācija')</code></pre></div></details></div><label class="checkline"><input type="checkbox" data-progress="lesson2-prakse"> Esmu patstāvīgi izpildījis vismaz trīs uzdevumus.</label></section><section id="papildus"><h2>7. Papildu izaicinājumi</h2><p><strong>De Morgana likumi:</strong> <code>not (A and B)</code> ir ekvivalents <code>not A or not B</code>; <code>not (A or B)</code> ir ekvivalents <code>not A and not B</code>. Pārbaudi ar četrām A/B kombinācijām.</p><p><strong>match/case (Python 3.10+):</strong> piemērots vienkāršai izvēlei pēc vērtības; tā ir strukturālā paraugu atbilstība, nevis vispārējs <code>if</code> aizstājējs.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l2match">Kopēt</button></div><pre><code id="l2match">diena = input('Diena: ')
+    print('Nezināma operācija')</code></pre></div></details></div><label class="checkline"><input type="checkbox" data-progress="lesson2-prakse"> Esmu patstāvīgi izpildījis vismaz trīs uzdevumus.</label></section><section id="papildus">
+<h2>7. Papildu izaicinājumi</h2>
+<p>Šīs tēmas ir <strong>neobligāts papildmateriāls</strong>: tās padziļina izpratni par loģiku un iepazīstina ar vēl vienu Python izvēles konstrukciju. Sāc ar pamatpiemēriem; papildu skaidrojumus un risinājumus vari atvērt pēc vajadzības.</p>
+
+<h3>7.1. De Morgana likumi</h3>
+<p>De Morgana likumi palīdz <strong>pārveidot loģiskus nosacījumus, nemainot rezultātu</strong>. Ja noliedzam izteiksmi ar <code>and</code>, katrs nosacījums tiek noliegts un <code>and</code> kļūst par <code>or</code>. Ja noliedzam izteiksmi ar <code>or</code>, tas kļūst par <code>and</code>.</p>
+<ul>
+<li><code>not (A and B)</code> ir ekvivalents <code>not A or not B</code>.</li>
+<li><code>not (A or B)</code> ir ekvivalents <code>not A and not B</code>.</li>
+</ul>
+<p><strong>Praktisks piemērs:</strong> «Nav tā, ka cilvēks ir gan pilngadīgs, gan students» nozīmē «cilvēks nav pilngadīgs <em>vai</em> nav students».</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l2demorgan">Kopēt</button></div><pre><code id="l2demorgan">vecums = 17
+ir_students = True
+
+pirmais = not (vecums &gt;= 18 and ir_students)
+otrais = vecums &lt; 18 or not ir_students
+
+print(pirmais)          # True
+print(otrais)           # True
+print(pirmais == otrais)  # True</code></pre></div>
+<details class="bonus-deep-dive">
+<summary>Padziļināts skaidrojums — kāpēc abi De Morgana likumi darbojas?</summary>
+<p>Ar <code>not</code> noliedzam <strong>visu</strong> iekavās esošo izteiksmi, nevis tikai vienu tās daļu. Izteiksme <code>not (A and B)</code> ir aplama tikai tad, ja <em>abi</em> nosacījumi ir patiesi; tas ir tieši tas pats, kas <code>not A or not B</code>. Savukārt <code>not (A or B)</code> ir patiesa tikai tad, ja <em>abi</em> nosacījumi ir aplami.</p>
+<p><strong>1. likuma patiesumtabula:</strong> salīdzini pēdējās divas kolonnas visās četrās kombinācijās.</p>
+<table class="bonus-truth-table"><thead><tr><th scope="col"><code>A</code></th><th scope="col"><code>B</code></th><th scope="col"><code>not (A and B)</code></th><th scope="col"><code>not A or not B</code></th></tr></thead><tbody><tr><td>False</td><td>False</td><td>True</td><td>True</td></tr><tr><td>False</td><td>True</td><td>True</td><td>True</td></tr><tr><td>True</td><td>False</td><td>True</td><td>True</td></tr><tr><td>True</td><td>True</td><td>False</td><td>False</td></tr></tbody></table>
+<p><strong>2. likuma patiesumtabula:</strong> arī šeit pēdējās divas kolonnas visās rindās sakrīt.</p>
+<table class="bonus-truth-table"><thead><tr><th scope="col"><code>A</code></th><th scope="col"><code>B</code></th><th scope="col"><code>not (A or B)</code></th><th scope="col"><code>not A and not B</code></th></tr></thead><tbody><tr><td>False</td><td>False</td><td>True</td><td>True</td></tr><tr><td>False</td><td>True</td><td>False</td><td>False</td></tr><tr><td>True</td><td>False</td><td>False</td><td>False</td></tr><tr><td>True</td><td>True</td><td>False</td><td>False</td></tr></tbody></table>
+<p>Šīs ekvivalences ļauj sarežģītus <code>if</code> nosacījumus pierakstīt saprotamāk. Iekavas palīdz skaidri parādīt, ko tieši noliedzam. Šeit <code>A</code> un <code>B</code> ir Būla vērtības (<code>True</code> vai <code>False</code>).</p>
+</details>
+
+<h3>7.2. <code>match/case</code> konstrukcija (Python 3.10+)</h3>
+<p><code>match/case</code> ir <strong>strukturālā paraugu atbilstība</strong> (<em>structural pattern matching</em>). Python pārbauda <code>case</code> paraugus norādītajā secībā un izpilda pirmo atbilstošo zaru. Vienkāršākajā variantā tā ļauj ērti izvēlēties darbību pēc konkrētas vērtības.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l2match">Kopēt</button></div><pre><code id="l2match">diena = input("Ievadi nedēļas dienu: ")
+
 match diena:
-    case 'sestdiena' | 'svētdiena':
-        print('Brīvdiena')
+    case "sestdiena" | "svētdiena":
+        print("Brīvdiena")
+    case "pirmdiena":
+        print("Jauna darba nedēļa")
     case _:
-        print('Cita diena')</code></pre></div><p>Šajā nodarbībā ciklus vēl neizmantojam.</p><label class="checkline"><input type="checkbox" data-progress="lesson2-papildus"> Esmu iepazinies ar papildu piemēriem.</label></section><nav class="lesson-nav" aria-label="Nodarbību navigācija"><a href="../01-introduction/index.html">← 1. nodarbība</a><a href="../03-loops-strings/index.html">3. nodarbība →</a></nav></article></div></main><footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer><script src="../../assets/js/main.js" defer></script><script src="../../assets/js/exercises.js" defer></script><script src="../../assets/js/lesson02.js" defer></script></body></html>
+        print("Cita diena")</code></pre></div>
+<ul>
+<li><code>match diena:</code> — pārbaudām izteiksmes <code>diena</code> vērtību.</li>
+<li><code>case "pirmdiena":</code> — zars, kas atbilst konkrētam tekstam.</li>
+<li><code>|</code> — alternatīvi <em>paraugi</em> vienā <code>case</code>; tas <strong>nav</strong> loģiskais operators <code>or</code>.</li>
+<li><code>case _:</code> — noklusējuma zars, ja nekas iepriekš nav atbildis; tas nav obligāts.</li>
+<li><code>:</code> un atkāpes — tāpat kā <code>if/elif/else</code>, nosaka koda blokus.</li>
+</ul>
+<p><strong>Izmēģini:</strong> ievadi <code>sestdiena</code>, <code>pirmdiena</code> un <code>otrdiena</code>. Pievērs uzmanību, ka piemērs salīdzina tekstu precīzi, tādēļ <code>Sestdiena</code> nav tas pats, kas <code>sestdiena</code>.</p>
+<details class="bonus-deep-dive">
+<summary>Padziļināts skaidrojums — kā <code>match</code> atšķiras no <code>if/elif/else</code>?</summary>
+<p>Ar <code>if</code> var pārbaudīt jebkuru nosacījumu, piemēram, <code>vecums &gt;= 18 and vecums &lt; 65</code>. <code>match</code> salīdzina vērtību ar <em>paraugiem</em>: sākot ar teksta vai skaitļu literāļiem un beidzot ar strukturāliem paraugiem, kurus apgūsim vēlāk.</p>
+<p>To pašu nedēļas dienas piemēru ar <code>if/elif/else</code> var pierakstīt šādi:</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l2match-if">Kopēt</button></div><pre><code id="l2match-if">diena = input("Ievadi nedēļas dienu: ")
+if diena == "sestdiena" or diena == "svētdiena":
+    print("Brīvdiena")
+elif diena == "pirmdiena":
+    print("Jauna darba nedēļa")
+else:
+    print("Cita diena")</code></pre></div>
+<p><strong>Kad kuru izvēlēties?</strong> Dažādiem loģiskiem nosacījumiem un skaitliskiem intervāliem parasti izvēlies <code>if</code>. Ja vienu vērtību pārbaudi pret vairākiem zināmiem paraugiem, <code>match</code> var būt pārskatāmāks. <code>case _</code> trūkuma gadījumā, ja neviens paraugs neatbilst, neviens zars netiek izpildīts; programma turpinās ar nākamo instrukciju pēc <code>match</code> bloka.</p>
+<p>Papildu iespējas, piemēram, sarakstu un vārdnīcu struktūru paraugi vai <code>case</code> papildu nosacījumi (<em>guards</em>), šajā nodarbībā nav jāapgūst.</p>
+</details>
+
+<h3>7.3. Pārbaudi sevi</h3>
+<p>Mēģini atrisināt uzdevumus patstāvīgi, pirms atver risinājumu. Šeit nevienā uzdevumā nav vajadzīgi cikli.</p>
+<div class="exercise">
+<p><strong>1. Pārveido nosacījumu.</strong> Pieraksti <code>not (x &gt; 10 and x &lt; 20)</code> bez ārējā <code>not</code>.</p>
+<details><summary>Viens iespējamais risinājums</summary><p><code>x &lt;= 10 or x &gt;= 20</code>. Noliedzot stingros salīdzinājumus, robežvērtības 10 un 20 ir jāiekļauj.</p></details>
+</div>
+<div class="exercise">
+<p><strong>2. Pārbaudi četras kombinācijas.</strong> Piešķir <code>A</code> un <code>B</code> vērtības <code>False/False</code>, <code>False/True</code>, <code>True/False</code> un <code>True/True</code>, un salīdzini pirmā De Morgana likuma abas puses.</p>
+<details><summary>Viens iespējamais risinājums (bez cikliem)</summary>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l2demorgan-verify">Kopēt</button></div><pre><code id="l2demorgan-verify">A = False
+B = False
+print((not (A and B)) == ((not A) or (not B)))  # True
+
+A = False
+B = True
+print((not (A and B)) == ((not A) or (not B)))  # True
+
+A = True
+B = False
+print((not (A and B)) == ((not A) or (not B)))  # True
+
+A = True
+B = True
+print((not (A and B)) == ((not A) or (not B)))  # True</code></pre></div>
+<p>Visām četrām kombinācijām abas izteiksmes ir ekvivalentas. Vari atkārtot pārbaudi otrajam likumam.</p></details>
+</div>
+<div class="exercise">
+<p><strong>3. Paplašini <code>match</code> piemēru.</strong> Pievieno atsevišķu zaru <code>piektdiena</code>, kas izvada <em>Drīz brīvdienas!</em></p>
+<details><summary>Viens iespējamais risinājums</summary><p>Ievieto šo zaru <strong>pirms</strong> <code>case _:</code>:</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l2match-friday">Kopēt</button></div><pre><code id="l2match-friday">case "piektdiena":
+        print("Drīz brīvdienas!")</code></pre></div>
+<p>Šis ir fragments, kas jāpievieno esošajam <code>match</code> blokam, nevis patstāvīga programma.</p></details>
+</div>
+<div class="exercise">
+<p><strong>4. Padomā par noklusējuma zaru.</strong> Kas notiek, ja nevienam <code>case</code> paraugam nav atbilstības un <code>case _</code> nav uzrakstīts?</p>
+<details><summary>Atbilde</summary><p>Neviens <code>case</code> bloks netiek izpildīts. Python turpina programmu pēc <code>match</code> konstrukcijas.</p></details>
+</div>
+
+<h3>7.4. Papildu resursi</h3>
+<details class="bonus-references">
+<summary>Atvērt atsauces un turpmākās lasāmvielas (angļu valodā)</summary>
+<ul>
+<li><a href="https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not" target="_blank" rel="noopener noreferrer">Python dokumentācija: Boolean Operations — and, or, not</a> — operatoru darbība, prioritāte un īssavienojuma izvērtēšana.</li>
+<li><a href="https://docs.python.org/3/tutorial/controlflow.html#match-statements" target="_blank" rel="noopener noreferrer">Python Tutorial: match Statements</a> — ievads <code>match/case</code> konstrukcijā ar piemēriem.</li>
+<li><a href="https://peps.python.org/pep-0636/" target="_blank" rel="noopener noreferrer">PEP 636: Structural Pattern Matching — Tutorial</a> — paplašināts skaidrojums un sarežģītāki piemēri.</li>
+<li><a href="https://docs.python.org/3/reference/compound_stmts.html#the-match-statement" target="_blank" rel="noopener noreferrer">Python Language Reference: The match Statement</a> — precīza sintakses un darbības specifikācija (padziļinātai lasīšanai).</li>
+</ul>
+</details>
+<p>Šajā nodarbībā ciklus vēl neizmantojam. Tie būs 3. nodarbības temats.</p>
+<label class="checkline"><input type="checkbox" data-progress="lesson2-papildus"> Esmu iepazinies ar papildu piemēriem.</label>
+</section><nav class="lesson-nav" aria-label="Nodarbību navigācija"><a href="../01-introduction/index.html">← 1. nodarbība</a><a href="../03-loops-strings/index.html">3. nodarbība →</a></nav></article></div></main><footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer><script src="../../assets/js/main.js" defer></script><script src="../../assets/js/exercises.js" defer></script><script src="../../assets/js/lesson02.js" defer></script></body></html>

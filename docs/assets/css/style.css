@@ -61,3 +61,11 @@
 .lesson-content .lesson-hero{width:100%;margin:0 auto 1.5rem}
 .lesson-content .lesson-hero a{display:block}
 .lesson-content .lesson-hero img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;border-radius:16px;box-shadow:0 12px 30px rgba(16,39,64,.18)}
+
+/* Lesson 2 bonus: compact truth tables in the collapsible explanations. */
+#papildus .bonus-truth-table{width:100%;border-collapse:collapse;font-size:.83rem;margin:.75rem 0 1rem}
+#papildus .bonus-truth-table th,#papildus .bonus-truth-table td{padding:.4rem .15rem;border-bottom:1px solid #dce3eb;text-align:center;overflow-wrap:anywhere}
+#papildus .bonus-truth-table th{background:#eaf0f7}
+#papildus .bonus-truth-table code{font-size:.9em}
+#papildus .bonus-references li{margin:.5rem 0;overflow-wrap:anywhere}
+#papildus details summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
