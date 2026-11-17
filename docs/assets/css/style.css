@@ -48,6 +48,7 @@
 @media(max-width:600px){.lesson5 .lab-controls{grid-template-columns:1fr}}
 
 /* Lesson 2 illustrated hero: preserve the entire image without global image cropping. */
-.lesson-hero{margin:1.5rem auto 0}
+.lesson-hero{width:min(75vw,840px);margin:1.5rem auto 0}
 .lesson-hero a{display:block}
 .lesson-hero img{max-height:none;object-fit:contain;border-radius:16px;box-shadow:0 12px 30px rgba(16,39,64,.18)}
+@media(max-width:600px){.lesson-hero{width:calc(100% - 1.3rem)}}
