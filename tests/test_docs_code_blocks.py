@@ -25,6 +25,7 @@ MULTILINE_EXAMPLE_IDS = {
         "l3-for", "l3-while", "l3-sentinel", "l3-control", "l3-chars",
         "l3-slices", "l3-methods", "l3-solution-1", "l3-solution-2",
         "l3-solution-3", "l3-solution-4", "l3-solution-5",
+        "l3-error-input", "l3-error-quit", "l3-error-division",
     ),
     "04-collections": (
         "l4-review", "l4-list", "l4-iteration", "l4-mutate",

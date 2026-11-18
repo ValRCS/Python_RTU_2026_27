@@ -7,7 +7,7 @@
 | `can't open file` | Nepareiza pašreizējā darba mape vai faila nosaukums | `pwd` (macOS/Linux), `Get-Location` (PowerShell), `dir`/`ls` |
 | `SyntaxError` | Kļūda kodā (iekavas, pēdiņas, atkāpes) | Izlasi kļūdas rindu un pārbaudi blakus esošās rindas |
 | `NameError` | Mainīgais vēl nav definēts vai nosaukums kļūdains | Pārbaudi lielos/mazos burtus un izpildes secību |
-| `ValueError` pie `int(input(...))` | Ievadīts teksts, ko nevar pārvērst veselā skaitlī | Ievadi veselu skaitli; vēlāk apgūsim `try/except` |
+| `ValueError` pie `int(input(...))` | Ievadīts teksts, ko nevar pārvērst veselā skaitlī | 3. nodarbībā lieto `try/except ValueError` ciklā, lai paziņotu par kļūdu un prasītu ievadi vēlreiz |
 | `ModuleNotFoundError` | Pakotne nav uzstādīta attiecīgajam interpretatoram | Sākuma nodarbībās izmanto tikai standarta bibliotēku |
 | Darbojas IDLE, bet ne terminālī | Atšķirīgi interpretatori vai darba mapes | Pārbaudi Python versiju un faila pilno ceļu |
 | Dīvaini burti latviešu tekstā | Termināļa/rediģētāja kodējums | Saglabā avota failu UTF-8; izmēģini citu termināli |

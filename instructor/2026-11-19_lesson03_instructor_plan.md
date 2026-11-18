@@ -5,13 +5,14 @@
 **Pamata lapa:** [docs/lessons/03-loops-strings/index.html](../docs/lessons/03-loops-strings/index.html)  
 **Studentu kods:** [lessons/03_loops_strings](../lessons/03_loops_strings/README.md)  
 **Prakse:** [exercises/03_loops_strings](../exercises/03_loops_strings/README.md)  
+**Papildu scenārijs:** [try/except un minējumu spēles varianti](2026-11-19_lesson03_error_handling_bonus.md)  
 **Priekšzināšanas:** mainīgie, `int/float/str/bool`, `input`, salīdzināšana, `if/elif/else`, `and/or/not`.
 
 ## Galvenā didaktiskā izvēle
 
 Apvienot **ciklus un virknes** vienā nodarbībā. Virkne ir nemaināma secība, tāpēc ļauj dabiski demonstrēt `for`, `len`, indeksus un šķēlumus. 4. nodarbībā šie paši mehānismi pāriet uz `list` un `tuple`; `split` un `join` apzināti atlikt līdz tam, jo `split()` atgriež sarakstu.
 
-**Nepārslogot:** neievadīt funkciju definīcijas, list comprehensions, regulārās izteiksmes, izvērstu Unicode normalizāciju vai vispārīgu kļūdu apstrādes arhitektūru. `break` demonstrēt, `continue` īsi, detalizētāk — ja laiks atļauj.
+**Nepārslogot:** mācīt vienu konkrētu `try/except ValueError` pielietojumu `while` ciklā, nevis vispārīgu kļūdu apstrādes arhitektūru. Neievadīt funkciju definīcijas, list comprehensions, regulārās izteiksmes vai izvērstu Unicode normalizāciju. `break` demonstrēt, `continue` īsi, detalizētāk — ja laiks atļauj.
 
 ## Sasniedzamie rezultāti un novērtēšana
 
@@ -20,6 +21,7 @@ Apvienot **ciklus un virknes** vienā nodarbībā. Virkne ir nemaināma secība,
 | `for` ar `range`, stop ir ekskluzīvs | students paredz iterāciju skaitu un summu |
 | `while` ar garantētu apstāšanos | students izskaidro, kas mainās katrā iterācijā |
 | `if` kopā ar cikliem | students skaita tikai atlasītas vērtības |
+| `try/except ValueError` ciklā | students paskaidro, kāpēc `abc` izraisa atkārtotu ievadi, bet `-2` pārbauda ar `if` |
 | Iterācija pār `str` | students saskaita patskaņus |
 | Indeksi/šķēlumi/nemaināmība | students nosaka `text[-1]`, `[1:4]` un kļūdas gadījumus |
 | Praktiskas `str` metodes | students ievadi normalizē ar `strip().lower()` |
@@ -32,19 +34,25 @@ Apvienot **ciklus un virknes** vienā nodarbībā. Virkne ir nemaināma secība,
 - Īss iesildīšanās piemērs: `if n % 2 == 0`.
 - Pāreja: `if` izvēlas **vai**, cikls — **cik reižu**.
 
-### 18:05–18:50 — `for` / `range()` (45 min)
+### 18:05–18:40 — `for` / `range()` (35 min)
 - Vispirms `for n in range(5)`; pēc tam `range(1, 6)` un `range(2, 10, 2)`.
 - Modelēt pa vienam solim tīmekļa laboratorijā. Uzsvērt ekskluzīvu `stop`.
 - Atvērt `01_for_range.py`: `total = 0` un `total += n`; izskaidrot akumulatoru.
 - Kontroljautājumi: `range(0)`, `range(5,5)`, `range(10,0,-2)`.
 - Ātra pašpārbaude un viena minūte studentu prognozēm pirms izpildes.
 
-### 18:50–19:25 — `while` un vadība (35 min)
+### 18:40–19:10 — `while` un vadība (30 min)
 - `i=0; while i<4: i+=1`. Pēc katras iterācijas nosaukt `i`.
 - Parādīt bezgalīgas cilpas **koda fragmentu**, nepalaižot to bez uzraudzības; demonstrēt Ctrl+C.
 - Ieviest signālvārdu `beigt` ar `strip().lower()` un `break`.
 - Īsi salīdzināt `break` (iziet no cikla) un `continue` (izlaiž atlikušo iterāciju).
 - Atvērt `02_while.py`; uzdot jautājumu: kādi ievades varianti pārtrauc ciklu?
+
+### 19:10–19:25 — `try/except ValueError` ciklā (15 min)
+- **0–5 min:** atsaukt atmiņā otrajā nodarbībā sastapto `int("abc")` / `ValueError`. Izskaidrot `try`, `except ValueError`, `continue` un `break` vadības plūsmu.
+- **5–12 min:** palaist `05_error_handling.py`; ievadīt secīgi `abc`, `-2`, `5`. Pie `abc` kļūdās konvertēšana; pie `-2` tā izdodas, bet `if` noraida vērtību.
+- **12–15 min:** palūgt studentiem paredzēt, kas notiktu bez `continue` vai bez `break`. Uzsvērt, ka lietojam konkrētu `except ValueError`.
+- **Bonuss:** komanda `q` vai `ZeroDivisionError`, ja grupa virzās ātri. Abiem piemēriem sagatavotas sakļaujamas sadaļas HTML lapā un [papildu scenārijs](2026-11-19_lesson03_error_handling_bonus.md).
 
 ### 19:25–19:35 — pārtraukums (10 min)
 
@@ -62,16 +70,16 @@ Apvienot **ciklus un virknes** vienā nodarbībā. Virkne ir nemaināma secība,
 - `split/join` atlikt uz nākamo reizi (saraksti).
 
 ### 20:25–21:05 — patstāvīgie uzdevumi (40 min)
-- Visi sāk 1.–3. uzdevumu; ātrākie turpina 4.–5.
-- Atgādināt testus: n=0/1/10; `beigt` ar reģistru/atstarpēm; `Rīga` un `Ābols`.
-- Iesācējiem palīdzēt ar atkāpēm, datu tipu un cikla beigu nosacījumu.
+- Visi sāk 1.–3. uzdevumu (aptuveni 8–12, 8–12, 10–15 min); ātrākie turpina 4.–5. vai papildu ievades drošību.
+- Atgādināt testus: n=0/1/10; `beigt` ar reģistru/atstarpēm; `Rīga` un `Ābols`. Kļūdu apstrādes bonusam: `abc`, `-2`, `5`.
+- Iesācējiem palīdzēt ar atkāpēm, datu tipu un cikla beigu nosacījumu; sagatavju sadaļu atvērt tikai pēc patstāvīga mēģinājuma.
 - Risinājumi lapā ir paslēpti zem `details` — atverami **pēc sava mēģinājuma**.
 - Nenorādīt risinājumu priekšlaikus; sniegt vienu padomu, tad prasīt studentam palaist savu kodu.
 
 ### 21:05–21:30 — kopīga izvērtēšana (25 min)
 - Izvēlēties 1.–3. uzdevumu; analizēt biežas kļūdas: `range(1,n)` bez n, `i += 1` trūkums, `text.lower` bez iekavām, `IndexError`.
 - Salīdzināt `for char in text` un `for i in range(len(text))`; otrs vajadzīgs tikai tad, ja svarīgs indekss.
-- Ja laiks: minēšanas spēle un alternatīva palindroma pārbaude.
+- Ja laiks: minēšanas spēle ar derīgo mēģinājumu skaitīšanu un alternatīva palindroma pārbaude ar ciklu.
 
 ### 21:30–21:40 — noslēgums (10 min)
 - Vaicāt, kāpēc gan virkni, gan `range` var lietot ar `for`.
@@ -81,14 +89,17 @@ Apvienot **ciklus un virknes** vienā nodarbībā. Virkne ir nemaināma secība,
 ## Iepriekš sagatavojamie materiāli un pārbaudes
 
 1. Atvērt 3. nodarbības GitHub Pages lapu; pārliecināties, ka izvēlne un navigācija darbojas.
-2. Pārbaudīt 25 viktorīnas jautājumus; īpaši `range` robežas, `while` beigu nosacījumus, negatīvos indeksus.
+2. Pārbaudīt 29 viktorīnas jautājumus; īpaši `range` robežas, `while` beigu nosacījumus, negatīvos indeksus.
 3. Pārbaudīt JavaScript modeļus: `range(1,6)`; `range(10,0,-2)`; solis 0; tukša virkne; ārpus robežām esošs indekss; visu virkņu metožu rezultāti.
-4. Palaist visus četrus `.py` failus; interaktīvajiem ievadīt `beigt` un `7`.
+4. Palaist visus piecus `.py` failus; interaktīvajiem ievadīt `beigt`, `7` un piektajam failam `abc`, `-2`, `5`.
 5. Pārbaudīt MS Teams ekrāna kopīgošanu, koda fonta palielināšanu, ierakstīšanu.
 6. Atvērt 4. nodarbības lapu tikai kā priekšskatījumu; nepārnest tajā apgūstamos sarakstus uz 3. nodarbību.
 
 ## Tipiskas kļūdas un atbildes
 
+- **`int("abc")` izraisīja `ValueError` — vai var turpināt?** Jā, ar `except ValueError` un atkārtotu ievadi `while` ciklā.
+- **Vai `int("-2")` izraisa `ValueError`?** Nē, tas ir korekts vesels skaitlis; domēna noteikumus pārbauda ar `if`.
+- **Kāpēc ne `except:`?** Tas noķer arī neparedzētus izņēmumus, tostarp pārtraukšanu ar Ctrl+C.
 - **`range(1, 5)` ietver 5?** Nē; ietver 1,2,3,4.
 - **`while` vienmēr beigsies?** Nē; jāmaina nosacījumu ietekmējošais stāvoklis vai jāizpilda `break`.
 - **`continue` un `break` vienādi?** Nē; pirmais pārlec uz nākamo iterāciju, otrais iziet no cikla.

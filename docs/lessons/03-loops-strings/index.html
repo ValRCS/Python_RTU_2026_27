@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="lv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="3. nodarbība: Python cikli, range, while, virknes, indeksi un virkņu metodes"><title>3. nodarbība — Cikli un virknes | RTU Python pamati</title><link rel="stylesheet" href="../../assets/css/style.css"></head>
+<html lang="lv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="3. nodarbība: Python for, range, while, try/except, virknes, indeksi un virkņu metodes"><title>3. nodarbība — Cikli un virknes | RTU Python pamati</title><link rel="stylesheet" href="../../assets/css/style.css"></head>
 <body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a></nav></div></header>
-<main id="main"><div class="shell lesson-layout"><aside class="toc" aria-label="Nodarbības saturs"><strong>3. nodarbība</strong><p class="muted" id="progress-count">0 / 8 sadaļas atzīmētas</p><a href="#atkartojums">1. Atkārtojums</a><a href="#for">2. for un range()</a><a href="#while">3. while cikls</a><a href="#vadiba">4. break un continue</a><a href="#virknes">5. Virknes kā secības</a><a href="#indeksi">6. Indeksi un šķēlumi</a><a href="#metodes">7. Virkņu metodes</a><a href="#prakse">8. Patstāvīgā prakse</a></aside>
-<article class="lesson-content lesson3"><span class="eyebrow">2026. gada 19. novembris · 17:45–21:40</span><h1>Cikli un virknes</h1><p class="lead">Atkārto darbības ar <code>for</code> un <code>while</code>, pārstrādā tekstu, izmanto indeksus, šķēlumus un metodes.</p><p class="notice"><strong>Sasniedzamie rezultāti:</strong> paredzēt <code>range()</code> vērtības, veidot divu veidu ciklus, izmantot <code>if</code> ciklā, iziet cauri virknei, piekļūt simboliem un apzināties, ka <code>str</code> nav maināms. Interaktīvās demonstrācijas modelē Python uzvedību JavaScript; īsto Python kodu palaid savā datorā.</p>
+<main id="main"><div class="shell lesson-layout"><aside class="toc" aria-label="Nodarbības saturs"><strong>3. nodarbība</strong><p class="muted" id="progress-count">0 / 9 sadaļas atzīmētas</p><a href="#atkartojums">1. Atkārtojums</a><a href="#for">2. for un range()</a><a href="#while">3. while cikls</a><a href="#vadiba">4. break un continue</a><a href="#kludas">5. try/except ciklos</a><a href="#virknes">6. Virknes kā secības</a><a href="#indeksi">7. Indeksi un šķēlumi</a><a href="#metodes">8. Virkņu metodes</a><a href="#prakse">9. Patstāvīgā prakse</a></aside>
+<article class="lesson-content lesson3"><span class="eyebrow">2026. gada 19. novembris · 17:45–21:40</span><h1>Cikli un virknes</h1><p class="lead">Atkārto darbības ar <code>for</code> un <code>while</code>, pārstrādā tekstu, izmanto indeksus, šķēlumus un metodes.</p><p class="notice"><strong>Sasniedzamie rezultāti:</strong> paredzēt <code>range()</code> vērtības, veidot divu veidu ciklus, izmantot <code>if</code> un <code>try/except ValueError</code> ciklā, iziet cauri virknei, piekļūt simboliem un apzināties, ka <code>str</code> nav maināms. Interaktīvās demonstrācijas modelē Python uzvedību JavaScript; īsto Python kodu palaid savā datorā.</p>
 <section id="atkartojums"><h2>1. Atkārtojums</h2><p>Iepriekš apguvām nosacījumus, datu tipus un Būla loģiku. Cikli izmantos šīs zināšanas, lai darbības veiktu atkārtoti.</p>
 <div class="exercise" data-quiz="l3q1" data-answer="1" data-explanation="input() vienmēr atgriež str."><strong>Kāds ir <code>input()</code> rezultāta tips?</strong><label class="checkline"><input type="radio" name="l3q1" value="0"> int</label><label class="checkline"><input type="radio" name="l3q1" value="1"> str</label><label class="checkline"><input type="radio" name="l3q1" value="2"> bool</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <div class="exercise" data-quiz="l3q2" data-answer="1" data-explanation="Atlikums, dalot 7 ar 2, ir 1."><strong>Kāds ir <code>7 % 2</code> rezultāts?</strong><label class="checkline"><input type="radio" name="l3q2" value="0"> 3</label><label class="checkline"><input type="radio" name="l3q2" value="1"> 1</label><label class="checkline"><input type="radio" name="l3q2" value="2"> 2</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
@@ -58,7 +58,59 @@ print(&quot;Ievadītās rindas:&quot;, count)</code></pre></div>
 <div class="exercise" data-quiz="l3q15" data-answer="1" data-explanation="Pāra iterācijas tiek izlaistas, paliek 1 un 3."><strong>Ko izvada cikls ar <code>continue</code>, kas izlaiž pāra skaitļus no <code>range(5)</code>?</strong><label class="checkline"><input type="radio" name="l3q15" value="0"> 0,2,4</label><label class="checkline"><input type="radio" name="l3q15" value="1"> 1,3</label><label class="checkline"><input type="radio" name="l3q15" value="2"> Visus skaitļus</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <div class="exercise" data-quiz="l3q16" data-answer="1" data-explanation="Iterācijas sākas ar 0,1,2,3; ceturtajā izpilda break."><strong>Cik iterācijās ieiet <code>for n in range(10)</code>, ja pie <code>n==3</code> ir <code>break</code>?</strong><label class="checkline"><input type="radio" name="l3q16" value="0"> 3</label><label class="checkline"><input type="radio" name="l3q16" value="1"> 4</label><label class="checkline"><input type="radio" name="l3q16" value="2"> 10</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <label class="checkline"><input type="checkbox" data-progress="lesson3-vadiba"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
-<section id="virknes"><h2>5. Virknes kā secības</h2><p><code>str</code> ir nemaināma rakstzīmju secība. Ar <code>for char in text</code> var apskatīt katru rakstzīmi, ar <code>len(text)</code> — virknes garumu. Python viena rakstzīme arī ir <code>str</code>; atsevišķa <code>char</code> tipa nav.</p>
+<section id="kludas"><h2>5. Kļūdu apstrāde ciklos — <code>try/except</code></h2>
+<p>Otrajā nodarbībā sastapām <code>ValueError</code> pie <code>int("abc")</code>. Izmantojot <code>try/except</code> <code>while</code> ciklā, pēc kļūdainas ievades varam <strong>jautāt vēlreiz</strong>, nevis pārtraukt programmu.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-error-input">Kopēt</button></div><pre><code id="l3-error-input">while True:
+    text = input(&quot;Ievadi nenegatīvu veselu skaitli: &quot;)
+    try:
+        number = int(text)
+    except ValueError:
+        print(&quot;Nederīga ievade. Mēģini vēlreiz!&quot;)
+        continue
+
+    if number &lt; 0:
+        print(&quot;Skaitlim jābūt nenegatīvam.&quot;)
+        continue
+    break
+
+print(&quot;Paldies! Ievadītais skaitlis:&quot;, number)</code></pre></div>
+<p><strong>Izmēģini secīgi:</strong> <code>abc</code> → <code>ValueError</code> tiek apstrādāts; <code>-2</code> → pārvēršana izdodas, bet <code>if</code> noraida negatīvu skaitli; <code>5</code> → <code>break</code> iziet no cikla.</p>
+<p><code>continue</code> atsāk nākamo iterāciju, bet <code>break</code> beidz ciklu. Iespējami dažādi kļūdu veidi — noķeram paredzamo <code>ValueError</code>, nevis izmantojam vispārīgu <code>except:</code>, kas var slēpt citas problēmas.</p>
+<div class="exercise" data-quiz="l3q26" data-answer="1" data-explanation="ValueError tiek apstrādāts, tādēļ cikls jautā vēlreiz."><strong>Kas notiek, ievadot <code>abc</code>?</strong><label class="checkline"><input type="radio" name="l3q26" value="0"> Programma beidzas ar neapstrādātu kļūdu</label><label class="checkline"><input type="radio" name="l3q26" value="1"> Parāda paziņojumu un prasa ievadi vēlreiz</label><label class="checkline"><input type="radio" name="l3q26" value="2"> Mainīgais number kļūst par 0</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l3q27" data-answer="0" data-explanation="continue pāriet pie nākamās while iterācijas."><strong>Ko dara <code>continue</code> <code>except</code> zarā?</strong><label class="checkline"><input type="radio" name="l3q27" value="0"> Atkārto while ar jaunu ievadi</label><label class="checkline"><input type="radio" name="l3q27" value="1"> Pabeidz programmu</label><label class="checkline"><input type="radio" name="l3q27" value="2"> Atkārto tikai skaitļa pārvēršanu bez jaunas ievades</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l3q28" data-answer="2" data-explanation="Negatīvs vesels skaitlis ir derīgs int, bet neatbilst lietotnes noteikumam."><strong>Kāpēc <code>-2</code> neizraisa <code>ValueError</code>?</strong><label class="checkline"><input type="radio" name="l3q28" value="0"> Python ignorē mīnusu</label><label class="checkline"><input type="radio" name="l3q28" value="1"> Tas izsauc break</label><label class="checkline"><input type="radio" name="l3q28" value="2"> Tas ir derīgs int, kuru noraida if</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l3q29" data-answer="1" data-explanation="Konkrēts except ļauj pamanīt citas negaidītas kļūdas."><strong>Kāpēc priekšroka ir <code>except ValueError:</code>?</strong><label class="checkline"><input type="radio" name="l3q29" value="0"> Tas paslēpj visas kļūdas</label><label class="checkline"><input type="radio" name="l3q29" value="1"> Tas apstrādā tieši paredzēto pārveidošanas kļūdu</label><label class="checkline"><input type="radio" name="l3q29" value="2"> Tas automātiski pārvērš jebkuru tekstu skaitlī</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<details><summary>Papildus: iziešana ar komandu <code>q</code></summary><p>Iziešanas komandu pārbaudi <em>pirms</em> skaitļa pārvēršanas; citādi <code>int("q")</code> izraisīs kļūdu.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-error-quit">Kopēt</button></div><pre><code id="l3-error-quit">while True:
+    text = input(&quot;Skaitlis vai q: &quot;).strip().lower()
+    if text == &quot;q&quot;:
+        print(&quot;Beidzam darbu.&quot;)
+        break
+    try:
+        number = int(text)
+    except ValueError:
+        print(&quot;Ievadi veselu skaitli.&quot;)
+        continue
+    print(&quot;Kvadrāts:&quot;, number ** 2)</code></pre></div></details>
+<details><summary>Padziļināti: <code>ValueError</code> un <code>ZeroDivisionError</code></summary>
+<p>Šis ir izvēles piemērs: kļūdīties var gan ievadot skaitli, gan dalot ar nulli. Plašāka izņēmumu apstrāde nav obligāta.</p>
+<div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-error-division">Kopēt</button></div><pre><code id="l3-error-division">while True:
+    try:
+        a = float(input(&quot;Dalāmais: &quot;))
+        b = float(input(&quot;Dalītājs: &quot;))
+        print(&quot;Rezultāts:&quot;, a / b)
+        break
+    except ValueError:
+        print(&quot;Ievadi skaitļus, piemēram, 2.5.&quot;)
+    except ZeroDivisionError:
+        print(&quot;Ar nulli dalīt nedrīkst.&quot;)</code></pre></div></details>
+<details><summary>Oficiālās atsauces</summary><ul>
+<li><a href="https://docs.python.org/3/tutorial/errors.html#handling-exceptions" target="_blank" rel="noopener noreferrer">Python pamācība — Handling Exceptions</a>.</li>
+<li><a href="https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements" target="_blank" rel="noopener noreferrer">Python pamācība — break and continue</a>.</li>
+<li><a href="https://docs.python.org/3/library/exceptions.html#ValueError" target="_blank" rel="noopener noreferrer">Python dokumentācija — ValueError</a>.</li>
+</ul></details>
+<label class="checkline"><input type="checkbox" data-progress="lesson3-kludas"> Es saprotu, kā turpināt ciklu pēc nepareizas ievades.</label></section>
+<section id="virknes"><h2>6. Virknes kā secības</h2><p><code>str</code> ir nemaināma rakstzīmju secība. Ar <code>for char in text</code> var apskatīt katru rakstzīmi, ar <code>len(text)</code> — virknes garumu. Python viena rakstzīme arī ir <code>str</code>; atsevišķa <code>char</code> tipa nav.</p>
 <div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-chars">Kopēt</button></div><pre><code id="l3-chars">text = &quot;Rīga&quot;
 print(len(text))  # 4
 for char in text:
@@ -75,7 +127,7 @@ print(count)  # 2</code></pre></div>
 <div class="exercise" data-quiz="l3q18" data-answer="0" data-explanation="Python atsevišķa char tipa nav."><strong>Kāds ir <code>type('A')</code>?</strong><label class="checkline"><input type="radio" name="l3q18" value="0"> str</label><label class="checkline"><input type="radio" name="l3q18" value="1"> char</label><label class="checkline"><input type="radio" name="l3q18" value="2"> int</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <div class="exercise" data-quiz="l3q19" data-answer="0" data-explanation="in pārbauda apakšvirknes klātbūtni."><strong>Ko nozīmē <code>'a' in 'Rīga'</code>?</strong><label class="checkline"><input type="radio" name="l3q19" value="0"> 'a' ir apakšvirkne</label><label class="checkline"><input type="radio" name="l3q19" value="1"> Virknes ir vienādas</label><label class="checkline"><input type="radio" name="l3q19" value="2"> 'a' ir skaitlis</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <label class="checkline"><input type="checkbox" data-progress="lesson3-virknes"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
-<section id="indeksi"><h2>6. Indeksi, šķēlumi, nemaināmība</h2>
+<section id="indeksi"><h2>7. Indeksi, šķēlumi, nemaināmība</h2>
 <p>Pirmais indekss ir <code>0</code>, pēdējais — <code>-1</code>. Šķēlums <code>text[start:stop]</code> satur sākumu, bet ne beigas. <code>text[::-1]</code> apgriež secību.</p>
 <div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-slices">Kopēt</button></div><pre><code id="l3-slices">word = &quot;Python&quot;
 print(word[0])     # P
@@ -90,7 +142,7 @@ new_word = &quot;J&quot; + word[1:]  # Jython</code></pre></div>
 <div class="exercise" data-quiz="l3q21" data-answer="1" data-explanation="Negatīvie indeksi skaita no beigām."><strong>Ko nozīmē <code>word[-1]</code> netukšai virknei?</strong><label class="checkline"><input type="radio" name="l3q21" value="0"> Pirmo burtu</label><label class="checkline"><input type="radio" name="l3q21" value="1"> Pēdējo burtu</label><label class="checkline"><input type="radio" name="l3q21" value="2"> Kļūdu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <div class="exercise" data-quiz="l3q22" data-answer="1" data-explanation="str ir nemaināms; jāizveido jauna virkne."><strong>Ko izraisa <code>word[0] = 'J'</code>, ja word ir virkne?</strong><label class="checkline"><input type="radio" name="l3q22" value="0"> Izmaiņu sākotnējā virknē</label><label class="checkline"><input type="radio" name="l3q22" value="1"> TypeError</label><label class="checkline"><input type="radio" name="l3q22" value="2"> Sarakstu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <label class="checkline"><input type="checkbox" data-progress="lesson3-indeksi"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
-<section id="metodes"><h2>7. Virkņu metodes</h2><p>Metodes izsauc ar punktu, piemēram, <code>text.lower()</code>. Metodes atgriež rezultātu, nemainot sākotnējo virkni.</p>
+<section id="metodes"><h2>8. Virkņu metodes</h2><p>Metodes izsauc ar punktu, piemēram, <code>text.lower()</code>. Metodes atgriež rezultātu, nemainot sākotnējo virkni.</p>
 <table><thead><tr><th>Izteiksme</th><th>Rezultāts</th></tr></thead><tbody><tr><td><code>" Čau ".strip()</code></td><td>Čau</td></tr><tr><td><code>"Rīga".upper()</code></td><td>RĪGA</td></tr><tr><td><code>"AbA".lower()</code></td><td>aba</td></tr><tr><td><code>"kaka".replace("a", "o")</code></td><td>koko</td></tr><tr><td><code>"banana".count("a")</code></td><td>3</td></tr><tr><td><code>"teksts".startswith("te")</code></td><td>True</td></tr><tr><td><code>"teksts".endswith("s")</code></td><td>True</td></tr></tbody></table>
 <div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-methods">Kopēt</button></div><pre><code id="l3-methods">answer = input(&quot;Turpināt? (j/n): &quot;)
 if answer.strip().lower() == &quot;j&quot;:
@@ -105,8 +157,8 @@ print(word.count(&quot;ā&quot;))        # 1</code></pre></div>
 <div class="exercise" data-quiz="l3q24" data-answer="1" data-explanation="Burts a ir trīs pozīcijās."><strong>Ko atgriež <code>'banana'.count('a')</code>?</strong><label class="checkline"><input type="radio" name="l3q24" value="0"> 2</label><label class="checkline"><input type="radio" name="l3q24" value="1"> 3</label><label class="checkline"><input type="radio" name="l3q24" value="2"> 4</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <div class="exercise" data-quiz="l3q25" data-answer="0" data-explanation="lower() izveido jaunu virkni ar mazajiem burtiem."><strong>Ko izvada <code>print('AbC'.lower())</code>?</strong><label class="checkline"><input type="radio" name="l3q25" value="0"> abc</label><label class="checkline"><input type="radio" name="l3q25" value="1"> ABC</label><label class="checkline"><input type="radio" name="l3q25" value="2"> AbC</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
 <label class="checkline"><input type="checkbox" data-progress="lesson3-metodes"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
-<section id="prakse"><h2>8. Patstāvīgā prakse (20:25–21:05)</h2><p>Raksti un palaid katru programmu atsevišķā <code>.py</code> failā. <strong>Pirmie trīs uzdevumi ir pamata līmenis</strong>; pēdējie divi — izaicinājumi. Risinājumu atver pēc paša mēģinājuma. Pilna kļūdainas skaitļu ievades apstrāde paredzēta vēlāk.</p>
-<div class="exercise"><h3>1. Skaitļu summa</h3><p>Ievadi nenegatīvu n un ar for/range aprēķini summu no 1 līdz n. Pārbaudi n=0 → 0, n=1 → 1, n=10 → 55. Papildus: pāra skaitļu summa.</p><details><summary>Padoms</summary><p>Izmanto total=0 un total += n.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-solution-1">Kopēt</button></div><pre><code id="l3-solution-1">n = int(input(&quot;n: &quot;))
+<section id="prakse"><h2>9. Patstāvīgā prakse (20:25–21:05)</h2><p>Raksti un palaid katru programmu atsevišķā <code>.py</code> failā. <strong>Pirmie trīs uzdevumi ir pamata līmenis</strong>; pēdējie divi — izaicinājumi. Risinājumu atver pēc paša mēģinājuma. Atkārtotu skaitļu ievadi pēc kļūdas vari veidot ar 5. sadaļas <code>try/except ValueError</code> paraugu; pirmajos trīs uzdevumos tas ir papildu izaicinājums.</p>
+<div class="exercise"><h3>1. Skaitļu summa</h3><p>Ievadi nenegatīvu n un ar for/range aprēķini summu no 1 līdz n. Pārbaudi n=0 → 0, n=1 → 1, n=10 → 55. Papildus: pāra skaitļu summa un kļūdainas ievades atkārtošana.</p><details><summary>Padoms</summary><p>Izmanto total=0 un total += n.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-solution-1">Kopēt</button></div><pre><code id="l3-solution-1">n = int(input(&quot;n: &quot;))
 if n &lt; 0:
     print(&quot;Nederīgs n&quot;)
 else:
@@ -128,7 +180,7 @@ for char in text.lower():
     if char in vowels:
         count += 1
 print(&quot;Patskaņi:&quot;, count)</code></pre></div></details></div>
-<div class="exercise"><h3>4. Skaitļa minēšanas spēle (izaicinājums)</h3><p>Slepenais skaitlis 7; maksimums pieci mēģinājumi. Pasaki Par mazu/Par lielu. Pie pareizas atbildes pārtrauc ciklu.</p><details><summary>Padoms</summary><p>Izmanto for range(1, 6), if/elif/else, break.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-solution-4">Kopēt</button></div><pre><code id="l3-solution-4">secret = 7
+<div class="exercise"><h3>4. Skaitļa minēšanas spēle (izaicinājums)</h3><p>Slepenais skaitlis 7; maksimums pieci mēģinājumi. Pasaki Par mazu/Par lielu. Pie pareizas atbildes pārtrauc ciklu. Papildus: nederīga ievade nepatērē vienu no pieciem derīgiem minējumiem.</p><details><summary>Padoms</summary><p>Izmanto for range(1, 6), if/elif/else, break.</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-solution-4">Kopēt</button></div><pre><code id="l3-solution-4">secret = 7
 guessed = False
 for attempt in range(1, 6):
     guess = int(input(f&quot;{attempt}. minējums: &quot;))
@@ -142,7 +194,7 @@ for attempt in range(1, 6):
         print(&quot;Par lielu&quot;)
 if not guessed:
     print(&quot;Mēģinājumi beidzās; skaitlis bija&quot;, secret)</code></pre></div></details></div>
-<div class="exercise"><h3>5. Palindroms (izaicinājums)</h3><p>Pārbaudi, vai teksts lasāms abos virzienos. Ignorē reģistru un atstarpes. Testi: aka, Python, A ka.</p><details><summary>Padoms</summary><p>Lieto lower(), replace(' ', '') un [::-1].</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-solution-5">Kopēt</button></div><pre><code id="l3-solution-5">text = input(&quot;Teksts: &quot;)
+<div class="exercise"><h3>5. Palindroms (izaicinājums)</h3><p>Pārbaudi, vai teksts lasāms abos virzienos. Ignorē reģistru un atstarpes. Testi: aka, Python, A ka. Papildus: pārbaudi palindromu ar ciklu, nevis tikai <code>[::-1]</code>.</p><details><summary>Padoms</summary><p>Lieto lower(), replace(' ', '') un [::-1].</p></details><details><summary>Viens iespējamais risinājums</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l3-solution-5">Kopēt</button></div><pre><code id="l3-solution-5">text = input(&quot;Teksts: &quot;)
 normalized = text.lower().replace(&quot; &quot;, &quot;&quot;)
 if normalized == normalized[::-1]:
     print(&quot;Palindroms&quot;)
