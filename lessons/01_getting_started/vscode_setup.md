@@ -76,6 +76,8 @@ Ja vēlāk vajag termināļa komandu `code .`, VS Code komandu paletē (Cmd+Shif
 
 Mapes atvēršana palīdz VS Code pareizi atrast failus un izmantot termināli. Ja lejupielādēji ZIP, nesāc rakstīt kodu pašā ZIP arhīvā — vispirms izpako!
 
+**Papildu iespēja vēlāk:** ja nevēlies katru reizi lejupielādēt jaunu ZIP arhīvu, izmanto [Git un GitHub ar VS Code ceļvedi](https://valrcs.github.io/Python_RTU_2026_27/resources/git-vscode.html), lai klonētu kursa repozitoriju un saņemtu izmaiņas ar `git pull`. Git un GitHub konts pirmajā nodarbībā nav obligāti.
+
 ## 5. Izvēlies Python interpretatoru
 
 1. Atver `hello.py` — faila beigās jābūt paplašinājumam `.py`.

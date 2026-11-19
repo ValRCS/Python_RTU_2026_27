@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="lv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Git un GitHub iesācējiem: Git uzstādīšana Windows un macOS, RTU Python kursa repozitorija klonēšana un atjaunināšana VS Code.">
+  <title>Git un GitHub ar VS Code | Python pamati · RTU</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<header class="site-header"><div class="shell nav">
+  <a class="brand" href="../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button>
+  <nav id="site-menu" aria-label="Galvenā navigācija"><a href="../index.html">Sākums</a><a href="../index.html#nodarbibas">Nodarbības</a><a href="index.html">Resursi</a><a href="git-vscode.html" aria-current="page">Git ceļvedis</a></nav>
+</div></header>
+<main id="main" class="git-guide">
+<div class="shell lesson-layout">
+  <aside class="toc" aria-label="Ceļveža saturs">
+    <strong>Git un VS Code</strong>
+    <p class="muted" id="progress-count">0 / 6 sadaļas atzīmētas</p>
+    <a href="#pamati">1. Git un GitHub</a>
+    <a href="#instalacija">2. Instalē Git</a>
+    <a href="#klonesana">3. Klonē kursu</a>
+    <a href="#atjauninasana">4. Atjaunini failus</a>
+    <a href="#terminalis">5. Komandas terminālī</a>
+    <a href="#praktiskais">6. Praktiskais uzdevums</a>
+    <hr>
+    <a href="#github">Bonuss: GitHub konts</a>
+    <a href="#identitate">Bonuss: vārds un e-pasts</a>
+    <a href="#ieguldijums">Bonuss: commit un push</a>
+    <a href="#problemas">Biežākās problēmas</a>
+    <a href="#atsauces">Oficiālās atsauces</a>
+    <hr><a href="index.html">← Visi resursi</a>
+  </aside>
+  <article class="lesson-content">
+    <span class="eyebrow">Papildu materiāls · Nav obligāts</span>
+    <h1>Git un GitHub ar Visual Studio Code</h1>
+    <p class="lead">Iemācies vienreiz lejupielādēt kursa repozitoriju un pēc tam saņemt jaunos Python piemērus un uzdevumus, nepārlādējot ZIP arhīvu katru reizi.</p>
+    <div class="notice"><strong>Galvenais mērķis:</strong> instalēt Git, klonēt <a href="https://github.com/ValRCS/Python_RTU_2026_27">kursa repozitoriju</a>, atvērt to VS Code un atjaunināt ar <code>Pull</code>. <strong>GitHub konts šim nolūkam nav vajadzīgs.</strong> Ja izmanto iepriekšējā ceļvedī aprakstīto <em>Download ZIP</em>, vari turpināt arī bez Git.</div>
+
+    <section id="pamati">
+      <h2>1. Kas ir Git un GitHub?</h2>
+      <p><strong>Git</strong> ir versiju vadības sistēma, kas saglabā failu izmaiņu vēsturi. <strong>GitHub</strong> ir tīmekļa pakalpojums, kurā var glabāt Git repozitorijus un sadarboties ar citiem. <strong>VS Code</strong> ir redaktors ar iebūvētu Git saskarni; pats Git datorā parasti jāinstalē atsevišķi.</p>
+      <div class="git-flow" aria-label="Kursa materiālu darba plūsma">
+        <div><strong>GitHub (attālinātais repozitorijs)</strong><small>Pasniedzējs publicē materiālus</small></div>
+        <span aria-hidden="true">↓ &nbsp; <code>git clone</code> (pirmoreiz) vai <code>git pull</code> (vēlāk) &nbsp; ↓</span>
+        <div><strong>Tavs dators (lokālais repozitorijs)</strong><small>Atver failus un palaid Python ar VS Code</small></div>
+        
+      </div>
+      <table class="git-table"><thead><tr><th>Termins</th><th>Nozīme</th></tr></thead><tbody>
+        <tr><td><code>repository</code></td><td>Mape ar projekta failiem un Git izmaiņu vēsturi.</td></tr>
+        <tr><td><code>clone</code></td><td>Izveido lokālu repozitorija kopiju (pirmajā reizē).</td></tr>
+        <tr><td><code>pull</code></td><td>Lejupielādē un integrē izmaiņas no attālinātā repozitorija.</td></tr>
+        <tr><td><code>commit</code></td><td>Saglabā savu izmaiņu ierakstu lokālajā vēsturē.</td></tr>
+        <tr><td><code>push</code></td><td>Nosūta lokālos commit ierakstus uz attālināto repozitoriju, ja ir tiesības.</td></tr>
+      </tbody></table>
+      <p>Atšķirībā no ZIP lejupielādes Git saglabā arī informāciju par to, no kurienes nācis repozitorijs un kādi atjauninājumi jau saņemti.</p>
+      <div class="exercise" data-quiz="git-q1" data-answer="1" data-explanation="Git ir versiju vadības sistēma, bet GitHub ir attālināta repozitoriju glabāšanas un sadarbības platforma."><strong>Kas ir GitHub?</strong><label class="checkline"><input type="radio" name="git-q1" value="0"> Python interpretators</label><label class="checkline"><input type="radio" name="git-q1" value="1"> Pakalpojums Git repozitoriju glabāšanai un sadarbībai</label><label class="checkline"><input type="radio" name="git-q1" value="2"> Git komandas aizstājējs, kas jāinstalē datorā</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+      <label class="checkline"><input type="checkbox" data-progress="git-1"> Es atšķiru Git, GitHub un VS Code.</label>
+    </section>
+
+    <section id="instalacija">
+      <h2>2. Git instalēšana</h2>
+      <div class="git-platform-grid">
+        <div class="git-platform-card">
+          <h3>Windows 10/11 — galvenā instrukcija</h3>
+          <ol>
+            <li>Atver <a href="https://git-scm.com/install/win">oficiālo Git for Windows lejupielādes lapu</a> un lejupielādē instalētāju.</li>
+            <li>Palaid instalētāju. Iesācējiem der lielākā daļa noklusējuma iestatījumu. Ja redzi izvēli, atstāj Git pieejamu komandrindā un citām programmām (<em>Git from the command line and also from 3rd-party software</em>).</li>
+            <li>Saglabā <strong>Git Credential Manager</strong>, ja tas tiek piedāvāts; tas noderēs GitHub autentifikācijai vēlāk.</li>
+            <li>Pēc instalācijas aizver un atkārtoti atver VS Code (vai vismaz jaunu termināli).</li>
+            <li>VS Code izvēlies <strong>Terminal → New Terminal</strong> un pārbaudi komandu:</li>
+          </ol>
+          <div class="code-box"><div class="code-toolbar"><span>Windows PowerShell</span><button type="button" data-copy="git-version-win">Kopēt</button></div><pre><code id="git-version-win">git --version</code></pre></div>
+          <p>Piemēra rezultāts: <code>git version 2.x.y.windows.z</code>. Versijas cipari var atšķirties.</p>
+          <details><summary>Alternatīva pieredzējušiem: winget</summary><p>Ja Windows Package Manager jau darbojas, Git var instalēt arī no PowerShell:</p><div class="code-box"><div class="code-toolbar"><span>Windows PowerShell</span><button type="button" data-copy="git-winget">Kopēt</button></div><pre><code id="git-winget">winget install --id Git.Git -e --source winget</code></pre></div><p>Pēc tam atver jaunu termināli un pārbaudi <code>git --version</code>.</p></details>
+        </div>
+        <aside class="git-platform-card git-macos" aria-label="macOS instrukcija">
+          <h3>macOS — īsā instrukcija</h3>
+          <p>macOS lietotājiem vispirms atver <strong>Terminal</strong> un pārbaudi:</p>
+          <div class="code-box"><div class="code-toolbar"><span>macOS Terminal</span><button type="button" data-copy="git-version-mac">Kopēt</button></div><pre><code id="git-version-mac">git --version</code></pre></div>
+          <p>Ja Git nav pieejams, parasti pietiek uzstādīt Apple komandrindas rīkus:</p>
+          <div class="code-box"><div class="code-toolbar"><span>macOS Terminal</span><button type="button" data-copy="git-xcode">Kopēt</button></div><pre><code id="git-xcode">xcode-select --install</code></pre></div>
+          <p>Izpildi parādītās instalācijas darbības un atkārto <code>git --version</code>. Pēc tam VS Code darbojas tāpat kā Windows.</p>
+          <p><a href="https://git-scm.com/install/mac">Citi oficiāli macOS instalēšanas varianti</a>.</p>
+        </aside>
+      </div>
+      <p class="muted">Ja lieto darba vai mācību datoru ar instalācijas ierobežojumiem, sazinies ar administratoru; alternatīva ir ZIP lejupielāde.</p>
+      <label class="checkline"><input type="checkbox" data-progress="git-2"> Terminālī darbojas git --version.</label>
+    </section>
+
+    <section id="klonesana">
+      <h2>3. Klonē kursa repozitoriju VS Code</h2>
+      <p><strong>Klonēšana jāveic tikai vienreiz.</strong> Kursa repozitorijs ir publisks, tāpēc GitHub konts vai pierakstīšanās nav nepieciešama.</p>
+      <ol>
+        <li>Atver <a href="https://github.com/ValRCS/Python_RTU_2026_27">Python_RTU_2026_27 GitHub lapu</a>. Poga <strong>Code</strong> rāda HTTPS adresi.</li>
+        <li>VS Code atver <strong>View → Command Palette</strong> ar <kbd>Ctrl+Shift+P</kbd> (macOS <kbd>Cmd+Shift+P</kbd>).</li>
+        <li>Ieraksti un izvēlies <strong>Git: Clone</strong> (vai Source Control skatā <strong>Clone Repository</strong>).</li>
+        <li>Ielīmē šo adresi un apstiprini:</li>
+      </ol>
+      <div class="code-box"><div class="code-toolbar"><span>HTTPS repozitorija adrese</span><button type="button" data-copy="git-repo-url">Kopēt</button></div><pre><code id="git-repo-url">https://github.com/ValRCS/Python_RTU_2026_27.git</code></pre></div>
+      <ol start="5">
+        <li>Izvēlies <strong>vecākmapi</strong>, piemēram, <code>Documents</code>, kur veidot jauno kursa mapi. Nav iepriekš jāizveido vēl viena mape ar to pašu nosaukumu.</li>
+        <li>Kad klonēšana beigusies, izvēlies <strong>Open</strong> vai <strong>Open in New Window</strong>.</li>
+        <li>Ja VS Code jautā par mapes uzticamību (<em>Workspace Trust</em>), apstiprini tikai tad, ja tā tiešām ir šī kursa repozitorija mape.</li>
+      </ol>
+      <p>Kreisajā <strong>Explorer</strong> panelī atrodi <code>lessons/01_getting_started/hello.py</code>. VS Code Python paplašinājums un Python 3 ir aprakstīti <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/lessons/01_getting_started/vscode_setup.md">1. nodarbības uzstādīšanas ceļvedī</a>.</p>
+      <div class="notice"><strong>ZIP nav klons.</strong> Ja iepriekš izmantoji <em>Code → Download ZIP</em>, izpakotajā mapē nav Git repozitorija vēstures. Lai sāktu izmantot Pull, klonē repozitoriju <em>jaunā, atsevišķā vietā</em>; nepārraksti savus failus.</div>
+      <label class="checkline"><input type="checkbox" data-progress="git-3"> VS Code Explorer redzu klonētā kursa failus.</label>
+    </section>
+
+    <section id="atjauninasana">
+      <h2>4. Saņem jaunākos kursa materiālus</h2>
+      <p>Ja pasniedzējs GitHub pievienojis uzdevumus, piemērus vai labojumus, <strong>nav vēlreiz jāklonē repozitorijs</strong>. Atver esošo kursa mapi VS Code un:</p>
+      <ol>
+        <li>Atver <strong>Source Control</strong> (zarošanās ikona kreisajā malā; Windows <kbd>Ctrl+Shift+G</kbd>).</li>
+        <li>Atver skata <strong>…</strong> izvēlni un izvēlies <strong>Pull</strong>. Alternatīvi Command Palette meklē <strong>Git: Pull</strong>.</li>
+        <li>Pēc operācijas pārbaudi, vai Explorer redzami jaunākie faili.</li>
+      </ol>
+      <p><strong>Pull</strong> saņem izmaiņas no attālinātā repozitorija. <strong>Sync Changes</strong> var veikt gan Pull, gan Push — šim uzdevumam pietiek ar <strong>Pull</strong>.</p>
+      <div class="output">Ja atjauninājumu nav, terminālī var parādīties: <strong>Already up to date.</strong> Tā ir veiksmīga pārbaude, nevis kļūda.</div>
+      <p><strong>Ļoti svarīgi:</strong> ja esi izmainījis kādu kursa oriģinālo failu, Pull var apstāties, lai nepārrakstītu tavas izmaiņas. Drošāk ir savus uzdevumus turēt <strong>atsevišķā mapē</strong>:</p>
+      <div class="code-box"><div class="code-toolbar"><span>Ieteicamā mapju struktūra</span><button type="button" data-copy="git-folders">Kopēt</button></div><pre><code id="git-folders">Documents/
+├── Python_RTU_2026_27/     ← pasniedzēja materiāli
+└── Mani_Python_uzdevumi/   ← mani .py faili</code></pre></div>
+      <p>Vingrinājumus var atvērt ar <strong>File → Open Folder</strong> citā VS Code logā. <strong>Nekad neizpildi nepārbaudītu <code>git reset --hard</code></strong> kā universālu labošanas paņēmienu — tas var neatgriezeniski izdzēst tavas lokālās izmaiņas.</p>
+      <div class="exercise" data-quiz="git-q2" data-answer="1" data-explanation="Pull saņem un integrē attālinātās izmaiņas. Clone veido pirmo kopiju, bet Push augšupielādē commit ierakstus."><strong>Kura komanda saņem jaunākos kursa materiālus jau klonētā repozitorijā?</strong><label class="checkline"><input type="radio" name="git-q2" value="0"> git push</label><label class="checkline"><input type="radio" name="git-q2" value="1"> git pull</label><label class="checkline"><input type="radio" name="git-q2" value="2"> git commit</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+      <label class="checkline"><input type="checkbox" data-progress="git-4"> Es protu atjaunināt kursu ar Pull un zinu, kur glabāt savus failus.</label>
+    </section>
+
+    <section id="terminalis">
+      <h2>5. Tās pašas darbības terminālī</h2>
+      <p>Komandrinda nav obligāta, tomēr dažas Git komandas palīdz saprast, ko dara VS Code. Atver <strong>Terminal → New Terminal</strong>.</p>
+      <h3>Pirmajā reizē (vecākmapē, piemēram, Documents)</h3>
+      <div class="code-box"><div class="code-toolbar"><span>Windows PowerShell / macOS Terminal</span><button type="button" data-copy="git-clone-cmd">Kopēt</button></div><pre><code id="git-clone-cmd">git clone https://github.com/ValRCS/Python_RTU_2026_27.git
+cd Python_RTU_2026_27</code></pre></div>
+      <h3>Nākamajās reizēs (atvērtā kursa mapē)</h3>
+      <div class="code-box"><div class="code-toolbar"><span>Windows PowerShell / macOS Terminal</span><button type="button" data-copy="git-pull-cmd">Kopēt</button></div><pre><code id="git-pull-cmd">git status
+git pull --ff-only</code></pre></div>
+      <p><code>git status</code> parāda, vai lokālajā mapē ir izmaiņas. <code>git pull --ff-only</code> atjaunina tikai tad, ja iespējama vienkārša vēstures pārvietošana uz priekšu; tas neveido automātisku merge commit. Parasts <code>git pull</code> arī darbojas vienkāršā, nemainītā kursa klonā.</p>
+      <details><summary>Ko vēl var pārbaudīt?</summary><p>Komanda <code>git remote -v</code> parāda piesaistītā attālinātā repozitorija adresi. Parasti tā nosaukums ir <code>origin</code>.</p><div class="code-box"><div class="code-toolbar"><span>Terminālis</span><button type="button" data-copy="git-remote">Kopēt</button></div><pre><code id="git-remote">git remote -v</code></pre></div></details>
+      <label class="checkline"><input type="checkbox" data-progress="git-5"> Es atšķiru clone, status un pull komandas.</label>
+    </section>
+
+    <section id="praktiskais">
+      <h2>6. Praktiskais uzdevums un pašpārbaude</h2>
+      <p>Šim vingrinājumam pietiek ar publiskā kursa repozitorija lasīšanu. GitHub konts nav nepieciešams.</p>
+      <ol>
+        <li>Pārbaudi <code>git --version</code>.</li>
+        <li>Izmanto <strong>Git: Clone</strong> kursa repozitorijam un atver to VS Code.</li>
+        <li>Atrodi un palaid <code>lessons/01_getting_started/hello.py</code> ar <strong>Run Python File</strong> (iepriekš jābūt instalētam Python).</li>
+        <li>Atver <strong>Source Control → … → Pull</strong> vai izpildi <code>git pull --ff-only</code>.</li>
+        <li>Izveido atsevišķu mapi <code>Mani_Python_uzdevumi</code> un tajā savu <code>mans_sveiciens.py</code>.</li>
+      </ol>
+      <p>Uzdevums izpildīts, ja kursa failus vari atvērt un atjauninājumu pārbaude izdodas bez konflikta.</p>
+      <div class="exercise" data-quiz="git-q3" data-answer="1" data-explanation="Commit saglabā izmaiņu ierakstu lokālajā Git vēsturē; Push to nosūta uz attālināto repozitoriju, ja ir piekļuve."><strong>Vai git commit automātiski augšupielādē izmaiņas GitHub?</strong><label class="checkline"><input type="radio" name="git-q3" value="0"> Jā, vienmēr</label><label class="checkline"><input type="radio" name="git-q3" value="1"> Nē; commit saglabā lokāli, savukārt push nosūta uz attālināto repozitoriju</label><label class="checkline"><input type="radio" name="git-q3" value="2"> Jā, ja VS Code ir atvērts</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+      <label class="checkline"><input type="checkbox" data-progress="git-6"> Es klonēju kursu, palaidu piemēru un pārbaudīju Pull.</label>
+    </section>
+
+    <section id="github">
+      <h2>7. Bonuss: izveido GitHub kontu</h2>
+      <p>Ja vēlies saglabāt un publicēt <strong>savus</strong> projektus vai sadarboties ar citiem, izveido bezmaksas kontu vietnē <a href="https://github.com/signup">github.com/signup</a>. Izvēlies lietotājvārdu, reģistrē e-pastu un izpildi GitHub konta verifikācijas norādes; ieslēdz divfaktoru autentifikāciju.</p>
+      <p>GitHub konts <strong>nedod automātiskas tiesības</strong> labot pasniedzēja repozitoriju. Publisku repozitoriju var klonēt bez konta, bet publicēšanai ir vajadzīga autentifikācija un atbilstošas tiesības.</p>
+      <details><summary>Kas ir fork un pull request?</summary><p><strong>Fork</strong> ir cita repozitorija kopija tavā GitHub kontā. <strong>Pull request</strong> ir priekšlikums šīs kopijas izmaiņas pievienot sākotnējam projektam. To var apgūt vēlāk; tas nav vajadzīgs kursa materiālu lejupielādei. <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks">GitHub skaidrojums par fork</a>.</p></details>
+    </section>
+
+    <section id="identitate">
+      <h2>8. Bonuss: konfigurē Git vārdu un e-pastu</h2>
+      <p>Kad pats veidosi <strong>commit</strong>, Git šim ierakstam pievienos autora vārdu un e-pasta adresi. Terminālī aizstāj paraugus ar saviem datiem:</p>
+      <div class="code-box"><div class="code-toolbar"><span>Terminālis</span><button type="button" data-copy="git-config">Kopēt</button></div><pre><code id="git-config">git config --global user.name &quot;Anna Berzina&quot;
+git config --global user.email &quot;anna@example.com&quot;</code></pre></div>
+      <p>Pārbaudi konfigurāciju:</p>
+      <div class="code-box"><div class="code-toolbar"><span>Terminālis</span><button type="button" data-copy="git-config-check">Kopēt</button></div><pre><code id="git-config-check">git config --global user.name
+git config --global user.email</code></pre></div>
+      <p><code>--global</code> iestata vērtības šī datora lietotāja kontam. Konkrētam repozitorijam tās var atšķirties. <strong>Git autora vārds nav tas pats, kas GitHub lietotājvārds, un šīs komandas nepieraksta tevi GitHub.</strong></p>
+      <p>Ja nevēlies publiskā Git vēsturē norādīt savu privāto e-pasta adresi, GitHub konta iestatījumos vari izmantot kontam piešķirto <code>noreply</code> adresi. Lai commit ierakstus saistītu ar GitHub kontu, konfigurētajam e-pastam jābūt atbilstoši piesaistītam kontam. Skati <a href="https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address">GitHub e-pasta iestatīšanas pamācību</a>.</p>
+    </section>
+
+    <section id="ieguldijums">
+      <h2>9. Bonuss: pirmā izmaiņa savā repozitorijā</h2>
+      <p>Šo vingrinājumu izpildi <strong>savā GitHub repozitorijā</strong> (vai projektā, kurā tev ir rakstīšanas tiesības), <strong>nevis kursa materiālu repozitorijā</strong>.</p>
+      <ol>
+        <li>GitHub izvēlies <strong>New repository</strong>, izveido, piemēram, <code>mani-python-darbi</code> un pievieno <code>README</code> failu.</li>
+        <li>Klonē savu repozitoriju VS Code ar <strong>Git: Clone</strong>.</li>
+        <li>Izveido failu <code>mans_sveiciens.py</code>, saglabā to.</li>
+        <li><strong>Source Control</strong> skatā pie faila nospied <strong>+</strong> (<em>Stage Changes</em>), ievadi commit ziņu, piemēram, <code>Add first Python exercise</code>, un izvēlies <strong>Commit</strong>.</li>
+        <li>Izvēlies <strong>Push</strong> (dažkārt <em>Publish Branch</em>) un pārbaudi failu GitHub tīmekļa lapā.</li>
+      </ol>
+      <p>Termināļa ekvivalents pēc faila saglabāšanas:</p>
+      <div class="code-box"><div class="code-toolbar"><span>Terminālis savā repozitorijā</span><button type="button" data-copy="git-publish">Kopēt</button></div><pre><code id="git-publish">git status
+git add mans_sveiciens.py
+git commit -m &quot;Add first Python exercise&quot;
+git push</code></pre></div>
+      <p>Pirmajā Push reizē VS Code vai Git Credential Manager var atvērt pārlūku, lai tu apstiprinātu GitHub autentifikāciju. <strong>GitHub konta parastā parole nav jāievada kā Git HTTPS parole.</strong> Neievieto piekļuves tokenus Python failos vai repozitorijā.</p>
+      <div class="notice"><strong>Atceries:</strong> <code>commit</code> saglabā izmaiņas lokāli, bet <code>push</code> tās nosūta attālināti. Publisks repozitorijs nenozīmē publiskas rakstīšanas tiesības.</div>
+    </section>
+
+    <section id="problemas">
+      <h2>10. Ja kaut kas nedarbojas</h2>
+      <div class="git-table-wrap"><table class="git-table"><thead><tr><th>Situācija</th><th>Ko pārbaudīt?</th></tr></thead><tbody>
+        <tr><td><code>git</code> nav atpazīts</td><td>Aizver un atver VS Code; pārbaudi instalāciju un Git pieejamību sistēmas PATH.</td></tr>
+        <tr><td>Source Control nerāda Git</td><td>Atver klonēto <em>mapi</em>, nevis vienu failu. Pārbaudi <code>git --version</code>.</td></tr>
+        <tr><td><code>not a git repository</code></td><td>Terminālis atrodas ārpus klonētās mapes vai esi izmantojis ZIP. Atver pareizo projekta mapi.</td></tr>
+        <tr><td><code>Already up to date.</code></td><td>Atjauninājumu nav; viss darbojas.</td></tr>
+        <tr><td>Pull nevar pabeigt lokālu izmaiņu dēļ</td><td>Neizdzēs izmaiņas. Saglabā savu darbu un meklē palīdzību pirms merge, stash vai reset.</td></tr>
+        <tr><td><code>fatal: Not possible to fast-forward</code></td><td>Lokālā un attālinātā vēsture atšķiras; <code>--ff-only</code> to droši aptur. Nepiespied pārrakstīšanu.</td></tr>
+        <tr><td>Push rāda <code>403</code> vai <code>permission denied</code></td><td>Pārbaudi, vai raksti savā repozitorijā vai tev piešķirtas tiesības. Publisku projektu var lasīt bez tiesībām to labot.</td></tr>
+        <tr><td>GitHub prasa autentifikāciju</td><td>Publiska kursa klonēšanai tai parasti nevajadzētu būt vajadzīgai. Privātiem repozitorijiem un Push izmanto VS Code pārlūka pierakstīšanos vai Git Credential Manager.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="atsauces">
+      <h2>11. Oficiālās atsauces</h2>
+      <details><summary>Atvērt dokumentāciju (Git, VS Code, GitHub)</summary>
+        <ul>
+          <li><a href="https://git-scm.com/install/win">Git instalācija Windows</a> un <a href="https://git-scm.com/install/mac">macOS</a>.</li>
+          <li><a href="https://code.visualstudio.com/docs/sourcecontrol/overview">VS Code Source Control</a> un <a href="https://code.visualstudio.com/docs/sourcecontrol/repos-remotes">darbs ar attālinātiem repozitorijiem</a>.</li>
+          <li><a href="https://docs.github.com/en/get-started/git-basics/set-up-git">GitHub: Set up Git</a>.</li>
+          <li><a href="https://docs.github.com/en/account-and-profile/how-tos/email-preferences/setting-your-commit-email-address">GitHub: commit e-pasta konfigurācija</a>.</li>
+          <li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github">GitHub: autentifikācija un drošība</a>.</li>
+        </ul>
+      </details>
+      <p class="muted">Ceļvedis sagatavots 2026. gada novembrī. Rīku izvēļņu nosaukumi un instalētāja izskats dažādās versijās var nedaudz atšķirties.</p>
+    </section>
+    <nav class="lesson-nav" aria-label="Atgriezties kursā"><a href="index.html">← Resursi</a><a href="../lessons/01-introduction/index.html">1. nodarbība →</a></nav>
+  </article>
+</div>
+</main>
+<footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer>
+<script src="../assets/js/main.js" defer></script>
+<script src="../assets/js/exercises.js" defer></script>
+</body>
+</html>

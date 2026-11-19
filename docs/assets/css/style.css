@@ -69,3 +69,24 @@
 #papildus .bonus-truth-table code{font-size:.9em}
 #papildus .bonus-references li{margin:.5rem 0;overflow-wrap:anywhere}
 #papildus details summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Git + VS Code supplemental tutorial; scoped to the resource page. */
+.git-guide .git-platform-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:1rem;align-items:start}
+.git-guide .git-platform-card{min-width:0;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:1rem}
+.git-guide .git-platform-card h3{margin:0 0 .55rem;color:var(--navy)}
+.git-guide .git-macos{border-left:4px solid var(--blue)}
+.git-guide .git-flow{display:grid;justify-items:stretch;gap:.55rem;text-align:center;margin:1.25rem auto;max-width:600px}
+.git-guide .git-flow>div{padding:.8rem;border:1px solid #bac9d9;border-radius:10px;background:#edf4fb}
+.git-guide .git-flow small{display:block;color:var(--muted)}
+.git-guide .git-flow>span{font-size:.9rem;font-weight:700;color:#285685}
+.git-guide .git-table-wrap{overflow-x:auto}
+.git-guide .git-table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.91rem;margin:.9rem 0}
+.git-guide .git-table td,.git-guide .git-table th{padding:.5rem;border:1px solid var(--border);vertical-align:top;overflow-wrap:anywhere;text-align:left}
+.git-guide .git-table th{background:#edf2f7}
+.git-guide .exercise .checkline{display:flex;align-items:flex-start;gap:.5rem;font-weight:400}
+.git-guide .exercise input[type=radio]{width:auto;flex:none;margin-top:.4rem}
+.git-guide .checkline input[type=checkbox]{flex:none}
+.git-guide kbd{display:inline-block;padding:.08rem .32rem;border:1px solid #bdc9d7;border-radius:4px;background:#f3f5f8;font:inherit;font-size:.85em}
+.git-guide .lesson-content section{overflow-wrap:anywhere}
+.git-guide details summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+@media(max-width:760px){.git-guide .git-platform-grid{grid-template-columns:minmax(0,1fr)}}
