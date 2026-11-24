@@ -17,7 +17,7 @@ try:
 except TypeError as error:
     print(type(error).__name__, error)
 
-# Papildus: bool parametrs, ko ērti nodot ar atslēgvārdu.
+# Papildus: noklusējuma parametrs, ko ērti nodot ar atslēgvārdu.
 def format_price(amount, currency="EUR"):
     return f"{amount:.2f} {currency}"
 
