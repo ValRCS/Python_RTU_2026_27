@@ -114,6 +114,7 @@
   // 5. Vienas prognozes pārbaude, piemērojot fiksētu count_words loģiku.
   if (el("test-run")) {
     const run = () => {
+      el("test-result").classList.remove("good", "bad");
       const raw = el("test-expected").value.trim();
       const expected = Number(raw);
       const source = el("test-text").value;

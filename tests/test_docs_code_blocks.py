@@ -37,6 +37,8 @@ MULTILINE_EXAMPLE_IDS = {
         "l5-scope", "l5-math", "l5-module-word-tools", "l5-module-main",
         "l5-tests", "l5-sol1", "l5-sol2", "l5-sol3",
         "l5-sol4a", "l5-sol4b", "l5-sol5",
+        "l5-computation", "l5-annotations", "l5-tuple-return",
+        "l5-mutable", "l5-stdlib",
     ),
 }
 

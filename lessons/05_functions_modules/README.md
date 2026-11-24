@@ -5,6 +5,8 @@
 **Patstāvīgā prakse:** [5 uzdevumi, pārbaudes un sākuma kods](../../exercises/05_functions_modules/README.md)  
 **Iepriekš:** [4. nodarbība — kolekcijas](../04_collections/README.md). **Nākamreiz:** [faili, ceļi un CSV](../06_files_csv/README.md).
 
+**Izvērstie piemēri:** [live_coding](live_coding/README.md) · [Papildu uzdevumi A–H](../../exercises/05_functions_modules/bonus.md).
+
 ## Galvenā ideja
 
 4. nodarbībā uzrakstījām vārdu biežuma skaitītāju un iepirkumu groza cenas aprēķinu. Tagad šos algoritmus **ietinam funkcijās**, lai tos varētu izsaukt atkārtoti, dot tiem citus datus un pārbaudīt rezultātus.
@@ -113,6 +115,15 @@ assert count_words("Rīga rīga") == {"rīga": 2}
 
 Ja nosacījums ir aplams, parasti saņemsim `AssertionError`; ja tas ir patiess, `assert` neko nedrukā. Pārbaudi normālu ievadi, tukšu ievadi un robežgadījumu. `assert` nav paredzēts lietotāja datu validēšanai, jo optimizētā režīmā to var izlaist. `unittest` ir standarta bibliotēkā; demonstrēsim, kā vairākus testus palaist atkārtoti.
 
+## Papildu skaidrojumi
+
+- **Aprēķins un ievade/izvade:** funkcija saņem datus kā argumentus, aprēķina un atgriež rezultātu; input un print lieto izsaucējā. Skat. [refaktoringa piemēru](live_coding/05_refactoring_algorithms_live.py).
+- **Vairākas vērtības:** `return min(numbers), max(numbers)` atgriež vienu kortežu, ko izpako ar `lowest, highest = result`. Tukšam sarakstam iepriekš jāvienojas par rezultātu. Skat. [return piemērus](live_coding/03_return_values_live.py).
+- **Maināmi argumenti (papildus):** append var mainīt padoto sarakstu; jauna saraksta izveide to nemaina. Lokāla mainīgā piesaiste nav objekta kopija. Skat. [kolekciju piemēru](live_coding/04_collections_as_arguments.py).
+- **Docstring un tipu anotācijas (papildus):** apraksta paredzēto lietojumu; Python automātiski nepārbauda anotētos tipus.
+- **Standarta bibliotēka:** math, random, statistics, datetime; nav jāinstalē ar pip. Skat. [piemērus](live_coding/07_standard_library_live.py).
+- **Atkļūdošana:** breakpoint un Step Into/Out, Call Stack un Variables — [norādes](live_coding/README.md).
+
 ## Nodarbības ritms
 
 | Laiks | Temats |
@@ -122,10 +133,10 @@ Ja nosacījums ir aplams, parasti saņemsim `AssertionError`; ja tas ir patiess,
 | 18:30–19:05 | Parametri, argumenti, `print` un `return` |
 | 19:05–19:25 | `count_words(text)` — iepriekšējā algoritma pārveidošana |
 | 19:25–19:35 | Pārtraukums |
-| 19:35–19:55 | Lokālie mainīgie; viena funkcija izsauc citu |
-| 19:55–20:15 | `math` un paša modulis `word_tools.py` |
-| 20:15–20:25 | Pirmās `assert` pārbaudes |
-| 20:25–21:05 | Patstāvīgie uzdevumi, 1.–3. obligāti mēģināmi |
+| 19:35–19:55 | Lokālie mainīgie; kortežu izpakošana; viena funkcija izsauc citu |
+| 19:55–20:10 | `math` un paša modulis `word_tools.py` |
+| 20:10–20:20 | Pirmās `assert` pārbaudes |
+| 20:20–21:05 | Patstāvīgie uzdevumi, 1.–3. obligāti mēģināmi |
 | 21:05–21:25 | Pārrunas, kļūdu labošana un alternatīvie risinājumi |
 | 21:25–21:35 | `unittest` (papildus) |
 | 21:35–21:40 | Kopsavilkums un pāreja uz failiem |
@@ -156,7 +167,7 @@ macOS/Linux vajadzības gadījumā lieto `python3` un `python3 -m unittest ...`.
 | Neatbilst argumentu skaits | `TypeError` |
 | Mēģina lietot lokālu mainīgo ārpus funkcijas | `NameError`, ja tāds nav definēts ārpusē |
 | `math.sqrt(9)` bez `import math` | `NameError` |
-| `assert` nekas netiek izdrukāts | Sekmīgs assertions ir kluss |
+| `assert` nekas netiek izdrukāts | Sekmīgs assert ir kluss |
 | `word_tools.py` neatrodas blakus `main.py` | Parasti `ModuleNotFoundError` |
 
 ## Turpinājums

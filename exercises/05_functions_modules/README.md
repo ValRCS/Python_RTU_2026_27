@@ -1,6 +1,6 @@
 # 5. nodarbības uzdevumi — funkcijas, moduļi un testi
 
-**Datums:** 2026-11-26. **Patstāvīgais darbs:** 20:25–21:05 (40 min).  
+**Datums:** 2026-11-26. **Patstāvīgais darbs:** 20:20–21:05 (45 min).  
 **Obligāti mēģināt 1.–3. uzdevumu;** 4.–5. paredzēts ātrākajiem.  
 **Sākuma kods:** [starter.py](starter.py). **Mācību vietne ar padomiem un paslēptiem risinājumiem:** [5. nodarbība](../../docs/lessons/05-functions-modules/index.html).
 
@@ -66,13 +66,23 @@ Pārbaudi, vai `main.py` var izmantot funkciju. **Papildus:** izveido otru funkc
 
 Ieraksti trīs pārbaudes ar `unittest.TestCase` un `self.assertEqual`: tukšam tekstam, atkārtotiem vārdiem un atšķirīgiem reģistriem. Ieskatam: [izpildāms testu piemērs](../../lessons/05_functions_modules/05_modules/test_word_tools.py).
 
-Palaid no repozitorija saknes:
+**Savā mapē:** saglabā testu kā test_word_tools.py blakus savam word_tools.py. Atver termināli tieši šajā mapē un palaid:
+
+```powershell
+python -m unittest discover -p "test_*.py" -v
+```
+
+**Repozitorija gatavie testi** (no repozitorija saknes; tie nepārbauda tavu atsevišķi izveidoto failu):
 
 ```powershell
 python -m unittest discover -s lessons/05_functions_modules/05_modules -p "test_*.py" -v
 ```
 
 **Papildus:** tīši ievadi nepareizu sagaidāmo vērtību un izskaidro kļūdas ziņojumu.
+
+## Papildu uzdevumi
+
+Pēc pamata uzdevumiem: [A–H](bonus.md), [paraugrisinājumi](bonus_solutions.py), [testi](test_solutions.py). Izvēlies pēc interesēm.
 
 ## Pašpārbaude
 
