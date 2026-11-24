@@ -43,3 +43,6 @@
 7. Saskaņot noslēguma projekta vērtēšanu ar kursa organizatoru.
 
 **Svarīgi:** šī sadaļa ir publiska. Privātas studentu atzīmes, risinājumi, apmeklējuma dati un videokonferenču saites šeit neglabājas.
+
+- [6. nodarbības plāns (2026-12-01)](2026-12-01_lesson06_instructor_plan.md)
+- [7. nodarbības plāns (2026-12-03)](2026-12-03_lesson07_instructor_plan.md)

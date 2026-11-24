@@ -1,29 +1,25 @@
 # 6. nodarbība — Faili, ceļi un CSV
 
-**Statuss:** plāns; pilnais konspekts un programmēšanas piemēri tiks papildināti pirms nodarbības. Šis fails **nenozīmē**, ka visi minētie uzdevumi jau ir sagatavoti.
+[Interaktīvā nodarbība](https://valrcs.github.io/Python_RTU_2026_27/lessons/06-files-csv/) · [Uzdevumi](../../exercises/06_files_csv/README.md) · [Dati](../../datasets/README.md)
 
-## Sasniedzamais rezultāts
+## Sasniedzamie rezultāti
+- Izskaidrot darba mapi, relatīvos un absolūtos ceļus; izmantot pathlib.
+- Lasīt/rakstīt UTF-8 failus ar with open un r/w/a režīmiem.
+- Apstrādāt CSV ar csv.reader, DictReader un DictWriter, pārveidot laukus skaitļos.
+- Apstrādāt paredzamas kļūdas un saglabāt avota datus.
 
-Lasīt un rakstīt UTF-8 teksta failus; saprast relatīvos ceļus; apstrādāt CSV ar csv moduli.
+## Palaide
+Atver repozitorija saknes mapi. Palaid, piemēram, `python lessons/06_files_csv/06_expense_summary.py` (Windows: var lietot py; macOS/Linux: python3). Nav vajadzīgas ārējas pakotnes. Rezultāti glabājas jaunā output/ mapē. Pārbaudi ceļu ar 01_paths.py.
 
-## Temati
+- [01_paths.py](01_paths.py)
+- [02_read_text.py](02_read_text.py)
+- [03_write_text.py](03_write_text.py)
+- [04_filter_text.py](04_filter_text.py)
+- [05_read_csv.py](05_read_csv.py)
+- [06_expense_summary.py](06_expense_summary.py)
+- [07_write_csv.py](07_write_csv.py)
+- [08_file_errors.py](08_file_errors.py)
 
-- with open
-- encoding
-- pathlib
-- csv
-- kļūdu apstrāde
+Kopējā izdevumu summa 35.00 EUR; food 13.50, transport 3.00, books 15.60, household 2.90. Pamatuzdevumi 45 min; papildu: vairāki faili, teksta analīze, bojāti ieraksti. [2024/25 failu materiāli](https://github.com/ValRCS/Python_RTU_2024_25/tree/main/topic_12_paths_folders_file_reading_writing).
 
-## Ierosinātais praktiskais darbs
-
-Nolasīt teksta failu, saskaitīt rindas un filtrēt tās; analizēt datasets/expenses.csv.
-
-## Pārbaudi, vai saprasts
-
-Spēj saviem vārdiem izskaidrot vienu jaunu jēdzienu, pārveidot pasniedzēja piemēru un parādīt, kā pārbaudīji rezultātu.
-
-## Iepriekšējo gadu materiāli
-
-Atbilstošie resursi: **topic_12_paths_folders_file_reading_writing** [2024/25 arhīvā](https://github.com/ValRCS/Python_RTU_2024_25). Arhīvs ir **papildavots**, nevis šī kursa obligātais uzdevumu saraksts.
-
-[Atpakaļ uz kursa sākumu](../../README.md) · [Mācību uzdevumi](../../exercises/README.md)
+[Atpakaļ](../../README.md)

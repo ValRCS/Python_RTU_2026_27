@@ -1,0 +1,30 @@
+{
+  "recipes": [
+    {
+      "name": "Kartupeļu zupa",
+      "ingredients": [
+        "kartupelis",
+        "burkāns",
+        "sīpols"
+      ],
+      "minutes": 35
+    },
+    {
+      "name": "Cepti kartupeļi",
+      "ingredients": [
+        "kartupelis",
+        "eļļa",
+        "sāls"
+      ],
+      "minutes": 25
+    },
+    {
+      "name": "Burkānu salāti",
+      "ingredients": [
+        "burkāns",
+        "ābols"
+      ],
+      "minutes": 15
+    }
+  ]
+}

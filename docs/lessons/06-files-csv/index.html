@@ -1,1 +1,218 @@
-<!doctype html><html lang="lv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="RTU Python programmēšanas pamatu interaktīvie materiāli latviešu valodā"><title>6. nodarbība — Faili, ceļi un CSV | Python pamati · RTU</title><link rel="stylesheet" href="../../assets/css/style.css"></head><body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a><a href="../../resources/git-vscode.html">Git ceļvedis</a></nav></div></header><main id="main"><div class="shell section"><span class="eyebrow">6. nodarbība · 2026-12-01</span><h1>Faili, ceļi un CSV</h1><p class="notice">Šīs nodarbības interaktīvais saturs vēl tiek gatavots. Zemāk pieejami kursa sākotnējie materiāli un nodarbību navigācija.</p><article class="panel"><h2>Sagatavošanās un materiāli</h2><p>Atver <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/lessons/06_files_csv/README.md">nodarbības plānu GitHub repozitorijā</a>. Tas ir galvenais avots par sasniedzamajiem rezultātiem un uzdevumiem.</p><p>Atgriezies šeit, kad būs publicēti interaktīvie piemēri un pašpārbaudes jautājumi.</p></article><nav class="lesson-nav"><a href="../05-functions-modules/index.html">← Iepriekšējā nodarbība</a><a href="../07-notebooks-json/index.html">Nākamā nodarbība →</a></nav></div></main><footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer><script src="../../assets/js/main.js" defer></script></body></html>
+<!doctype html>
+<html lang="lv">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="6. nodarbība: Faili, ceļi un CSV — piemēri un uzdevumi latviešu valodā">
+<title>6. nodarbība — Faili, ceļi un CSV | RTU Python pamati</title><link rel="stylesheet" href="../../assets/css/style.css"></head>
+<body><header class="site-header"><div class="shell nav"><a class="brand" href="../../index.html">⌘ Python pamati <small>RTU · 2026/27</small></a><button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">☰ Izvēlne</button><nav id="site-menu" aria-label="Galvenā navigācija"><a href="../../index.html">Sākums</a><a href="../../index.html#nodarbibas">Nodarbības</a><a href="../../resources/index.html">Resursi</a><a href="../../resources/git-vscode.html">Git ceļvedis</a></nav></div></header>
+<main id="main"><div class="shell lesson-layout"><aside class="toc" aria-label="Nodarbības saturs"><strong>6. nodarbība</strong><p class="muted" id="progress-count">0 / 10 sadaļas atzīmētas</p><a href="#dati">1. No operatīvās atmiņas līdz failam</a>
+<a href="#celi">2. Faili, mapes un ceļi</a>
+<a href="#lasisana">3. Teksta failu lasīšana</a>
+<a href="#rakstisana">4. Teksta failu rakstīšana</a>
+<a href="#funkcijas">5. Failu apstrāde ar funkcijām</a>
+<a href="#csv">6. CSV datu formāts</a>
+<a href="#csv-apstrade">7. CSV lasīšana un rakstīšana</a>
+<a href="#kludas">8. Kļūdu apstrāde</a>
+<a href="#prakse">9. Patstāvīgais praktiskais darbs (20:20–21:05)</a>
+<a href="#papildus">10. Papildu izaicinājumi un atsauces</a></aside>
+<article class="lesson-content lesson6 data-lesson"><span class="eyebrow">2026. gada 1. decembris · 17:45–21:40</span><h1>Faili, ceļi un CSV</h1><p class="lead">Nolasi, apstrādā un saglabā datus. Izmanto Python standarta bibliotēku un iepriekš apgūtos ciklus, kolekcijas un funkcijas.</p><p class="notice"><strong>Šodien svarīgākais:</strong> saprast darba mapi, droši lasīt un rakstīt UTF-8 failus, apstrādāt CSV ar csv moduli. Pārlūka demonstrācijas tikai modelē Python uzvedību.</p>
+<section id="dati"><h2>1. No operatīvās atmiņas līdz failam</h2><p>Mainīgie dzīvo programmas izpildes laikā. Fails saglabā datus arī pēc programmas beigām. Ievade → apstrāde → izvade: agrāk izmantojām <code>input()</code> un <code>print()</code>, tagad ievadi lasām no diska un rezultātu saglabājam.</p><div class="data-table"><table><thead><tr><th scope="col">Formāts</th><th scope="col">Piemērs</th><th scope="col">Pielietojums</th></tr></thead><tbody><tr><td>TXT</td><td>pilsetas.txt</td><td>Brīvs teksts</td></tr><tr><td>CSV</td><td>expenses.csv</td><td>Tabulas</td></tr><tr><td>JSON</td><td>expenses.json</td><td>Ligzdoti dati (7. nodarbība)</td></tr></tbody></table></div><p>Lejupielādē vai atjaunini kursa repozitoriju (<a href="../../resources/git-vscode.html">Git ceļvedis</a>), atver tā saknes mapi VS Code. Visi piemēri izmanto šo darba mapi. Ja lejupielādē atsevišķus failus, izveido darba mapē <code>datasets</code> apakšmapi un ievieto tajā <a href="https://raw.githubusercontent.com/ValRCS/Python_RTU_2026_27/main/datasets/pilsetas.txt">pilsetas.txt</a> un <a href="https://raw.githubusercontent.com/ValRCS/Python_RTU_2026_27/main/datasets/expenses.csv">expenses.csv</a>. Avota failus nepārrakstīsim.</p>
+<div class="exercise" data-quiz="l6q1" data-answer="0" data-explanation="Fails saglabā datus ārpus programmas atmiņas."><strong>Kas saglabājas pēc programmas beigām?</strong><label class="checkline"><input type="radio" name="l6q1" value="0"> Fails diskā</label><label class="checkline"><input type="radio" name="l6q1" value="1"> Parasts lokāls mainīgais</label><label class="checkline"><input type="radio" name="l6q1" value="2"> Cikla skaitītājs</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q2" data-answer="1" data-explanation="Atsevišķa izvade pasargā avota datus."><strong>Kur glabāt ģenerētu rezultātu?</strong><label class="checkline"><input type="radio" name="l6q2" value="0"> Tikai mainīgajā</label><label class="checkline"><input type="radio" name="l6q2" value="1"> Atsevišķā output mapē</label><label class="checkline"><input type="radio" name="l6q2" value="2"> Vienmēr avota failā</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-dati"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="celi"><h2>2. Faili, mapes un ceļi</h2><p>Absolūts ceļš sākas no failu sistēmas saknes, relatīvs — no pašreizējās darba mapes (current working directory). Tā ne vienmēr sakrīt ar skripta mapi. Windows lieto arī disku burtus, macOS/Linux — sakni <code>/</code>. <code>pathlib.Path</code> veido ceļus pārnesami.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-path">Kopēt</button></div><pre><code id="l6-path">from pathlib import Path
+
+print(&quot;Darba mape:&quot;, Path.cwd())
+path = Path(&quot;datasets&quot;) / &quot;pilsetas.txt&quot;
+print(&quot;Relatīvais ceļš:&quot;, path)
+print(&quot;Absolūtais ceļš:&quot;, path.resolve())
+print(&quot;Vai fails pastāv?&quot;, path.is_file())</code></pre></div><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-path2">Kopēt</button></div><pre><code id="l6-path2">from pathlib import Path
+
+path = Path(&quot;datasets&quot;) / &quot;pilsetas.txt&quot;
+print(path.name, path.suffix)
+print(path.parent)
+print(path.exists())</code></pre></div><div class="exercise data-lab"><h3>Interaktīvi: darba mape un relatīvais ceļš</h3><p class="muted">JavaScript modelis, nevis Python interpretators. Netiek mainīti īsti faili.</p><label for="l6-cwd">Darba mape</label><select id="l6-cwd"><option value="root">kurss/</option><option value="lessons">kurss/lessons/</option><option value="datasets">kurss/datasets/</option></select><label for="l6-rel">Relatīvais ceļš</label><select id="l6-rel"><option value="datasets/pilsetas.txt">datasets/pilsetas.txt</option><option value="pilsetas.txt">pilsetas.txt</option><option value="../datasets/pilsetas.txt">../datasets/pilsetas.txt</option></select><pre class="output" id="l6-path-out" role="status" aria-live="polite"></pre></div><details><summary>Papildu: ceļš attiecībā pret skriptu</summary><p><code>__file__</code> ir skripta faila atrašanās vieta; piezīmju grāmatā tas parasti nav definēts. Šis piemērs der skriptam, kas atrodas blakus datu failam.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-scriptpath">Kopēt</button></div><pre><code id="l6-scriptpath">from pathlib import Path
+folder = Path(__file__).resolve().parent
+path = folder / &quot;pilsetas.txt&quot;</code></pre></div></details>
+<div class="exercise" data-quiz="l6q3" data-answer="2" data-explanation="Path.cwd() parāda darba mapi."><strong>No kurienes rēķina relatīvu ceļu?</strong><label class="checkline"><input type="radio" name="l6q3" value="0"> Vienmēr no skripta mapes</label><label class="checkline"><input type="radio" name="l6q3" value="1"> No Python instalācijas</label><label class="checkline"><input type="radio" name="l6q3" value="2"> No darba mapes</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q4" data-answer="0" data-explanation="cwd ir current working directory."><strong>Ko dara Path.cwd()?</strong><label class="checkline"><input type="radio" name="l6q4" value="0"> Atgriež darba mapes ceļu</label><label class="checkline"><input type="radio" name="l6q4" value="1"> Izveido jaunu mapi</label><label class="checkline"><input type="radio" name="l6q4" value="2"> Atver failu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q5" data-answer="1" data-explanation="is_file pārbauda faila esamību un tipu."><strong>Ko pārbauda path.is_file()?</strong><label class="checkline"><input type="radio" name="l6q5" value="0"> Vai kodējums ir UTF-8</label><label class="checkline"><input type="radio" name="l6q5" value="1"> Vai ceļš norāda uz esošu failu</label><label class="checkline"><input type="radio" name="l6q5" value="2"> Vai fails ir CSV</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q6" data-answer="2" data-explanation="Divi punkti apzīmē vecākmapi."><strong>Ko nozīmē .. relatīvā ceļā?</strong><label class="checkline"><input type="radio" name="l6q6" value="0"> Faila paplašinājumu</label><label class="checkline"><input type="radio" name="l6q6" value="1"> Tekošo failu</label><label class="checkline"><input type="radio" name="l6q6" value="2"> Vecākmapi</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-celi"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="lasisana"><h2>3. Teksta failu lasīšana</h2><p><code>open()</code> atver failu; <code>with</code> nodrošina tā aizvēršanu, izejot no bloka (arī kļūdas gadījumā). <code>encoding="utf-8"</code> ir svarīgs latviešu burtiem. <code>read()</code> nolasa visu tekstu, <code>readlines()</code> atgriež rindu sarakstu, bet cikls lasa pa rindai.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-read">Kopēt</button></div><pre><code id="l6-read">with open(&quot;datasets/pilsetas.txt&quot;, encoding=&quot;utf-8&quot;) as file:
+    text = file.read()
+
+print(text, end=&quot;&quot;)
+print(&quot;Rindas:&quot;, len(text.splitlines()))
+print(&quot;Vārdi:&quot;, len(text.split()))</code></pre></div><p class="output">Rindas: 5<br>Vārdi: 5</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-lines">Kopēt</button></div><pre><code id="l6-lines">with open(&quot;datasets/pilsetas.txt&quot;, encoding=&quot;utf-8&quot;) as file:
+    for line in file:
+        print(line.rstrip(&quot;\n&quot;))</code></pre></div><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-readlines">Kopēt</button></div><pre><code id="l6-readlines">with open(&quot;datasets/pilsetas.txt&quot;, encoding=&quot;utf-8&quot;) as file:
+    lines = file.readlines()
+
+print(lines)
+print(lines[0].strip())</code></pre></div><p>Rindas parasti satur beigu jaunrindas simbolu <code>\n</code>. <code>strip()</code> noņem arī citas atstarpes abos galos; <code>rstrip("\n")</code> noņem tikai jaunrindas simbolus.</p>
+<div class="exercise" data-quiz="l6q7" data-answer="0" data-explanation="read() nolasa tekstu vienā virknē."><strong>Kāds ir read() rezultāta tips teksta režīmā?</strong><label class="checkline"><input type="radio" name="l6q7" value="0"> str</label><label class="checkline"><input type="radio" name="l6q7" value="1"> list</label><label class="checkline"><input type="radio" name="l6q7" value="2"> int</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q8" data-answer="1" data-explanation="Konteksta pārvaldnieks atbrīvo resursu."><strong>Ko dara with open(...)?</strong><label class="checkline"><input type="radio" name="l6q8" value="0"> Vienmēr pārraksta failu</label><label class="checkline"><input type="radio" name="l6q8" value="1"> Aizver failu, izejot no bloka</label><label class="checkline"><input type="radio" name="l6q8" value="2"> Automātiski dzēš failu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q9" data-answer="2" data-explanation="Faila objektu var iterēt."><strong>Kurš paņēmiens lasa pa rindai?</strong><label class="checkline"><input type="radio" name="l6q9" value="0"> file.write()</label><label class="checkline"><input type="radio" name="l6q9" value="1"> len(file)</label><label class="checkline"><input type="radio" name="l6q9" value="2"> for line in file</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q10" data-answer="0" data-explanation="Kodējums nosaka baitu pārvēršanu tekstā."><strong>Kāpēc norādīt encoding='utf-8'?</strong><label class="checkline"><input type="radio" name="l6q10" value="0"> Lai pareizi interpretētu teksta baitus</label><label class="checkline"><input type="radio" name="l6q10" value="1"> Lai failu saspiestu</label><label class="checkline"><input type="radio" name="l6q10" value="2"> Lai novērstu visas kļūdas</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-lasisana"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="rakstisana"><h2>4. Teksta failu rakstīšana</h2><p>Režīms <code>r</code> ir lasīšana, <code>w</code> — rakstīšana (esošais saturs tiek dzēsts atvēršanas brīdī), <code>a</code> — papildināšana. <code>w</code> un <code>a</code> izveido failu, ja tas nepastāv, bet neizveido trūkstošu vecākmapi.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-write">Kopēt</button></div><pre><code id="l6-write">from pathlib import Path
+
+# Rakstām tikai mācību rezultātu mapē.
+Path(&quot;output&quot;).mkdir(exist_ok=True)
+with open(&quot;output/pilsetas_demo.txt&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as file:
+    file.write(&quot;Rīga\n&quot;)
+with open(&quot;output/pilsetas_demo.txt&quot;, &quot;a&quot;, encoding=&quot;utf-8&quot;) as file:
+    file.write(&quot;Cēsis\n&quot;)
+with open(&quot;output/pilsetas_demo.txt&quot;, encoding=&quot;utf-8&quot;) as file:
+    print(file.read(), end=&quot;&quot;)</code></pre></div><div class="exercise data-lab"><h3>Interaktīvi: faila režīmi</h3><p class="muted">JavaScript modelis, nevis Python interpretators. Netiek mainīti īsti faili.</p><p>Faila saturs:</p><pre class="output" id="l6-file" role="status" aria-live="polite"></pre><label for="l6-mode">Režīms</label><select id="l6-mode"><option value="r">r — lasīt</option><option value="w">w — pārrakstīt</option><option value="a">a — papildināt</option></select><label for="l6-newline">Jaunā rinda</label><input id="l6-newline" type="text" value="Cēsis" maxlength="80"><button type="button" id="l6-file-run">Izpildīt</button><button type="button" id="l6-file-reset">Atiestatīt</button><pre class="output" id="l6-file-out" role="status" aria-live="polite"></pre></div><p><code>write()</code> pati nepievieno jaunrindu, tā jānorāda. Izmēģini programmu divreiz un pārbaudi, kā atšķiras <code>w</code> un <code>a</code>.</p>
+<div class="exercise" data-quiz="l6q11" data-answer="1" data-explanation="Atvēršana w režīmā saīsina failu līdz nullei."><strong>Ko dara w ar esošu failu?</strong><label class="checkline"><input type="radio" name="l6q11" value="0"> Tikai nolasa</label><label class="checkline"><input type="radio" name="l6q11" value="1"> Dzēš iepriekšējo saturu</label><label class="checkline"><input type="radio" name="l6q11" value="2"> Papildina saturu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q12" data-answer="2" data-explanation="a raksta faila beigās."><strong>Kurš režīms papildina failu?</strong><label class="checkline"><input type="radio" name="l6q12" value="0"> r</label><label class="checkline"><input type="radio" name="l6q12" value="1"> w</label><label class="checkline"><input type="radio" name="l6q12" value="2"> a</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q13" data-answer="0" data-explanation="Jaunrinda jānorāda pašam."><strong>Vai write('Rīga') pievieno jaunrindu?</strong><label class="checkline"><input type="radio" name="l6q13" value="0"> Nē</label><label class="checkline"><input type="radio" name="l6q13" value="1"> Jā, vienmēr</label><label class="checkline"><input type="radio" name="l6q13" value="2"> Tikai Windows</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-rakstisana"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="funkcijas"><h2>5. Failu apstrāde ar funkcijām</h2><p>Iepriekš apguvām funkcijas un ciklus. Tagad atdalām faila lasīšanu no paša algoritma. Funkcijai var nodot ceļu un meklējamo vārdu; tā atgriež rezultātu, ko pārbaudām.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-filter">Kopēt</button></div><pre><code id="l6-filter">from pathlib import Path
+
+def filter_lines(source, destination, keyword):
+    count = 0
+    with open(source, encoding=&quot;utf-8&quot;) as src:
+        with open(destination, &quot;w&quot;, encoding=&quot;utf-8&quot;) as dst:
+            for line in src:
+                if keyword.lower() in line.lower():
+                    dst.write(line)
+                    count += 1
+    return count
+
+Path(&quot;output&quot;).mkdir(exist_ok=True)
+count = filter_lines(&quot;datasets/pilsetas.txt&quot;, &quot;output/riga.txt&quot;, &quot;Rīga&quot;)
+print(&quot;Atlasītas rindas:&quot;, count)</code></pre></div><p class="output">Atlasītas rindas: 2</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-count">Kopēt</button></div><pre><code id="l6-count">def count_words(text):
+    counts = {}
+    for word in text.lower().split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts
+
+with open(&quot;datasets/pilsetas.txt&quot;, encoding=&quot;utf-8&quot;) as file:
+    counts = count_words(file.read())
+print(counts)
+assert counts[&quot;rīga&quot;] == 2</code></pre></div><div class="exercise data-lab"><h3>Interaktīvi: rindu filtrēšana</h3><p class="muted">JavaScript modelis, nevis Python interpretators. Netiek mainīti īsti faili.</p><label for="l6-text">Teksts</label><textarea id="l6-text" rows="5">Rīga
+Liepāja
+Cēsis
+Rīga
+Jelgava
+</textarea><label for="l6-keyword">Meklējamais teksts (neatkarīgi no burtu reģistra)</label><input id="l6-keyword" value="rīga"><button type="button" id="l6-filter-run">Atlasīt</button><pre class="output" id="l6-filter-out" role="status" aria-live="polite"></pre></div>
+<div class="exercise" data-quiz="l6q14" data-answer="1" data-explanation="Avota un rezultāta atdalīšana ir drošāka."><strong>Kāpēc filtrēto tekstu rakstīt citā failā?</strong><label class="checkline"><input type="radio" name="l6q14" value="0"> Lai izdzēstu avotu</label><label class="checkline"><input type="radio" name="l6q14" value="1"> Lai saglabātu oriģinālu</label><label class="checkline"><input type="radio" name="l6q14" value="2"> Python aizliedz divus failus</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q15" data-answer="2" data-explanation="count palielinās par katru ierakstīto rindu."><strong>Ko atgriež filter_lines piemērā?</strong><label class="checkline"><input type="radio" name="l6q15" value="0"> Faila objektu</label><label class="checkline"><input type="radio" name="l6q15" value="1"> Visu faila saturu</label><label class="checkline"><input type="radio" name="l6q15" value="2"> Atlasīto rindu skaitu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q16" data-answer="0" data-explanation="Salīdzinām abas virknes vienādā reģistrā."><strong>Kāpēc izmantot lower() abām virknēm?</strong><label class="checkline"><input type="radio" name="l6q16" value="0"> Lai meklēšana nešķirotu burtu reģistru</label><label class="checkline"><input type="radio" name="l6q16" value="1"> Lai noņemtu ciparus</label><label class="checkline"><input type="radio" name="l6q16" value="2"> Lai rakstītu CSV</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-funkcijas"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="csv"><h2>6. CSV datu formāts</h2><p>CSV (comma-separated values) ir teksta formāts tabulām. Pirmajā rindā bieži ir kolonnu nosaukumi. Laukus atdala komats vai cits atdalītājs (delimiter), piemēram, semikols. Pēdiņas ļauj laukā ietvert komatu. Latvijas izklājlapās sastopams arī decimālkomats.</p><div class="data-table"><table><thead><tr><th scope="col">date</th><th scope="col">category</th><th scope="col">description</th><th scope="col">amount_eur</th></tr></thead><tbody><tr><td>2026-11-01</td><td>food</td><td>maize</td><td>2.15</td></tr><tr><td>2026-11-01</td><td>transport</td><td>bilete</td><td>1.50</td></tr><tr><td>2026-11-02</td><td>food</td><td>piens</td><td>1.65</td></tr><tr><td>2026-11-03</td><td>books</td><td>gramata</td><td>12.00</td></tr></tbody></table></div><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-reader">Kopēt</button></div><pre><code id="l6-reader">import csv
+with open(&quot;datasets/expenses.csv&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+    reader = csv.reader(file)
+    header = next(reader)
+    print(header)
+    for row in reader:
+        print(row)</code></pre></div><div class="exercise data-lab"><h3>Interaktīvi: CSV atdalītājs</h3><p class="muted">JavaScript modelis, nevis Python interpretators. Netiek mainīti īsti faili.</p><label for="l6-delim">Lauku atdalītājs</label><select id="l6-delim"><option value=",">Komats</option><option value=";">Semikols</option></select><pre class="output" id="l6-csv-out" role="status" aria-live="polite"></pre><div class="data-table"><table><thead><tr><th scope="col">prece</th><th scope="col">daudzums</th><th scope="col">cena</th></tr></thead><tbody><tr><td>Maize</td><td>2</td><td>1.50</td></tr><tr><td>Piens</td><td>3</td><td>1.20</td></tr></tbody></table></div></div><p>CSV laukus drošāk parsēt ar <code>csv</code>, nevis <code>split(",")</code>. Atver CSV ar <code>newline=""</code>, lai modulis pats pārvaldītu rindbeigas.</p>
+<div class="exercise" data-quiz="l6q17" data-answer="1" data-explanation="Galvene parasti apraksta kolonnas."><strong>Ko nozīmē CSV galvene?</strong><label class="checkline"><input type="radio" name="l6q17" value="0"> Faila kodējumu</label><label class="checkline"><input type="radio" name="l6q17" value="1"> Kolonnu nosaukumus</label><label class="checkline"><input type="radio" name="l6q17" value="2"> Pēdējo rindu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q18" data-answer="2" data-explanation="CSV parsētājs apstrādā pēdiņas un atdalītājus."><strong>Kāpēc nepietiek ar split(',')?</strong><label class="checkline"><input type="radio" name="l6q18" value="0"> split nav Python metode</label><label class="checkline"><input type="radio" name="l6q18" value="1"> CSV nekad nav komatu</label><label class="checkline"><input type="radio" name="l6q18" value="2"> Komats var būt pēdiņās ietvertā laukā</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q19" data-answer="0" data-explanation="delimiter ir csv lasītāja parametrs."><strong>Kā norādīt semikola atdalītāju?</strong><label class="checkline"><input type="radio" name="l6q19" value="0"> delimiter=';'</label><label class="checkline"><input type="radio" name="l6q19" value="1"> encoding=';'</label><label class="checkline"><input type="radio" name="l6q19" value="2"> mode=';'</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-csv"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="csv-apstrade"><h2>7. CSV lasīšana un rakstīšana</h2><p><code>csv.reader</code> atgriež rindu sarakstus, bet <code>csv.DictReader</code> katru rindu atgriež kā vārdnīcu ar galvenes atslēgām. Lauki ir virknes, līdz tās pārveidojam.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-dict">Kopēt</button></div><pre><code id="l6-dict">import csv
+
+with open(&quot;datasets/expenses.csv&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        amount = float(row[&quot;amount_eur&quot;])
+        print(row[&quot;description&quot;], f&quot;{amount:.2f} EUR&quot;)</code></pre></div><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-sum">Kopēt</button></div><pre><code id="l6-sum">import csv
+total = 0.0
+with open(&quot;datasets/expenses.csv&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+    for row in csv.DictReader(file):
+        total += float(row[&quot;amount_eur&quot;])
+print(f&quot;Kopā: {total:.2f} EUR&quot;)</code></pre></div><p class="output">Kopā: 35.00 EUR</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-summary">Kopēt</button></div><pre><code id="l6-summary">import csv
+
+def expense_summary(path):
+    totals = {}
+    with open(path, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+        for row in csv.DictReader(file):
+            category = row[&quot;category&quot;]
+            amount = float(row[&quot;amount_eur&quot;])
+            totals[category] = totals.get(category, 0.0) + amount
+    return totals
+
+if __name__ == &quot;__main__&quot;:
+    totals = expense_summary(&quot;datasets/expenses.csv&quot;)
+    for category, amount in sorted(totals.items()):
+        print(f&quot;{category}: {amount:.2f} EUR&quot;)
+    print(f&quot;Kopā: {sum(totals.values()):.2f} EUR&quot;)
+    assert abs(sum(totals.values()) - 35.0) &lt; 1e-9</code></pre></div><div class="data-table"><table><thead><tr><th scope="col">Kategorija</th><th scope="col">EUR</th></tr></thead><tbody><tr><td>food</td><td>13.50</td></tr><tr><td>transport</td><td>3.00</td></tr><tr><td>books</td><td>15.60</td></tr><tr><td>household</td><td>2.90</td></tr></tbody></table></div><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-csvwrite">Kopēt</button></div><pre><code id="l6-csvwrite">import csv
+from pathlib import Path
+
+Path(&quot;output&quot;).mkdir(exist_ok=True)
+with open(&quot;datasets/expenses.csv&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as source:
+    with open(&quot;output/food.csv&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as target:
+        reader = csv.DictReader(source)
+        writer = csv.DictWriter(target, fieldnames=[&quot;date&quot;, &quot;category&quot;, &quot;description&quot;, &quot;amount_eur&quot;])
+        writer.writeheader()
+        for row in reader:
+            if row[&quot;category&quot;] == &quot;food&quot;:
+                writer.writerow(row)</code></pre></div><p><code>DictWriter</code> izmanto kolonnu nosaukumus un <code>writeheader()</code>. Rezultātā pieci pārtikas ieraksti un galvene.</p>
+<div class="exercise" data-quiz="l6q20" data-answer="1" data-explanation="CSV lasītājs pēc noklusējuma atgriež tekstu."><strong>Kāds tips ir row['amount_eur'] pirms pārveides?</strong><label class="checkline"><input type="radio" name="l6q20" value="0"> int</label><label class="checkline"><input type="radio" name="l6q20" value="1"> str</label><label class="checkline"><input type="radio" name="l6q20" value="2"> float</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q21" data-answer="2" data-explanation="Teksta virknes jāpārveido par skaitļiem."><strong>Kāpēc lieto float()?</strong><label class="checkline"><input type="radio" name="l6q21" value="0"> Lai nolasītu galveni</label><label class="checkline"><input type="radio" name="l6q21" value="1"> Lai aizvērtu failu</label><label class="checkline"><input type="radio" name="l6q21" value="2"> Lai veiktu skaitlisku saskaitīšanu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q22" data-answer="0" data-explanation="Galvene apraksta faila tabulu."><strong>Ko dara writer.writeheader()?</strong><label class="checkline"><input type="radio" name="l6q22" value="0"> Ieraksta kolonnu nosaukumus</label><label class="checkline"><input type="radio" name="l6q22" value="1"> Izdzēš kolonnas</label><label class="checkline"><input type="radio" name="l6q22" value="2"> Ieraksta tikai summu</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q23" data-answer="1" data-explanation="Desmit ierakstu kopējā summa ir 35 EUR."><strong>Kāda ir visu kursa izdevumu summa?</strong><label class="checkline"><input type="radio" name="l6q23" value="0"> 13.50 EUR</label><label class="checkline"><input type="radio" name="l6q23" value="1"> 35.00 EUR</label><label class="checkline"><input type="radio" name="l6q23" value="2"> 15.60 EUR</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-csv-apstrade"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="kludas"><h2>8. Kļūdu apstrāde</h2><p>Pārbaudi kļūdas paziņojumu: <code>FileNotFoundError</code> — nepareizs ceļš vai neesošs fails; <code>UnicodeDecodeError</code> — neatbilstošs kodējums; <code>ValueError</code> — nederīga skaitļa virkne. Kļūdu apstrādei izmanto konkrētus izņēmumus, nevis klusu visu kļūdu ignorēšanu.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-errors">Kopēt</button></div><pre><code id="l6-errors">import csv
+
+try:
+    with open(&quot;datasets/expenses.csv&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+        for line_number, row in enumerate(csv.DictReader(file), start=2):
+            try:
+                print(float(row[&quot;amount_eur&quot;]))
+            except (ValueError, TypeError, KeyError):
+                print(f&quot;Nederīgs ieraksts {line_number}. rindā.&quot;)
+except FileNotFoundError:
+    print(&quot;Fails nav atrasts. Pārbaudi darba mapi.&quot;)
+except UnicodeDecodeError:
+    print(&quot;Pārbaudi faila kodējumu.&quot;)</code></pre></div><p>Izmēģini ar nepareizu ceļu; nederīga skaitļa pārbaudei izveido CSV kopiju, nevis maini kursa oriģinālu. Sarežģītākos gadījumos jāvalidē arī galvene, tukši lauki un skaitļu robežas.</p>
+<div class="exercise" data-quiz="l6q24" data-answer="2" data-explanation="Pārbaudi ceļu un darba mapi."><strong>Kura kļūda parasti rodas, ja avota fails neeksistē?</strong><label class="checkline"><input type="radio" name="l6q24" value="0"> ZeroDivisionError</label><label class="checkline"><input type="radio" name="l6q24" value="1"> NameError</label><label class="checkline"><input type="radio" name="l6q24" value="2"> FileNotFoundError</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q25" data-answer="0" data-explanation="Virkni nevar pārvērst par skaitli."><strong>Ko rada float('abc')?</strong><label class="checkline"><input type="radio" name="l6q25" value="0"> ValueError</label><label class="checkline"><input type="radio" name="l6q25" value="1"> FileNotFoundError</label><label class="checkline"><input type="radio" name="l6q25" value="2"> None</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div>
+<div class="exercise" data-quiz="l6q26" data-answer="1" data-explanation="Konkrēti izņēmumi palīdz diagnosticēt problēmu."><strong>Kāpēc neizmantot tukšu except: pass?</strong><label class="checkline"><input type="radio" name="l6q26" value="0"> Tas automātiski labo datus</label><label class="checkline"><input type="radio" name="l6q26" value="1"> Tas var noslēpt neparedzētas kļūdas</label><label class="checkline"><input type="radio" name="l6q26" value="2"> Tas pārvērš tekstu skaitlī</label><button type="button">Pārbaudīt</button><p class="feedback" role="status" aria-live="polite"></p></div><label class="checkline"><input type="checkbox" data-progress="lesson6-kludas"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="prakse"><h2>9. Patstāvīgais praktiskais darbs (20:20–21:05)</h2><p>Izpildi četrus pamatuzdevumus savā datorā. Ja neizdodas, vispirms pārbaudi darba mapi, datus un kļūdas tekstu. Risinājumus atver pēc paša mēģinājuma.</p><div class="exercise"><h3>6.1. Teksta statistika (10 min)</h3><p>Nolasi pilsētas, izdrukā rindu un vārdu skaitu; sagaidāms 5 un 5.</p><p class="hint">Padoms: read(), splitlines(), split()</p><details><summary>Viens iespējamais risinājums (pēc mēģinājuma)</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-sol1">Kopēt</button></div><pre><code id="l6-sol1">with open(&quot;datasets/pilsetas.txt&quot;, encoding=&quot;utf-8&quot;) as file:
+    text = file.read()
+
+print(text, end=&quot;&quot;)
+print(&quot;Rindas:&quot;, len(text.splitlines()))
+print(&quot;Vārdi:&quot;, len(text.split()))</code></pre></div></details></div><div class="exercise"><h3>6.2. Rindu filtrēšana (10 min)</h3><p>Saglabā visas rindas ar Rīgu jaunā failā; sagaidāmas divas rindas.</p><p class="hint">Padoms: Izmanto ciklu, if un write.</p><details><summary>Viens iespējamais risinājums (pēc mēģinājuma)</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-sol2">Kopēt</button></div><pre><code id="l6-sol2">from pathlib import Path
+
+def filter_lines(source, destination, keyword):
+    count = 0
+    with open(source, encoding=&quot;utf-8&quot;) as src:
+        with open(destination, &quot;w&quot;, encoding=&quot;utf-8&quot;) as dst:
+            for line in src:
+                if keyword.lower() in line.lower():
+                    dst.write(line)
+                    count += 1
+    return count
+
+Path(&quot;output&quot;).mkdir(exist_ok=True)
+count = filter_lines(&quot;datasets/pilsetas.txt&quot;, &quot;output/riga.txt&quot;, &quot;Rīga&quot;)
+print(&quot;Atlasītas rindas:&quot;, count)</code></pre></div></details></div><div class="exercise"><h3>6.3. Izdevumu analīze (15 min)</h3><p>Nolasi CSV, izdrukā ierakstu skaitu un kopējo summu: 10 un 35.00 EUR.</p><p class="hint">Padoms: Pārveido amount_eur ar float().</p><details><summary>Viens iespējamais risinājums (pēc mēģinājuma)</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-sol3">Kopēt</button></div><pre><code id="l6-sol3">import csv
+with open(&quot;datasets/expenses.csv&quot;, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+    rows = list(csv.DictReader(file))
+total = sum(float(row[&quot;amount_eur&quot;]) for row in rows)
+print(len(rows), f&quot;{total:.2f} EUR&quot;)</code></pre></div></details></div><div class="exercise"><h3>6.4. Izdevumi pa kategorijām (10 min)</h3><p>Apkopo summas vārdnīcā. Pārtika 13.50, transports 3.00, grāmatas 15.60, saimniecība 2.90.</p><p class="hint">Padoms: dict.get(category, 0.0)</p><details><summary>Viens iespējamais risinājums (pēc mēģinājuma)</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-sol4">Kopēt</button></div><pre><code id="l6-sol4">import csv
+
+def expense_summary(path):
+    totals = {}
+    with open(path, encoding=&quot;utf-8&quot;, newline=&quot;&quot;) as file:
+        for row in csv.DictReader(file):
+            category = row[&quot;category&quot;]
+            amount = float(row[&quot;amount_eur&quot;])
+            totals[category] = totals.get(category, 0.0) + amount
+    return totals
+
+if __name__ == &quot;__main__&quot;:
+    totals = expense_summary(&quot;datasets/expenses.csv&quot;)
+    for category, amount in sorted(totals.items()):
+        print(f&quot;{category}: {amount:.2f} EUR&quot;)
+    print(f&quot;Kopā: {sum(totals.values()):.2f} EUR&quot;)
+    assert abs(sum(totals.values()) - 35.0) &lt; 1e-9</code></pre></div></details></div><p><a href="https://github.com/ValRCS/Python_RTU_2026_27/tree/main/lessons/06_files_csv">Lejupielādējamie Python piemēri</a> · <a href="https://github.com/ValRCS/Python_RTU_2026_27/blob/main/exercises/06_files_csv/README.md">Uzdevumi repozitorijā</a></p>
+<label class="checkline"><input type="checkbox" data-progress="lesson6-prakse"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<section id="papildus"><h2>10. Papildu izaicinājumi un atsauces</h2><p>Izmanto <code>Path.glob("*.txt")</code> vairāku failu apstrādei. Izveido CSV kopiju ar nederīgu summu un ziņo par kļūdainās rindas numuru. Literāram tekstam izmanto iepriekšējā kursa Rainis vai Veidenbaums piemērus (pārbaudi avotu un kodējumu).</p><details><summary>Vairāku failu meklēšana</summary><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-glob">Kopēt</button></div><pre><code id="l6-glob">from pathlib import Path
+for path in Path(&quot;datasets&quot;).glob(&quot;*.txt&quot;):
+    print(path.name)</code></pre></div></details><details><summary>Precīza naudas aritmētika un binārie faili</summary><p>Mācību piemēros izmantojam float un formatēšanu ar divām zīmēm. Finanšu aprēķinos izvēlies Decimal no teksta vai veselus centus. Bināros failus lasa ar rb un iegūst bytes, nevis str.</p><div class="code-box"><div class="code-toolbar"><span>Python 3</span><button type="button" data-copy="l6-decimal">Kopēt</button></div><pre><code id="l6-decimal">from decimal import Decimal
+print(Decimal(&quot;0.1&quot;) + Decimal(&quot;0.2&quot;))</code></pre></div></details><details><summary>Dokumentācija un agrākie materiāli</summary><ul><li><a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files">Python failu lasīšana un rakstīšana</a></li><li><a href="https://docs.python.org/3/library/pathlib.html">pathlib</a></li><li><a href="https://docs.python.org/3/library/csv.html">csv</a></li><li><a href="https://docs.python.org/3/tutorial/errors.html">Kļūdas un izņēmumi</a></li><li><a href="https://github.com/ValRCS/Python_RTU_2024_25/tree/main/topic_12_paths_folders_file_reading_writing">2024/25 failu piemēri</a></li></ul></details><p>Nākamreiz tos pašus datus pārveidosim JSON formātā un vizualizēsim piezīmju grāmatā.</p>
+<label class="checkline"><input type="checkbox" data-progress="lesson6-papildus"> Es saprotu šo sadaļu un esmu izmēģinājis piemērus.</label></section>
+<nav class="lesson-nav" aria-label="Nodarbību navigācija"><a href="../05-functions-modules/index.html">← 5. nodarbība</a><a href="../07-notebooks-json/index.html">7. nodarbība →</a></nav></article></div></main>
+<footer class="footer"><div class="shell">RTU · Python programmēšanas pamati · <a href="https://github.com/ValRCS/Python_RTU_2026_27">Kursa repozitorijs</a> · 2026/27</div></footer>
+<script src="../../assets/js/main.js" defer></script><script src="../../assets/js/exercises.js" defer></script><script src="../../assets/js/lesson06.js" defer></script>
+</body></html>

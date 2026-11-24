@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2026-11-01",
+    "category": "food",
+    "description": "maize",
+    "amount_eur": 2.15
+  },
+  {
+    "date": "2026-11-01",
+    "category": "transport",
+    "description": "bilete",
+    "amount_eur": 1.5
+  },
+  {
+    "date": "2026-11-02",
+    "category": "food",
+    "description": "piens",
+    "amount_eur": 1.65
+  },
+  {
+    "date": "2026-11-03",
+    "category": "books",
+    "description": "gramata",
+    "amount_eur": 12
+  },
+  {
+    "date": "2026-11-04",
+    "category": "food",
+    "description": "auglis",
+    "amount_eur": 3.2
+  },
+  {
+    "date": "2026-11-05",
+    "category": "transport",
+    "description": "bilete",
+    "amount_eur": 1.5
+  },
+  {
+    "date": "2026-11-06",
+    "category": "household",
+    "description": "ziepes",
+    "amount_eur": 2.9
+  },
+  {
+    "date": "2026-11-07",
+    "category": "food",
+    "description": "kafija",
+    "amount_eur": 4.1
+  },
+  {
+    "date": "2026-11-08",
+    "category": "books",
+    "description": "bloknots",
+    "amount_eur": 3.6
+  },
+  {
+    "date": "2026-11-09",
+    "category": "food",
+    "description": "risi",
+    "amount_eur": 2.4
+  }
+]

@@ -21,3 +21,6 @@ Sāc ar [1. nodarbības uzdevumiem](01_getting_started/README.md), tad turpini a
 ## 5. nodarbība
 
 [Funkcijas, moduļi un testi: trīs pamata un divi papildu uzdevumi](05_functions_modules/README.md) — 2026. gada 26. novembris. Pieejams arī [sākuma kods](05_functions_modules/starter.py).
+
+- [6. nodarbība — Faili, ceļi un CSV](06_files_csv/README.md)
+- [7. nodarbība — Pakotnes, Jupyter un JSON](07_notebooks_json/README.md)

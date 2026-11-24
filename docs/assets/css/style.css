@@ -90,3 +90,18 @@
 .git-guide .lesson-content section{overflow-wrap:anywhere}
 .git-guide details summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 @media(max-width:760px){.git-guide .git-platform-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* 6.–7. nodarbība: failu, JSON un notebook modeļi. */
+.data-lesson .exercise .checkline{display:flex;align-items:flex-start;font-weight:400}
+.data-lesson .exercise input[type=radio]{width:auto;flex:none;margin-top:.4rem}
+.data-lesson .data-lab input,.data-lesson .data-lab textarea,.data-lesson .data-lab select{display:block;width:100%;max-width:100%;font:inherit;padding:.45rem;border:1px solid #8d9bad;border-radius:7px;background:white;color:#17263a}
+.data-lesson .data-lab textarea{resize:vertical}
+.data-lesson .output{overflow-wrap:anywhere;white-space:pre-wrap}
+.data-lesson .data-table{overflow-x:auto}
+.data-lesson table{border-collapse:collapse;width:100%;font-size:.9rem}
+.data-lesson th,.data-lesson td{border:1px solid var(--border);padding:.4rem;text-align:left;overflow-wrap:anywhere}
+.data-lesson th{background:#edf2f8}
+.data-lesson .expense-bars{display:grid;gap:.7rem;margin:1rem 0}
+.data-lesson .expense-track{background:#edf2f8;height:1rem;border-radius:5px;overflow:hidden}
+.data-lesson .expense-track div{height:100%;background:var(--blue)}
+.data-lesson textarea:focus-visible,.data-lesson select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
