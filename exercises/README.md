@@ -1,6 +1,6 @@
 # Praktiskie uzdevumi
 
-Sāc ar [1. nodarbības uzdevumiem](01_getting_started/README.md), tad turpini ar [2. nodarbības uzdevumiem](02_types_conditions/README.md) un [3. nodarbības uzdevumiem](03_loops_strings/README.md). 6.–12. nodarbības uzdevumi tiks papildināti kursa gaitā.
+Sāc ar [1. nodarbības uzdevumiem](01_getting_started/README.md), tad turpini ar [2. nodarbības uzdevumiem](02_types_conditions/README.md) un [3. nodarbības uzdevumiem](03_loops_strings/README.md). 9.–12. nodarbības uzdevumi tiks papildināti kursa gaitā.
 
 **Darba princips:** katru uzdevumu vispirms izpildi pats, tad izmēģini vēl vismaz vienu ievadi, kas atšķiras no piemēra. Saglabā savu risinājumu `.py` failā.
 
@@ -24,3 +24,4 @@ Sāc ar [1. nodarbības uzdevumiem](01_getting_started/README.md), tad turpini a
 
 - [6. nodarbība — Faili, ceļi un CSV](06_files_csv/README.md)
 - [7. nodarbība — Pakotnes, Jupyter un JSON](07_notebooks_json/README.md)
+- [8. nodarbība — HTML un tīmekļa datu iegūšana](08_html_scraping/README.md)

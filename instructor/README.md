@@ -35,7 +35,7 @@
 ## Vēl izdarāmais (nepabeigtās lietas)
 
 1. Detalizēti sagatavot 6. nodarbības piemērus un uzdevumus.
-2. Nošķirt droši demonstrējamu HTML paraugu no dzīvu vietņu skrāpēšanas.
+2. HTML lokālie un publicētie paraugi sagatavoti 8. nodarbībai; pirms lekcijas pārbaudīt GitHub Pages pieejamību.
 3. Sagatavot mazu, atkārtojamu JSON/API notebook, pārbaudīt ārējās API pieejamību un nodrošināt lokālu JSON rezerves piemēru.
 4. Paplašināt SQLite uzdevumu ar parametrizētu SQL, vienkāršiem datu integritātes principiem un kļūdām.
 5. Pārbaudīt Flask demonstrāciju tikai lokālā adresē; nepalaist publiski pieejamu izstrādes serveri.
@@ -46,3 +46,4 @@
 
 - [6. nodarbības plāns (2026-12-01)](2026-12-01_lesson06_instructor_plan.md)
 - [7. nodarbības plāns (2026-12-03)](2026-12-03_lesson07_instructor_plan.md)
+- [8. nodarbības plāns (2026-12-08)](2026-12-08_lesson08_instructor_plan.md) · [Dzīvā programmēšana](../lessons/08_html_scraping/live_coding/README.md)
