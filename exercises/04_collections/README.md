@@ -1,13 +1,13 @@
 # 4. nodarbības patstāvīgie uzdevumi — 2026-11-24
 
-**Laiks nodarbībā:** 20:25–21:05 (40 min). **Obligāti mēģini 1.–3. uzdevumu.** 4.–5. ir papildu izaicinājumi.  
+**Laiks nodarbībā:** 20:20–21:05 (45 min). **Obligāti mēģini 1.–3. uzdevumu.** 4.–5. ir papildu izaicinājumi. Ātrākajiem: [A–G papildu uzdevumi](bonus.md).  
 **Temati:** saraksti, vārdnīcas, cikli, `split()`/`join()`, korteži un kopas.
 
 Raksti katru programmu savā `.py` failā. Pārbaudi vismaz trīs gadījumus, ieskaitot tukšu ievadi, ja iespējams. Padomi un pilni risinājumi pieejami [nodarbības lapā](../../docs/lessons/04-collections/index.html) tikai pēc paša mēģinājuma.
 
 ## 1. Iepirkumu saraksts (pamata, aptuveni 8–10 min)
 
-Ar `while True` vaicā produkta nosaukumu līdz komandai `beigt`. Pievieno katru iepriekš ievadīto produktu sarakstam ar `append()`. Izdrukā sarakstu un elementu skaitu. Noslēguma komandu neiekļauj. Saglabā produkta oriģinālo nosaukumu, bet komandu pārbaudi pēc `strip().lower()`.
+Ar `while True` vaicā produkta nosaukumu līdz komandai `beigt`. Pievieno katru iepriekš ievadīto produktu sarakstam ar `append()`. Izdrukā sarakstu un elementu skaitu. Noslēguma komandu neiekļauj. Saglabā produkta oriģinālo nosaukumu, bet komandu pārbaudi pēc `strip().lower()`. Pamatvariantā tukša rinda arī ir saraksta elements; papildus vari izlaist tukšas vai tikai atstarpju ievades.
 
 | Ievades | Sagaidāmais |
 | --- | --- |

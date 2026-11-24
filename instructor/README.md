@@ -12,7 +12,7 @@
 
 ## 2026. gada 24. novembra nodarbība
 
-[4. nodarbības kolekciju plāns, demonstrācijas, kļūdas un pārbaudes](2026-11-24_lesson04_instructor_plan.md).
+[4. nodarbības kolekciju plāns, demonstrācijas, kļūdas un pārbaudes](2026-11-24_lesson04_instructor_plan.md). [Dzīvās programmēšanas piemēri](../lessons/04_collections/live_coding/README.md) un [papildu uzdevumi](../exercises/04_collections/bonus.md).
 
 ## 2026. gada 26. novembra nodarbība
 

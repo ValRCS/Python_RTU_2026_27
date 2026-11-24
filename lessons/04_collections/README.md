@@ -2,6 +2,7 @@
 
 **Datums:** otrdiena, 2026. gada 24. novembris, 17:45–21:40.  
 **Mācību vietne:** [Interaktīvā 4. nodarbība](../../docs/lessons/04-collections/index.html)  
+**Dzīvās programmēšanas piemēri:** [izvērstie skripti](live_coding/README.md)  
 **Patstāvīgā prakse:** [5 uzdevumi un testi](../../exercises/04_collections/README.md)  
 **Iepriekš:** [3. nodarbība — cikli un virknes](../03_loops_strings/README.md).
 
@@ -14,7 +15,7 @@ Pēc nodarbības students spēj:
 4. Veidot `dict`, piekļūt vērtībām pēc atslēgas, atjaunināt, pārbaudīt `in` un iterēt ar `items()`.
 5. Saskaitīt vārdu biežumu ar ciklu un vārdnīcu, paskaidrot `get(key, default)` lietojumu.
 6. Atšķirt `tuple` no `list` pēc nemaināmības un indeksa piekļuves.
-7. Papildus: izmantot `set` unikālu elementu iegūšanai un dalības pārbaudei.
+7. Izmantot `set` unikālu elementu iegūšanai un dalības pārbaudei.
 
 ## Četri kolekciju veidi
 
@@ -37,10 +38,10 @@ Pēc nodarbības students spēj:
 | 19:10–19:25 | Vārdnīcas: atslēgas un vērtības |
 | 19:25–19:35 | Pārtraukums |
 | 19:35–20:10 | Vārdnīcas: `items`, `get`, biežumu skaitīšana |
-| 20:10–20:25 | Korteži: fiksēta secība un nemaināmība |
-| 20:25–21:05 | Patstāvīgā prakse: 3 pamata un 2 papildu uzdevumi |
+| 20:10–20:20 | Korteži, izpakošana un kopu minimums |
+| 20:20–21:05 | Patstāvīgā prakse: 3 pamata un 2 papildu uzdevumi |
 | 21:05–21:25 | Uzdevumu apspriede un atkļūdošana |
-| 21:25–21:35 | Kopas: izvēles demonstrācija |
+| 21:25–21:35 | Kopas: papildu operācijas |
 | 21:35–21:40 | Noslēgums un pāreja uz funkcijām |
 
 ## Python piemēru palaišana
@@ -59,9 +60,11 @@ Mac/Linux lieto `python3`, ja `python` nav pieejams. Piemēri ir neinteraktīvi 
 
 ## Būtiskais un papildu saturs
 
-**Obligāti:** `list` un `dict`; `len`, `for`, piekļuve, modificēšana, `append`, `split`/`join`, `dict.get` un `items`; īss `tuple` ievads.  
-**Pēc iespējas:** `remove`, `pop`, `sum`/`min`/`max`, `sorted`, `set` un dublikātu noņemšana.  
-**Vēlāk:** comprehensions, `Counter`, dziļi iegultas kolekcijas, paplašināta kopu algebra, sarežģīta kļūdu apstrāde un funkciju definēšana.
+**Obligāti:** `list` un `dict`; `len`, `for`, piekļuve, modificēšana, `append`, `split`/`join`, `dict.get` un `items`; īss `tuple` un `set` ievads.  
+**Pēc iespējas:** `remove`, `pop`, `sum`/`min`/`max`, `sorted`, izvērsta kopu algebra.  
+**Vēlāk:** `Counter`, dziļi iegultas kolekcijas, paplašināta kopu algebra, sarežģīta kļūdu apstrāde un funkciju definēšana.
+
+Papildu demonstrācijās var parādīt comprehension, kopēšanu un iepriekš apgūto `try/except`; tie nav obligāti jaunie rezultāti. [Papildu uzdevumi A–G](../../exercises/04_collections/bonus.md).
 
 ## Prakses piezīmes
 
