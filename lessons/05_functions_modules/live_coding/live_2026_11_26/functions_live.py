@@ -121,17 +121,66 @@ print(result) # None
 
 # izmantojot noklusētās vērtības un aprakstus, mēs varam veidot ļoti elastīgas funkcijas, kuras ir viegli saprotamas un atkārtoti lietojamas.
 # rēķināsim laukumu apļiem, taisnstūriem un trijstūriem
-def circle_area(radius):
+def circle_area(radius, precision=4, debug=False):
     """Aprēķina apļa laukumu pēc dotā rādiusa.
     
     Args:
         radius (float): Apļa rādiuss.
-        
+        precision (int): Precizitāte ciparos pēc komata. Noklusētā vērtība ir 4.
+        debug (bool): Ja True, tad izdrukā debug informāciju. Noklusētā vērtība ir False.
     Returns:
         float: Apļa laukums.
     """
+
     import math # importējam math moduli, lai izmantotu pi
-    return math.pi * radius ** 2
+    # ļoti tipiski funkcijām mēs izveidojam mainīgos, kas ir atkarīgi no parametriem, un tad atgriežam rezultātu
+    result = round(math.pi * radius ** 2, precision)
+    if debug:
+        print(f"Debug: radius={radius}, area={result}")
+    return result
 
 # varam izsaukt šo funkciju
 print(f"Apļa laukums ar rādiusu 5 ir {circle_area(5)}")
+# ja es gribu teiksim 6 ciparu precizitāti
+print(f"Apļa laukums ar rādiusu 5 ir {circle_area(5, precision=6)}")
+
+# varam tagad izmanit debug vērtību
+# varu arī rezultātu globāli saglabāt mainīgajā, izmantot to vēlāk
+circle_10_area = circle_area(10, debug=True)
+print(f"Apļa laukums ar rādiusu 10 ir {circle_10_area}")
+# print(f"Apļa laukums ar rādiusu 10 ir {circle_area(10, debug=True)}")
+
+#Vēl viena lieta ar funkcijām mēs varam ieteikt datu tipus - type hints
+def rectangle_area(width: float, height: float) -> float:
+    """Aprēķina taisnstūra laukumu pēc dotajiem platuma un augstuma.
+    
+    Args:
+        width (float): Taisnstūra platums.
+        height (float): Taisnstūra augstums.
+    Returns:
+        float: Taisnstūra laukums.
+    """
+    return width * height
+
+rectange_area = rectangle_area(5, 10)
+print(f"Taisnstūra laukums ar platumu 5 un augstumu 10 ir {rectange_area}")
+
+# type hints ir tikai ieteikums, Python tos nepiemēro, 
+# bet tie palīdz citiem programmētājiem saprast kādi datu tipi tiek sagaidīti un atgriezti.
+# ir arī tā sauktie linters, kas pārbauda kodu un brīdina ja tiek izmantoti nepareizi datu tipi.
+
+# kā atgriest vairākas vērtības no funkcijas
+def min_max(numbers: list) -> tuple:
+    """Atgriež saraksta minimālo un maksimālo vērtību.
+    
+    Args:
+        numbers (list): Saraksts ar skaitļiem.
+    Returns:
+        tuple: Minimālā un maksimālā vērtība.
+    """
+    # tipiski ir atgriest kortežu, bet var arī atgriezt sarakstu vai vārdnīcu
+    return min(numbers), max(numbers)
+
+my_numbers = [3, 5, 1, 8, 2]
+minimum, maximum = min_max(my_numbers) # atpakojam kortežu
+print(f"Minimālā vērtība ir {minimum}, maksimālā vērtība ir {maximum}")
