@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" role="img" aria-labelledby="title desc">
+<title id="title">Python — Faili, ceļi un CSV</title><desc id="desc">Ievades faili, Python apstrāde un saglabāts rezultāts; stilizēta Rīgas panorāma.</desc>
+<rect width="960" height="340" rx="16" fill="#142c45"/>
+<path d="M0 273H960V340H0Z" fill="#294e69"/><path d="M0 265H100V243H124V265H175V225H189V192L202 158 215 192V225H233V264H290V238H319V266H380V213H391V170L404 133 417 170V213H433V266H495V242H525V265H588V217H601V187L612 161 623 187V217H642V266H710V232H742V266H817V246H850V266H960V273H0Z" fill="#203b55"/>
+<path d="M0 295H960M0 317H960" stroke="#648ba4" stroke-opacity=".3"/>
+<g font-family="system-ui,sans-serif" fill="#fff"><text x="480" y="49" text-anchor="middle" font-size="30" font-weight="700">Python — Faili, ceļi un CSV</text>
+<g fill="#e6edf5"><rect x="48" y="85" width="255" height="150" rx="12"/><rect x="353" y="85" width="254" height="150" rx="12"/><rect x="657" y="85" width="255" height="150" rx="12"/></g>
+<g fill="#142c45" text-anchor="middle"><text x="175" y="120" font-size="21" font-weight="700">Ievades faili</text><text x="175" y="155" font-size="19">datasets/</text><text x="175" y="185" font-size="18">TXT · CSV</text><text x="480" y="120" font-size="21" font-weight="700">Python apstrāde</text><text x="480" y="155" font-size="19">pathlib · open()</text><text x="480" y="185" font-size="19">for · dict · csv</text><text x="784" y="120" font-size="21" font-weight="700">Rezultāti</text><text x="784" y="155" font-size="19">output/</text><text x="784" y="185" font-size="18">TXT · CSV</text></g>
+<g stroke="#e9c46a" stroke-width="5" fill="none"><path d="M309 160h36l-12-10m12 10-12 10"/><path d="M613 160h36l-12-10m12 10-12 10"/></g><text x="480" y="304" text-anchor="middle" font-size="19">Nolasīt → Apstrādāt → Saglabāt</text></g></svg>

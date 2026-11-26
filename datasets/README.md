@@ -16,3 +16,11 @@
 - [apartments.html](apartments.html) — pieci fiktīvi īres piedāvājumi, platība m² un cena EUR.
 - [book_catalog_incomplete.html](book_catalog_incomplete.html) — seši ieraksti, divi derīgi; trūkstoši lauki, komata decimālatdalītājs un NaN.
 - GitHub Pages publicētās kopijas: [katalogs](https://valrcs.github.io/Python_RTU_2026_27/datasets/book_catalog.html), [dzīvokļi](https://valrcs.github.io/Python_RTU_2026_27/datasets/apartments.html). Uzturi abas kopijas identiskas.
+
+## 6. nodarbības papildu dati
+
+- [products_lv.csv](products_lv.csv) — fiktīvi produkti, UTF-8, semikols un decimālkomats; 3 ieraksti, 10.60 EUR.
+- [expenses_invalid.csv](expenses_invalid.csv) — 2 derīgi, 4 nederīgi ieraksti (abc, tukšs, NaN, negatīvs).
+- [sales.csv](sales.csv) — ģenerēti 60 fiktīvi ieraksti; vienas preces cena EUR, ieņēmumi 372.00 EUR.
+- [sample_texts](sample_texts/) — divi mākslīgi teksti; Rīga 2 un 1 rindā.
+- [rainis.txt](rainis.txt), [veidenbaums.txt](veidenbaums.txt) — mācību fragmenti (līdz 80 sākuma rindām) no [2024/25 kursa datnēm](https://github.com/ValRCS/Python_RTU_2024_25/tree/main/topic_12_paths_folders_file_reading_writing). Autori Rainis un Eduards Veidenbaums, publiskā domēna literārie darbi; sākotnējais izdevums/transkripcijas avots agrākajā repozitorijā nav norādīts. Nav kritiski pārbaudīts izdevums. UTF-8.
