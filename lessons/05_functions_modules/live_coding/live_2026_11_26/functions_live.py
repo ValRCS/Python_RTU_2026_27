@@ -35,3 +35,69 @@ def greet_persons(persons):
 greet_persons(persons)
 
 print("Esam beiguši")
+
+# mēs varam atgriezt arī vertības no funkcijām
+# teiksim mēs gribam aprēķināt kvadrātu no skaitļa
+def square(number):
+    return number ** 2
+
+#izsaucam funkciju un saglabājam rezultātu mainīgajā
+result = square(5) 
+
+print(f"Kvadrāts no 5 ir {result}")
+
+# izrēķināsim kvadrātus no pirmiem desmit skaitļiem
+# for i in range(1, 11):
+#     print(f"Kvadrāts no {i} ir {square(i)}")
+
+# mēs varētu definēt drukāšanas funkciju kvadrātiem
+def print_square(number):
+    print(f"Kvadrāts no {number} ir {square(number)}")
+
+# un izsaukt pirmiem 5
+for i in range(1, 6):
+    print_square(i)
+
+# labas funkcijas nav pārāk garas un tās dara vienu lietu,
+#  tāpēc mēs varam sadalīt funkcijas mazākās daļās
+
+# mēs taču varētu uztaisīt funkciju kas ņem sākuma skaitli un beigu skaitli un izdrukā kvadrātus no visiem skaitļiem šajā intervālā
+def print_squares_in_range(start, end):
+    for i in range(start, end + 1):
+        print_square(i)
+
+# tad es varu rakstīt šādi:
+print_squares_in_range(1, 5)
+
+# es varētu veidot arī funkciju kas saglabā kvadrātus sarakstā un atgriež to
+def get_squares_in_range(start=1, end=5):
+    squares = [] # jauns saraksts
+    for i in range(start, end + 1):
+        squares.append(square(i))
+    return squares
+
+my_squares = get_squares_in_range(10, 15)
+print(my_squares)
+
+
+# let's make a power function that has default power 2
+def power(number, exponent=2): # noklusētam vērtībām jābūt beigās
+    return number ** exponent
+
+# ideja ja nav dots eksponents, tad tiek izmantots 2
+print(power(3)) # 9
+print(power(3, 4)) # 81
+
+# es varu lietot default vērtības tagad get squares_in_range funkcijā
+print(get_squares_in_range()) # default 1, 5
+
+# kā izsaukt funkcijua ja man interesē tikai beigu vērtība, bet sākuma vērtība lai paliek default
+print(get_squares_in_range(end=10)) # default start 1, end 10
+
+# piemēram print es varu nomainīt end
+print("Bez jaunas rindas", end=" ") # default end="\n"
+# varam beigt ar emoji vienmēr
+print("Lielisks alus! 🍺", end="XXX\n") # default end="\n"
+
+a, b, c = 1, 2, 3
+print(a, b, c, sep=" | ") # default sep=" "
