@@ -17,3 +17,8 @@ def my_square(number):
 # labāk ir izmantot tā saucamo "if __name__ == '__main__':" konstrukciju, lai izsauktu funkcijas tikai tad, ja modulis tiek izpildīts tieši, nevis importēts
 if __name__ == "__main__": # pārbauda vai modulis tiek izpildīts tieši, nevis importēts
     print(f"Kvadrāts no 10 ir {my_square(10)}")
+    # te būtu laba vieta testiem
+    assert my_square(2) == 4, "Kvadrāts no 2 ir 4"
+    assert my_square(-2) == 4, "Kvadrāts no -2 ir 4"
+    assert my_square(0) == 0, "Kvadrāts no 0 ir 0"
+    print("Visi testi izpildījās veiksmīgi!")
