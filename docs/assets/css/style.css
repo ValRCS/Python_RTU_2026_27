@@ -105,3 +105,8 @@
 .data-lesson .expense-track{background:#edf2f8;height:1rem;border-radius:5px;overflow:hidden}
 .data-lesson .expense-track div{height:100%;background:var(--blue)}
 .data-lesson textarea:focus-visible,.data-lesson select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Git workflow diagrams: responsive, readable, full-size link for narrow screens. */
+.git-guide .git-workflow-figure{margin:1.25rem 0;padding:.65rem;border:1px solid var(--border);border-radius:12px;background:#f8fafc}
+.git-guide .git-workflow-figure img{display:block;width:100%;height:auto;max-width:100%;margin:0 auto}
+.git-guide .git-workflow-figure figcaption{font-size:.9rem;color:var(--muted);margin:.65rem .25rem .1rem;line-height:1.5}
