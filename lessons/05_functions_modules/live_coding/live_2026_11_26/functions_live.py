@@ -101,3 +101,37 @@ print("Lielisks alus! 🍺", end="XXX\n") # default end="\n"
 
 a, b, c = 1, 2, 3
 print(a, b, c, sep=" | ") # default sep=" "
+
+# mēs varam arī nedaudz aprakstīt funkcijas, lai tās būtu vieglāk saprotamas
+def greet_person_with_docstring(name):
+    """Sveicina personu ar dotu vārdu
+    Args:
+        name (str): Personas vārds
+    Returns:
+        None
+    """
+    print(f"Sveiks, {name}!")
+
+# tagad ja es rakstu help(greet_person_with_docstring) es redzu aprakstu
+greet_person_with_docstring("Anna")
+
+# par to None, ja navc return tad atgriež None, bet ja ir return tad atgriež to ko returnē
+result = greet_person_with_docstring("Jānis")
+print(result) # None
+
+# izmantojot noklusētās vērtības un aprakstus, mēs varam veidot ļoti elastīgas funkcijas, kuras ir viegli saprotamas un atkārtoti lietojamas.
+# rēķināsim laukumu apļiem, taisnstūriem un trijstūriem
+def circle_area(radius):
+    """Aprēķina apļa laukumu pēc dotā rādiusa.
+    
+    Args:
+        radius (float): Apļa rādiuss.
+        
+    Returns:
+        float: Apļa laukums.
+    """
+    import math # importējam math moduli, lai izmantotu pi
+    return math.pi * radius ** 2
+
+# varam izsaukt šo funkciju
+print(f"Apļa laukums ar rādiusu 5 ir {circle_area(5)}")
