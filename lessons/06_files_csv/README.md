@@ -23,3 +23,11 @@ Atver repozitorija saknes mapi. Palaid, piemēram, `python lessons/06_files_csv/
 Kopējā izdevumu summa 35.00 EUR; food 13.50, transport 3.00, books 15.60, household 2.90. Pamatuzdevumi 45 min; papildu: vairāki faili, teksta analīze, bojāti ieraksti. [2024/25 failu materiāli](https://github.com/ValRCS/Python_RTU_2024_25/tree/main/topic_12_paths_folders_file_reading_writing).
 
 [Atpakaļ](../../README.md)
+
+## Izvērstie materiāli
+
+- [12 live coding demonstrācijas](live_coding/README.md)
+- [Patstāvīgā darba sākuma fails](../../exercises/06_files_csv/starter.py)
+- [Papildu uzdevumi 6.5–6.15](../../exercises/06_files_csv/bonus.md)
+- Pārbaudes: `python -m unittest discover -s exercises/06_files_csv -p "test_*.py" -v`
+- Lieto output/ rezultātiem; mape izslēgta no Git. Ja fails nav atrodams, pārbaudi Path.cwd() un resolve().

@@ -42,4 +42,48 @@
   };
   el("l6-delim").addEventListener("change", csvUpdate);
   csvUpdate();
+
+  // Pārlūka modeļi; netiek izpildīts Python.
+  const updateModeCode = () => {
+    const mode = el("l6-mode").value;
+    const line = el("l6-newline").value + "\n";
+    write("l6-mode-code", 'with open("pilsetas.txt", "' + mode + '", encoding="utf-8") as file:\n    ' +
+      (mode === "r" ? "print(file.read())" : "file.write(" + JSON.stringify(line) + ")"));
+  };
+  ["l6-mode", "l6-newline"].forEach(id => el(id).addEventListener("input", updateModeCode));
+  el("l6-mode").addEventListener("change", updateModeCode);
+  updateModeCode();
+  const parseRecord = line => {
+    const result = [];
+    let field = "", quoted = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        if (quoted && line[i + 1] === '"') { field += '"'; i++; }
+        else quoted = !quoted;
+      } else if (ch === "," && !quoted) { result.push(field); field = ""; }
+      else field += ch;
+    }
+    result.push(field);
+    return result;
+  };
+  const quotedUpdate = () => {
+    const line = el("l6-quoted").value;
+    write("l6-quoted-out", "split: " + JSON.stringify(line.split(",")) + "\ncsv.reader: " + JSON.stringify(parseRecord(line)));
+  };
+  el("l6-quoted").addEventListener("change", quotedUpdate);
+  quotedUpdate();
+  const expenses = [["food",215],["transport",150],["food",165],["books",1200],["food",320],["transport",150],["household",290],["food",410],["books",360],["food",240]];
+  const aggregateUpdate = () => {
+    const category = el("l6-category").value;
+    const rows = expenses.filter(row => category === "all" || row[0] === category);
+    let cents = 0;
+    const lines = rows.map(row => {
+      cents += row[1];
+      return row[0] + ": " + (row[1]/100).toFixed(2) + " → " + (cents/100).toFixed(2);
+    });
+    write("l6-aggregate", lines.join("\n") + "\nIeraksti: " + rows.length + "\nKopā: " + (cents/100).toFixed(2) + " EUR");
+  };
+  el("l6-category").addEventListener("change", aggregateUpdate);
+  aggregateUpdate();
 })();
